@@ -5,6 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const wheelOverlay = document.querySelector('#wheel-overlay');
 const optionWheel = document.querySelector('#option-wheel');
 const wheelItems = [...document.querySelectorAll('.wheel-item')];
+const projectBackgrounds = [...document.querySelectorAll('.project-background')];
 let selectedWheelIndex = 2;
 let wheelPosition = 2;
 let wheelTarget = 2;
@@ -34,6 +35,7 @@ const selectWheelItem = (index) => {
   selectedWheelIndex = Math.max(0, Math.min(wheelItems.length - 1, index));
   wheelTarget = selectedWheelIndex;
   wheelItems.forEach((item, itemIndex) => item.classList.toggle('is-selected', itemIndex === selectedWheelIndex));
+  projectBackgrounds.forEach((background, backgroundIndex) => background.classList.toggle('is-active', backgroundIndex === selectedWheelIndex));
   cancelAnimationFrame(wheelFrame);
   animateWheel();
 };
@@ -68,6 +70,60 @@ optionWheel.addEventListener('pointermove', (event) => { if (!dragStart) return;
 optionWheel.addEventListener('pointerup', () => { dragStart = null; });
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
 selectWheelItem(selectedWheelIndex);
+
+const particleCanvas = document.querySelector('#particle-field');
+const particleContext = particleCanvas.getContext('2d');
+const particleColor = '#738cff';
+const particleCount = 200;
+let particles = [];
+let pointer = { x: -9999, y: -9999 };
+
+function resizeParticles() {
+  const bounds = particleCanvas.getBoundingClientRect();
+  const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  particleCanvas.width = Math.floor(bounds.width * pixelRatio);
+  particleCanvas.height = Math.floor(bounds.height * pixelRatio);
+  particleContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  particles = Array.from({ length: particleCount }, () => ({
+    x: Math.random() * bounds.width,
+    y: Math.random() * bounds.height,
+    size: 1.45 + Math.random() * 1.35,
+    drift: .03 + Math.random() * .1,
+    phase: Math.random() * Math.PI * 2
+  }));
+}
+
+function drawParticles(time) {
+  const bounds = particleCanvas.getBoundingClientRect();
+  particleContext.clearRect(0, 0, bounds.width, bounds.height);
+  particles.forEach((particle) => {
+    particle.y -= particle.drift;
+    particle.x += Math.sin(time * .00035 + particle.phase) * .08;
+    if (particle.y < -4) particle.y = bounds.height + 4;
+    if (particle.x < -4) particle.x = bounds.width + 4;
+    if (particle.x > bounds.width + 4) particle.x = -4;
+    const dx = particle.x - pointer.x;
+    const dy = particle.y - pointer.y;
+    const distance = Math.hypot(dx, dy);
+    const influence = Math.max(0, 1 - distance / 100);
+    particleContext.beginPath();
+    particleContext.fillStyle = particleColor;
+    particleContext.globalAlpha = .28 + influence * .48;
+    particleContext.arc(particle.x + dx * influence * .08, particle.y + dy * influence * .08, particle.size * (1 + influence * .5), 0, Math.PI * 2);
+    particleContext.fill();
+  });
+  particleContext.globalAlpha = 1;
+  requestAnimationFrame(drawParticles);
+}
+
+window.addEventListener('resize', resizeParticles);
+document.querySelector('.hero').addEventListener('pointermove', (event) => {
+  const bounds = particleCanvas.getBoundingClientRect();
+  pointer = { x: event.clientX - bounds.left, y: event.clientY - bounds.top };
+});
+document.querySelector('.hero').addEventListener('pointerleave', () => { pointer = { x: -9999, y: -9999 }; });
+resizeParticles();
+requestAnimationFrame(drawParticles);
 
 
 toggle.addEventListener('click', () => {
