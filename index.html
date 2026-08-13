@@ -32,12 +32,45 @@
       <a class="scroll-next" href="#about" aria-label="向下浏览">↓</a>
     </main>
 
-    <section class="next-section" id="about"><p>ABOUT / 关于</p></section>
-    <section class="next-section" id="work"><p>WORK / 项目</p></section>
+    <section class="about-placeholder" id="about" aria-label="个人介绍">
+      <p data-zh="个人介绍 / 即将呈现" data-en="ABOUT / COMING SOON">个人介绍 / 即将呈现</p>
+    </section>
+    <section class="category-guide" id="work" aria-labelledby="category-title">
+      <canvas class="section-particles" aria-hidden="true"></canvas>
+      <header class="category-header"><p data-zh="作品集导览" data-en="PORTFOLIO INDEX">作品集导览</p><h2 id="category-title" data-zh="作品导览" data-en="PROJECT GUIDE">作品导览</h2><span data-zh="悬停浏览 · 点击进入" data-en="HOVER TO EXPLORE · CLICK TO ENTER">悬停浏览 · 点击进入</span></header>
+      <div class="category-accordion" aria-label="作品分类">
+        <a class="category-card category-games" href="#games"><img src="assets/project-01.png" alt="" /><span>01</span><strong data-zh="游戏项目" data-en="GAME PROJECTS">游戏项目</strong><i>→</i></a>
+        <a class="category-card category-design" href="#design-docs"><img src="assets/project-02.png" alt="" /><span>02</span><strong data-zh="游戏策划案 / 论文" data-en="DESIGN DOCS / PAPERS">游戏策划案 / 论文</strong><i>→</i></a>
+        <a class="category-card category-interaction" href="#interaction"><img src="assets/project-01.png" alt="" /><span>03</span><strong data-zh="交互设计" data-en="INTERACTION DESIGN">交互设计</strong><i>→</i></a>
+        <a class="category-card category-other" href="#other"><img src="assets/project-02.png" alt="" /><span>04</span><strong data-zh="其他" data-en="OTHER WORK">其他</strong><i>→</i></a>
+      </div>
+    </section>
+    <section class="portfolio-guide" id="games" aria-labelledby="work-title">
+      <header class="guide-header">
+        <p data-zh="游戏作品集" data-en="GAME PORTFOLIO">游戏作品集</p>
+        <h2 id="work-title" data-zh="游戏项目" data-en="GAME PROJECTS">游戏项目</h2>
+        <span data-zh="悬停浏览 · 点击进入作品详情" data-en="HOVER TO EXPLORE · CLICK TO ENTER">悬停浏览 · 点击进入作品详情</span>
+      </header>
+      <div class="accordion-gallery" aria-label="作品导览">
+        <a class="gallery-card project-one" href="#project-1"><span>01</span><div class="game-title" data-zh="<strong>星际饕餮</strong><b>Maskora</b><small>桌游</small>" data-en="<strong>Maskora</strong><small>TableGame</small>"><strong>星际饕餮</strong><b>Maskora</b><small>桌游</small></div><i>→</i></a>
+        <a class="gallery-card project-two" href="#project-2"><span>02</span><div class="game-title" data-zh="<strong>HelloWorld</strong><small>步行模拟器</small>" data-en="<strong>HelloWorld</strong><small>WalkingSimulator</small>"><strong>HelloWorld</strong><small>步行模拟器</small></div><i>→</i></a>
+        <a class="gallery-card project-three" href="#project-3"><span>03</span><div class="game-title" data-zh="<strong>重力飞船</strong><b>GravitySpaceship</b><small>关卡设计Demo</small>" data-en="<strong>GravitySpaceship</strong><small>LevelDesignDemo</small>"><strong>重力飞船</strong><b>GravitySpaceship</b><small>关卡设计Demo</small></div><i>→</i></a>
+        <a class="gallery-card project-four" href="#project-4"><span>04</span><div class="game-title" data-zh="<strong>滚滚猫汉堡</strong><b>RollingRollingKittyBuger</b><small>2D替代控制器平台跳跃</small>" data-en="<strong>RollingRollingKittyBuger</strong><small>2D-AltController Platformer</small>"><strong>滚滚猫汉堡</strong><b>RollingRollingKittyBuger</b><small>2D替代控制器平台跳跃</small></div><i>→</i></a>
+        <a class="gallery-card project-five" href="#project-5"><span>05</span><div class="game-title" data-zh="<strong>LoopingRoom</strong><small>叙事解谜游戏</small>" data-en="<strong>LoopingRoom</strong><small>Narrative Puzzle Game</small>"><strong>LoopingRoom</strong><small>叙事解谜游戏</small></div><i>→</i></a>
+        <a class="gallery-card project-six" href="#project-6"><span>06</span><div class="game-title" data-zh="<strong>狩虫人</strong><b>Verminex</b><small>关卡Demo</small>" data-en="<strong>Verminex</strong><small>LevelDesignDemo</small>"><strong>狩虫人</strong><b>Verminex</b><small>关卡Demo</small></div><i>→</i></a>
+        <a class="gallery-card project-seven" href="#project-7"><span>07</span><div class="game-title" data-zh="<strong>无限黄昏</strong><b>Infinity</b><small>2D-地牢刷宝游戏</small>" data-en="<strong>Infinity</strong><small>2D-dungeon Grind</small>"><strong>无限黄昏</strong><b>Infinity</b><small>2D-地牢刷宝游戏</small></div><i>→</i></a>
+      </div>
+    </section>
+    <section class="next-section category-detail" id="design-docs"><p>DESIGN DOCS / PAPERS</p></section>
+    <section class="next-section category-detail" id="interaction"><p>INTERACTION DESIGN</p></section>
+    <section class="next-section category-detail" id="other"><p>OTHER WORK</p></section>
     <section class="next-section" id="project-1"><p>PROJECT 01 / 作品 01</p></section>
     <section class="next-section" id="project-2"><p>PROJECT 02 / 作品 02</p></section>
     <section class="next-section" id="project-3"><p>PROJECT 03 / 作品 03</p></section>
     <section class="next-section" id="project-4"><p>PROJECT 04 / 作品 04</p></section>
+    <section class="next-section" id="project-5"><p>PROJECT 05 / 作品 05</p></section>
+    <section class="next-section" id="project-6"><p>PROJECT 06 / 作品 06</p></section>
+    <section class="next-section" id="project-7"><p>PROJECT 07 / 作品 07</p></section>
     <section class="next-section" id="contact"><p>CONTACT / 联系</p></section>
     <div class="wheel-overlay" id="wheel-overlay" aria-hidden="true">
       <div class="wheel-backdrop"></div>

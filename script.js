@@ -125,6 +125,61 @@ document.querySelector('.hero').addEventListener('pointerleave', () => { pointer
 resizeParticles();
 requestAnimationFrame(drawParticles);
 
+document.querySelectorAll('.section-particles').forEach((canvas) => {
+  const context = canvas.getContext('2d');
+  let sectionParticles = [];
+  let sectionPointer = { x: -9999, y: -9999 };
+  const host = canvas.parentElement;
+  const resize = () => {
+    const bounds = canvas.getBoundingClientRect();
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(bounds.width * ratio);
+    canvas.height = Math.floor(bounds.height * ratio);
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    sectionParticles = Array.from({ length: 200 }, () => ({ x: Math.random() * bounds.width, y: Math.random() * bounds.height, size: 1.45 + Math.random() * 1.35, drift: .03 + Math.random() * .1, phase: Math.random() * Math.PI * 2 }));
+  };
+  const draw = (time) => {
+    const bounds = canvas.getBoundingClientRect();
+    context.clearRect(0, 0, bounds.width, bounds.height);
+    sectionParticles.forEach((particle) => {
+      particle.y -= particle.drift; particle.x += Math.sin(time * .00035 + particle.phase) * .08;
+      if (particle.y < -4) particle.y = bounds.height + 4;
+      const dx = particle.x - sectionPointer.x; const dy = particle.y - sectionPointer.y; const influence = Math.max(0, 1 - Math.hypot(dx, dy) / 100);
+      context.beginPath(); context.fillStyle = particleColor; context.globalAlpha = .28 + influence * .48;
+      context.arc(particle.x + dx * influence * .08, particle.y + dy * influence * .08, particle.size * (1 + influence * .5), 0, Math.PI * 2); context.fill();
+    });
+    context.globalAlpha = 1; requestAnimationFrame(draw);
+  };
+  window.addEventListener('resize', resize);
+  host.addEventListener('pointermove', (event) => { const bounds = canvas.getBoundingClientRect(); sectionPointer = { x: event.clientX - bounds.left, y: event.clientY - bounds.top }; });
+  host.addEventListener('pointerleave', () => { sectionPointer = { x: -9999, y: -9999 }; });
+  resize(); requestAnimationFrame(draw);
+});
+
+document.querySelectorAll('.category-card').forEach((card) => {
+  card.addEventListener('pointermove', (event) => {
+    const bounds = card.getBoundingClientRect();
+    card.style.setProperty('--shine-x', `${((event.clientX - bounds.left) / bounds.width) * 100}%`);
+    card.style.setProperty('--shine-y', `${((event.clientY - bounds.top) / bounds.height) * 100}%`);
+  });
+});
+
+function fitGameTitles() {
+  document.querySelectorAll('.gallery-card strong').forEach((title) => {
+    const card = title.closest('.gallery-card');
+    const baseSize = Math.min(Math.max(window.innerWidth * .018, 18), 29);
+    title.style.fontSize = `${baseSize}px`;
+    const availableWidth = card.clientWidth - 24;
+    const titleWidth = title.getBoundingClientRect().width;
+    if (titleWidth > availableWidth) {
+      title.style.fontSize = `${Math.max(7, baseSize * availableWidth / titleWidth)}px`;
+    }
+  });
+}
+
+window.addEventListener('resize', fitGameTitles);
+fitGameTitles();
+
 
 toggle.addEventListener('click', () => {
   language = language === 'zh' ? 'en' : 'zh';
