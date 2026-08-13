@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作品详情 | 李植</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="project-detail-page">
+    <main class="project-detail-shell">
+      <nav class="detail-nav">
+        <a class="detail-back" id="detail-back" href="index.html#work">← 返回作品导览</a>
+        <button class="detail-language" id="detail-language" type="button">EN</button>
+      </nav>
+      <div class="detail-content">
+        <p class="detail-kicker" id="detail-kicker"></p>
+        <h1 id="detail-title"></h1>
+        <p class="detail-type" id="detail-type"></p>
+        <div class="detail-rule"></div>
+        <section class="detail-placeholder">
+          <p class="detail-status" id="detail-status"></p>
+          <p class="detail-description" id="detail-description"></p>
+        </section>
+      </div>
+    </main>
+    <script>
+      const catalog = {
+        game: [
+          ['星际饕餮', 'Maskora', '桌游', 'Table game'],
+          ['HelloWorld', 'HelloWorld', '步行模拟器', 'Walking simulator'],
+          ['重力飞船', 'GravitySpaceship', '关卡设计 Demo', 'Level design demo'],
+          ['滚滚猫汉堡', 'RollingRollingKittyBuger', '2D 替代控制器平台跳跃', '2D alt-controller platformer'],
+          ['LoopingRoom', 'LoopingRoom', '叙事解谜游戏', 'Narrative puzzle game'],
+          ['狩虫人', 'Verminex', '关卡 Demo', 'Level design demo'],
+          ['无限黄昏', 'Infinity', '2D 地牢刷宝游戏', '2D dungeon grind']
+        ],
+        research: [
+          ['《崩坏：星穹铁道》关卡拆解案', 'HONKAI: STAR RAIL — LEVEL ANALYSIS', '游戏关卡拆解', 'Game level analysis'],
+          ['认知预期如何塑造游戏关卡的隐性引导', 'How Cognitive Expectations Support Implicit Guidance in Game Level Design', '研究论文', 'Research paper']
+        ],
+        interaction: [
+          ['身体保卫战', 'Body Battle Defense', '就诊儿童产品', "Children's healthcare product"],
+          ['单词迷境', 'Word Relic', '盲童认知桌游', 'Cognitive board game for visually impaired children']
+        ],
+        other: [
+          ['Underground', 'Underground', '游戏 × 建筑概念设计', 'Game × architectural concept design'],
+          ['境界之外系列', 'Beyond the Boundary Series', '游戏世界观概念设计', 'Game world-building concept design'],
+          ['The LOOP POETICS', 'The LOOP POETICS', '游戏展览策划', 'Game exhibition curation'],
+          ['只能爬', 'Only Climb', '小游戏 Demo', 'Mini-game demo']
+        ]
+      };
+      const labels = {
+        game: ['游戏项目', 'Game projects', 'games'],
+        research: ['策划案与研究', 'Design & research', 'design-docs'],
+        interaction: ['交互设计', 'Interaction design', 'interaction'],
+        other: ['其他', 'Other work', 'other']
+      };
+      const params = new URLSearchParams(location.search);
+      const category = catalog[params.get('category')] ? params.get('category') : 'game';
+      const id = Math.max(1, Number(params.get('id')) || 1);
+      const project = catalog[category][id - 1] || catalog[category][0];
+      let language = 'zh';
+      const render = () => {
+        const isEnglish = language === 'en';
+        document.documentElement.lang = isEnglish ? 'en' : 'zh-CN';
+        document.title = `${project[isEnglish ? 1 : 0]} | Lizhi`;
+        document.querySelector('#detail-kicker').textContent = `${String(id).padStart(2, '0')} / ${labels[category][isEnglish ? 1 : 0]}`;
+        document.querySelector('#detail-title').textContent = project[isEnglish ? 1 : 0];
+        document.querySelector('#detail-type').textContent = project[isEnglish ? 3 : 2];
+        document.querySelector('#detail-status').textContent = isEnglish ? 'Project details are being prepared.' : '项目详情正在整理。';
+        document.querySelector('#detail-description').textContent = isEnglish ? 'Images, video, design documentation and playable files will be presented here.' : '后续将在这里呈现项目图片、视频、设计文档与可游玩的游戏文件。';
+        document.querySelector('#detail-back').textContent = isEnglish ? '← Back to portfolio guide' : '← 返回作品导览';
+        document.querySelector('#detail-back').href = `index.html#${labels[category][2]}`;
+        document.querySelector('#detail-language').textContent = isEnglish ? '中文' : 'EN';
+      };
+      document.querySelector('#detail-language').addEventListener('click', () => { language = language === 'zh' ? 'en' : 'zh'; render(); });
+      document.querySelector('#detail-back').addEventListener('click', (event) => {
+        event.preventDefault();
+        const destination = event.currentTarget.href;
+        const cameFromPortfolio = document.referrer && new URL(document.referrer).origin === location.origin && new URL(document.referrer).pathname.endsWith('/');
+        if (cameFromPortfolio) {
+          history.back();
+          return;
+        }
+        location.assign(destination);
+      });
+      render();
+    </script>
+  </body>
+</html>
