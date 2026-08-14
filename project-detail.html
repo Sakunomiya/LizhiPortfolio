@@ -90,11 +90,6 @@
       <button type="button" id="maskora-rulebook-lightbox-close" aria-label="关闭放大图片">×</button>
       <img id="maskora-rulebook-lightbox-image" alt="" />
     </div>
-    <div class="maskora-development-player" id="maskora-development-player" role="dialog" aria-modal="true" aria-label="播放开发记录视频" hidden>
-      <button type="button" id="maskora-development-player-close" aria-label="关闭视频">×</button>
-      <video id="maskora-development-video" controls playsinline></video>
-    </div>
-
     <script>
       const catalog = {
         game: [
@@ -303,32 +298,14 @@
         document.querySelector('#maskora-currency-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure class="maskora-currency-icon"><img src="assets/maskora/currency/${index}.png" alt="货币图 ${index}" /></figure>`).join('');
         document.querySelector('#maskora-board-iteration').src = 'assets/maskora/boards/iteration-process.jpg';
       }
-      function closeMaskoraDevelopmentPlayer() {
-        const player = document.querySelector('#maskora-development-player');
-        const video = document.querySelector('#maskora-development-video');
-        video.pause();
-        video.removeAttribute('src');
-        video.load();
-        player.hidden = true;
-        player.classList.remove('is-open');
-      }
       function renderMaskoraDevelopment() {
         const gallery = document.querySelector('#detail-process-gallery');
         if (!isMaskoraProject()) return;
         const t = maskoraDevelopmentCopy[language];
-        const videos = ['assets/maskora/development/development-process.mp4', 'assets/maskora/development/rules-promotion.mp4'];
         const covers = ['assets/maskora/development/development-process-cover.png', 'assets/maskora/development/rules-promotion-cover.png'];
         gallery.className = 'detail-process-gallery maskora-development-gallery';
-        gallery.setAttribute('aria-label', language === 'en' ? 'Maskora development videos' : 'Maskora 开发记录视频');
-        gallery.innerHTML = videos.map((video, index) => `<button type="button" class="maskora-development-card" data-development-video="${video}" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${covers[index]}')" aria-label="播放${t.cards[index]}"><span>0${index + 1}</span><b>${t.cards[index]}</b><i>▶</i></button>`).join('');
-        gallery.querySelectorAll('[data-development-video]').forEach(card => card.addEventListener('click', () => {
-          const player = document.querySelector('#maskora-development-player');
-          const video = document.querySelector('#maskora-development-video');
-          video.src = card.dataset.developmentVideo;
-          player.hidden = false;
-          requestAnimationFrame(() => player.classList.add('is-open'));
-          video.play().catch(() => {});
-        }));
+        gallery.setAttribute('aria-label', language === 'en' ? 'Maskora development records' : 'Maskora 开发记录');
+        gallery.innerHTML = covers.map((cover, index) => `<article class="maskora-development-card" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${cover}')"><span>0${index + 1}</span><b>${t.cards[index]}</b></article>`).join('');
       }
       function render() {
         const isEnglish = language === 'en';
@@ -388,9 +365,7 @@
       document.querySelector('#detail-back').addEventListener('click', event => { event.preventDefault(); location.replace(event.currentTarget.href); });
       document.querySelector('#maskora-rulebook-lightbox-close').addEventListener('click', closeMaskoraRulebookLightbox);
       document.querySelector('#maskora-rulebook-lightbox').addEventListener('click', event => { if (event.target === event.currentTarget) closeMaskoraRulebookLightbox(); });
-      document.querySelector('#maskora-development-player-close').addEventListener('click', closeMaskoraDevelopmentPlayer);
-      document.querySelector('#maskora-development-player').addEventListener('click', event => { if (event.target === event.currentTarget) closeMaskoraDevelopmentPlayer(); });
-      document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeMaskoraRulebookLightbox(); closeMaskoraDevelopmentPlayer(); } });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMaskoraRulebookLightbox(); });
       document.addEventListener('pointermove', event => {
         const button = event.target.closest('.detail-play-link');
         if (!button) return;
