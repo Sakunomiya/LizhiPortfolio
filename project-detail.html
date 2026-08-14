@@ -3,88 +3,253 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>作品详情 | 李植</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>项目详情 | 李植</title>
+    <link rel="stylesheet" href="style.css?v=20260814-detail-background1" />
   </head>
   <body class="project-detail-page">
+    <canvas class="detail-particles" aria-hidden="true"></canvas>
     <main class="project-detail-shell">
-      <nav class="detail-nav">
-        <a class="detail-back" id="detail-back" href="index.html#work">← 返回作品导览</a>
-        <button class="detail-language" id="detail-language" type="button">EN</button>
+      <nav class="detail-nav" aria-label="项目详情导航">
+        <a class="detail-brand" href="index.html">LZ / PORTFOLIO</a>
+        <div class="detail-actions">
+          <button class="detail-language" id="detail-language" type="button">EN</button>
+          <a class="detail-back" id="detail-back" href="index.html#work">返回导览 ←</a>
+        </div>
       </nav>
-      <div class="detail-content">
-        <p class="detail-kicker" id="detail-kicker"></p>
-        <h1 id="detail-title"></h1>
-        <p class="detail-type" id="detail-type"></p>
-        <div class="detail-rule"></div>
-        <section class="detail-placeholder">
-          <p class="detail-status" id="detail-status"></p>
-          <p class="detail-description" id="detail-description"></p>
-        </section>
-      </div>
+
+      <section class="detail-hero">
+        <div class="detail-intro">
+          <p class="detail-kicker" id="detail-kicker"></p>
+          <h1 id="detail-title"></h1>
+          <p class="detail-type" id="detail-type"></p>
+          <p class="detail-summary" id="detail-summary"></p>
+          <a class="detail-play-link" id="detail-play-link" href="#detail-exhibition" hidden></a>
+          <div class="detail-hero-actions">
+            <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
+            <a class="detail-action-secondary" id="detail-exhibition-link" href="#detail-exhibition">项目展览</a>
+          </div>
+          <a class="detail-scroll-down" href="#detail-exhibition" aria-label="向下查看项目展览">↓</a>
+        </div>
+        <div class="detail-visual" id="detail-visual" aria-label="项目主视觉">
+          <span id="detail-visual-label">PROJECT VISUAL</span>
+        </div>
+      </section>
+
+      <section class="detail-media" id="detail-media" aria-labelledby="detail-media-title" hidden>
+        <header class="detail-section-heading">
+          <h2 id="detail-media-title">项目媒体</h2>
+        </header>
+        <div class="detail-media-grid" id="detail-media-grid"></div>
+      </section>
+
+      <section class="detail-exhibition" id="detail-exhibition" aria-labelledby="detail-exhibition-title">
+        <header class="detail-section-heading detail-exhibition-heading">
+          <h2 id="detail-exhibition-title">项目展览</h2>
+        </header>
+        <div class="detail-exhibition-grid" id="detail-exhibition-grid" aria-label="项目展览图片"></div>
+      </section>
+
+      <section class="detail-review" id="detail-review" aria-labelledby="detail-review-title">
+        <header class="detail-section-heading">
+          <h2 id="detail-review-title">项目设计</h2>
+        </header>
+        <div class="detail-process-gallery" id="detail-process-gallery" aria-label="项目设计过程素材"></div>
+      </section>
     </main>
+
     <script>
       const catalog = {
         game: [
-          ['星际饕餮', 'Maskora', '桌游', 'Table game'],
-          ['HelloWorld', 'HelloWorld', '步行模拟器', 'Walking simulator'],
-          ['重力飞船', 'GravitySpaceship', '关卡设计 Demo', 'Level design demo'],
-          ['滚滚猫汉堡', 'RollingRollingKittyBuger', '2D 替代控制器平台跳跃', '2D alt-controller platformer'],
-          ['LoopingRoom', 'LoopingRoom', '叙事解谜游戏', 'Narrative puzzle game'],
-          ['狩虫人', 'Verminex', '关卡 Demo', 'Level design demo'],
-          ['无限黄昏', 'Infinity', '2D 地牢刷宝游戏', '2D dungeon grind']
+          { zh: '星际饕餮', en: 'Maskora', zhType: '桌游', enType: 'Table game', image: 'assets/game-01-maskora.png' },
+          {
+            zh: 'HelloWorld', en: 'HelloWorld', zhType: '步行模拟器', enType: 'Walking simulator', image: 'assets/game-02-helloworld.png',
+            heroImage: 'assets/detail-02-helloworld-hero.png', backgroundImage: 'assets/detail-02-helloworld-05.png',
+            exhibitionImages: ['assets/detail-02-helloworld-01.png', 'assets/detail-02-helloworld-02.png', 'assets/detail-02-helloworld-03.png', 'assets/detail-02-helloworld-04.png', 'assets/detail-02-helloworld-05.png']
+          },
+          {
+            zh: '重力飞船', en: 'GravitySpaceship', zhType: '关卡设计 Demo', enType: 'Level design demo', image: 'assets/game-03-gravity.png',
+            heroImage: 'assets/detail-03-gravity-hero.png', backgroundImage: 'assets/detail-03-gravity-05.png',
+            exhibitionImages: ['assets/detail-03-gravity-01.png', 'assets/detail-03-gravity-02.png', 'assets/detail-03-gravity-03.png', 'assets/detail-03-gravity-04.png', 'assets/detail-03-gravity-05.png']
+          },
+          {
+            zh: '滚滚猫汉堡', en: 'RollingRollingKittyBuger', zhType: '2D 替代控制器平台跳跃', enType: '2D alt-controller platformer', image: 'assets/game-04-kittyburger.png',
+            heroImage: 'assets/detail-04-kittyburger-hero.png', backgroundImage: 'assets/detail-04-kittyburger-05.png',
+            exhibitionImages: ['assets/detail-04-kittyburger-01.png', 'assets/detail-04-kittyburger-02.png', 'assets/detail-04-kittyburger-03.png', 'assets/detail-04-kittyburger-04.png', 'assets/detail-04-kittyburger-05.png']
+          },
+          {
+            zh: 'LoopingRoom', en: 'LoopingRoom', zhType: '叙事解谜游戏', enType: 'Narrative puzzle game', image: 'assets/game-05-loopingroom.png',
+            heroImage: 'assets/detail-05-loopingroom-hero.png', backgroundImage: 'assets/detail-05-loopingroom-05.png',
+            exhibitionImages: ['assets/detail-05-loopingroom-01.png', 'assets/detail-05-loopingroom-02.png', 'assets/detail-05-loopingroom-03.png', 'assets/detail-05-loopingroom-04.png', 'assets/detail-05-loopingroom-05.png']
+          },
+          {
+            zh: '狩虫人', en: 'Verminex', zhType: '关卡 Demo', enType: 'Level design demo', image: 'assets/game-06-verminex.png',
+            heroImage: 'assets/detail-06-verminex-hero.png', backgroundImage: 'assets/detail-06-verminex-05.png',
+            exhibitionImages: ['assets/detail-06-verminex-01.png', 'assets/detail-06-verminex-02.png', 'assets/detail-06-verminex-03.png', 'assets/detail-06-verminex-04.png', 'assets/detail-06-verminex-05.png']
+          },
+          {
+            zh: '无限黄昏', en: 'Infinity', zhType: '2D 地牢刷宝游戏', enType: '2D dungeon grind', image: 'assets/game-07-infinity.png',
+            heroImage: 'assets/detail-07-infinity-hero.png', backgroundImage: 'assets/detail-07-infinity-05.png',
+            exhibitionImages: ['assets/detail-07-infinity-01.png', 'assets/detail-07-infinity-02.png', 'assets/detail-07-infinity-03.png', 'assets/detail-07-infinity-04.png', 'assets/detail-07-infinity-05.png'],
+            processItems: [0]
+          }
         ],
         research: [
-          ['《崩坏：星穹铁道》关卡拆解案', 'HONKAI: STAR RAIL — LEVEL ANALYSIS', '游戏关卡拆解', 'Game level analysis'],
-          ['认知预期如何塑造游戏关卡的隐性引导', 'How Cognitive Expectations Support Implicit Guidance in Game Level Design', '研究论文', 'Research paper']
+          { zh: '《崩坏：星穹铁道》关卡拆解案', en: 'HONKAI: STAR RAIL — LEVEL ANALYSIS', zhType: '游戏关卡拆解', enType: 'Game level analysis', image: 'assets/category-research.png' },
+          { zh: '认知预期如何塑造游戏关卡的隐性引导', en: 'How Cognitive Expectations Support Implicit Guidance in Game Level Design', zhType: '研究论文', enType: 'Research paper', image: 'assets/category-research.png' }
         ],
         interaction: [
-          ['身体保卫战', 'Body Battle Defense', '就诊儿童产品', "Children's healthcare product"],
-          ['单词迷境', 'Word Relic', '盲童认知桌游', 'Cognitive board game for visually impaired children']
+          { zh: '身体保卫战', en: 'Body Battle Defense', zhType: '就诊儿童产品', enType: "Children's healthcare product", image: 'assets/interaction-01-body-battle.png', heroImage: 'assets/detail-interaction-01-body-hero.png', backgroundImage: 'assets/detail-interaction-01-body-05.png', exhibitionImages: ['assets/detail-interaction-01-body-01.png', 'assets/detail-interaction-01-body-02.png', 'assets/detail-interaction-01-body-03.png', 'assets/detail-interaction-01-body-04.png', 'assets/detail-interaction-01-body-05.png'] },
+          { zh: '单词迷境', en: 'Word Relic', zhType: '盲童认知桌游', enType: 'Cognitive board game for visually impaired children', image: 'assets/interaction-02-word-relic.png', heroImage: 'assets/detail-interaction-02-word-hero.png', backgroundImage: 'assets/detail-interaction-02-word-05.png', exhibitionImages: ['assets/detail-interaction-02-word-01.png', 'assets/detail-interaction-02-word-02.png', 'assets/detail-interaction-02-word-03.png', 'assets/detail-interaction-02-word-04.png', 'assets/detail-interaction-02-word-05.png'] }
         ],
         other: [
-          ['Underground', 'Underground', '游戏 × 建筑概念设计', 'Game × architectural concept design'],
-          ['境界之外系列', 'Beyond the Boundary Series', '游戏世界观概念设计', 'Game world-building concept design'],
-          ['The LOOP POETICS', 'The LOOP POETICS', '游戏展览策划', 'Game exhibition curation'],
-          ['只能爬', 'Only Climb', '小游戏 Demo', 'Mini-game demo']
+          { zh: 'Underground', en: 'Underground', zhType: '游戏 × 建筑概念设计', enType: 'Game × architectural concept design', image: 'assets/project-02.png', heroImage: 'assets/detail-other-01-underground-hero.png', backgroundImage: 'assets/detail-other-01-underground-05.png', exhibitionImages: ['assets/detail-other-01-underground-01.png', 'assets/detail-other-01-underground-02.png', 'assets/detail-other-01-underground-03.png', 'assets/detail-other-01-underground-04.png', 'assets/detail-other-01-underground-05.png'] },
+          {
+            zh: '境界之外系列', en: 'Beyond the Boundary Series', zhType: '游戏世界观概念设计', enType: 'Game world-building concept design', image: 'assets/project-01.png',
+            heroImage: 'assets/detail-other-02-beyond-05.png', backgroundImage: 'assets/detail-other-02-beyond-hero.png',
+            exhibitionImages: ['assets/detail-other-02-beyond-01.png', 'assets/detail-other-02-beyond-02.png', 'assets/detail-other-02-beyond-03.png', 'assets/detail-other-02-beyond-04.png', 'assets/detail-other-02-beyond-05.png']
+          },
+          { zh: 'The LOOP POETICS', en: 'The LOOP POETICS', zhType: '游戏展览策划', enType: 'Game exhibition curation', image: 'assets/project-03-infinity-v2.png' },
+          { zh: '只能爬', en: 'Only Climb', zhType: '小游戏 Demo', enType: 'Mini-game demo', image: 'assets/project-05-hello-world.png' }
         ]
       };
-      const labels = {
-        game: ['游戏项目', 'Game projects', 'games'],
-        research: ['策划案与研究', 'Design & research', 'design-docs'],
-        interaction: ['交互设计', 'Interaction design', 'interaction'],
-        other: ['其他', 'Other work', 'other']
+      const categories = {
+        game: { zh: '游戏项目', en: 'GAME PROJECTS', anchor: 'games' },
+        research: { zh: '游戏策划案与研究', en: 'GAME DESIGN DOCS & RESEARCH', anchor: 'design-docs' },
+        interaction: { zh: '交互设计', en: 'INTERACTION DESIGN', anchor: 'interaction' },
+        other: { zh: '跨界探索', en: 'CROSS-DISCIPLINARY EXPLORATIONS', anchor: 'other' }
+      };
+      const projectAction = {
+        game: { 2: ['体验游戏', 'PLAY GAME'], 3: ['体验游戏', 'PLAY GAME'], 4: ['体验游戏', 'PLAY GAME'], 5: ['体验游戏', 'PLAY GAME'], 6: ['体验游戏', 'PLAY GAME'], 7: ['体验游戏', 'PLAY GAME'] },
+        research: { 1: ['查看详情', 'VIEW DETAILS'], 2: ['查看详情', 'VIEW DETAILS'] },
+        other: { 4: ['体验游戏', 'PLAY GAME'] }
       };
       const params = new URLSearchParams(location.search);
       const category = catalog[params.get('category')] ? params.get('category') : 'game';
       const id = Math.max(1, Number(params.get('id')) || 1);
       const project = catalog[category][id - 1] || catalog[category][0];
       let language = 'zh';
-      const render = () => {
-        const isEnglish = language === 'en';
-        document.documentElement.lang = isEnglish ? 'en' : 'zh-CN';
-        document.title = `${project[isEnglish ? 1 : 0]} | Lizhi`;
-        document.querySelector('#detail-kicker').textContent = `${String(id).padStart(2, '0')} / ${labels[category][isEnglish ? 1 : 0]}`;
-        document.querySelector('#detail-title').textContent = project[isEnglish ? 1 : 0];
-        document.querySelector('#detail-type').textContent = project[isEnglish ? 3 : 2];
-        document.querySelector('#detail-status').textContent = isEnglish ? 'Project details are being prepared.' : '项目详情正在整理。';
-        document.querySelector('#detail-description').textContent = isEnglish ? 'Images, video, design documentation and playable files will be presented here.' : '后续将在这里呈现项目图片、视频、设计文档与可游玩的游戏文件。';
-        document.querySelector('#detail-back').textContent = isEnglish ? '← Back to portfolio guide' : '← 返回作品导览';
-        document.querySelector('#detail-back').href = `index.html#${labels[category][2]}`;
-        document.querySelector('#detail-language').textContent = isEnglish ? '中文' : 'EN';
-      };
-      document.querySelector('#detail-language').addEventListener('click', () => { language = language === 'zh' ? 'en' : 'zh'; render(); });
-      document.querySelector('#detail-back').addEventListener('click', (event) => {
-        event.preventDefault();
-        const destination = event.currentTarget.href;
-        const cameFromPortfolio = document.referrer && new URL(document.referrer).origin === location.origin && new URL(document.referrer).pathname.endsWith('/');
-        if (cameFromPortfolio) {
-          history.back();
-          return;
+      const copy = {
+        zh: {
+          summary: '这是该项目的作品详情页模板。后续将在此呈现项目概念、设计过程、关键内容、图像、视频与可游玩文件。',
+          primary: '查看项目预览', secondary: '项目设计', featuresIndex: '01 / PROJECT PREVIEW', featuresTitle: '项目预览', reviewIndex: '02 / PROJECT DESIGN', reviewTitle: '项目设计', featureTitles: ['项目主视觉', '概念与定位', '玩法 / 机制', '体验片段', '设计图稿'], featureText: ['后续可替换为项目截图、海报或视频封面。', '后续将补充项目背景、目标用户与设计命题。', '后续将展示关键机制、叙事或交互设计。', '后续将放置体验片段与开发过程截图。', '后续将放置策划案、草图与测试记录。'], processTitles: ['策划案', '开发草图', 'Demo 演示', '测试记录', '设计迭代'], processText: ['展示项目规则、系统或内容策划。', '展示手稿、流程图与视觉草图。', '展示原型、视频或可游玩的 Demo。', '展示测试过程、反馈与调整。', '展示最终的设计决策与复盘。'], back: '返回导览 ←', visual: '项目主视觉', toggle: 'EN'
+        },
+        en: {
+          summary: 'This project-detail template will later present the concept, process, key content, images, videos and playable builds.',
+          primary: 'Explore preview', secondary: 'Project design', featuresIndex: '01 / PROJECT PREVIEW', featuresTitle: 'Project preview', reviewIndex: '02 / PROJECT DESIGN', reviewTitle: 'Project design', featureTitles: ['Project visual', 'Concept & framing', 'Play / mechanics', 'Experience excerpt', 'Design material'], featureText: ['Replace this with a project image, poster or video cover.', 'The project context, audience and design question will be added here.', 'Key mechanics, narrative or interaction design will be presented here.', 'Experience excerpts and development screenshots will be placed here.', 'Design documents, sketches and test records will be placed here.'], processTitles: ['Design document', 'Development sketches', 'Demo showcase', 'Testing log', 'Design iteration'], processText: ['Rules, systems or content planning.', 'Sketches, flow diagrams and visual studies.', 'Prototypes, video or playable demos.', 'Testing process, feedback and adjustments.', 'Final design decisions and reflection.'], back: 'Back to guide ←', visual: 'PROJECT VISUAL', toggle: '中文'
         }
-        location.assign(destination);
+      };
+      const exhibitionCopy = {
+        zh: { title: '项目展览', captions: ['项目主视觉', '场景与氛围', '玩法片段', '设计素材', '补充展示'] },
+        en: { title: 'Project exhibition', captions: ['Project visual', 'Environment & mood', 'Gameplay moment', 'Design material', 'Additional view'] }
+      };
+      const mediaCopy = {
+        zh: { title: '项目媒体', video: '项目视频', game: '在线体验' },
+        en: { title: 'Project media', video: 'Project video', game: 'Playable build' }
+      };
+      function safeMediaUrl(value) {
+        if (typeof value !== 'string' || !value.trim()) return '';
+        try {
+          const url = new URL(value, location.href);
+          return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+        } catch { return ''; }
+      }
+      function renderMediaSlots() {
+        const media = mediaCopy[language];
+        const videoUrl = safeMediaUrl(project.videoUrl);
+        const gameUrl = safeMediaUrl(project.gameUrl);
+        const section = document.querySelector('#detail-media');
+        const grid = document.querySelector('#detail-media-grid');
+        const blocks = [];
+        if (videoUrl) blocks.push(`<article class="detail-media-card"><h3>${media.video}</h3><video controls playsinline preload="metadata"${project.videoPoster ? ` poster="${safeMediaUrl(project.videoPoster)}"` : ''}><source src="${videoUrl}">您的浏览器不支持视频播放。</video></article>`);
+        if (gameUrl) blocks.push(`<article class="detail-media-card detail-game-frame"><h3>${media.game}</h3><iframe src="${gameUrl}" title="${media.game}" loading="lazy" allow="fullscreen; autoplay" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups"></iframe></article>`);
+        section.hidden = blocks.length === 0;
+        if (blocks.length) {
+          document.querySelector('#detail-media-title').textContent = media.title;
+          grid.innerHTML = blocks.join('');
+        } else grid.innerHTML = '';
+        return { videoUrl, gameUrl };
+      }
+      function render() {
+        const isEnglish = language === 'en';
+        const t = copy[language];
+        document.documentElement.lang = isEnglish ? 'en' : 'zh-CN';
+        document.title = `${project[isEnglish ? 'en' : 'zh']} | Lizhi`;
+        document.querySelector('#detail-kicker').textContent = `${String(id).padStart(2, '0')} / ${categories[category][isEnglish ? 'en' : 'zh']}`;
+        document.querySelector('#detail-title').innerHTML = [...project[isEnglish ? 'en' : 'zh']].map((char, index) => `<span style="--char-index:${index}">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+        document.querySelector('#detail-type').textContent = project[isEnglish ? 'enType' : 'zhType'];
+        document.querySelector('#detail-summary').textContent = t.summary;
+        const action = projectAction[category]?.[id];
+        const actionLink = document.querySelector('#detail-play-link');
+        actionLink.hidden = !action;
+        if (action) actionLink.textContent = action[isEnglish ? 1 : 0];
+        document.querySelector('#detail-secondary').textContent = t.secondary;
+        document.querySelector('#detail-exhibition-link').textContent = isEnglish ? 'Project exhibition' : '项目展览';
+        document.querySelector('#detail-review-title').textContent = t.reviewTitle;
+        document.querySelector('#detail-back').textContent = t.back;
+        document.querySelector('#detail-back').href = `index.html?return=${categories[category].anchor}#${categories[category].anchor}`;
+        document.querySelector('#detail-language').textContent = t.toggle;
+        const heroImage = project.heroImage || project.image;
+        document.body.style.backgroundImage = '';
+        const heroSection = document.querySelector('.detail-hero');
+        heroSection.style.backgroundImage = '';
+        const processItems = project.processItems || t.processTitles.map((_, index) => index);
+        document.querySelector('#detail-visual-label').textContent = t.visual;
+        document.querySelector('#detail-visual').style.backgroundImage = `linear-gradient(140deg, rgba(4, 6, 16, .12), rgba(4, 6, 16, .78)), url("${heroImage}")`;
+        document.querySelector('#detail-process-gallery').innerHTML = processItems.map((contentIndex, index) => `<article class="detail-process-card" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${project.image}')"><span>0${index + 1}</span><h3>${t.processTitles[contentIndex]}</h3><p>${t.processText[contentIndex]}</p></article>`).join('');
+        const exhibition = exhibitionCopy[language];
+        const exhibitionImages = (project.exhibitionImages || Array.from({ length: 5 }, () => project.image)).slice(0, 5);
+        document.querySelector('#detail-exhibition-title').textContent = exhibition.title;
+        document.querySelector('#detail-exhibition-grid').innerHTML = exhibitionImages.map((image, index) => `<article class="detail-exhibition-card detail-exhibition-${index}" style="background-image:linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%),url('${image}')"><h3>${exhibition.captions[index] || exhibition.captions[0]}</h3></article>`).join('');
+        const mediaLinks = renderMediaSlots();
+        if (action) actionLink.href = mediaLinks.gameUrl || mediaLinks.videoUrl || '#detail-exhibition';
+      }
+      document.querySelector('#detail-language').addEventListener('click', () => { language = language === 'zh' ? 'en' : 'zh'; render(); setupProcessGallery(); });
+      document.querySelector('#detail-back').addEventListener('click', event => { event.preventDefault(); location.replace(event.currentTarget.href); });
+      document.addEventListener('pointermove', event => {
+        const button = event.target.closest('.detail-play-link');
+        if (!button) return;
+        const rect = button.getBoundingClientRect();
+        button.style.setProperty('--specular-x', `${event.clientX - rect.left}px`);
+        button.style.setProperty('--specular-y', `${event.clientY - rect.top}px`);
       });
+      function startParticles() {
+        const canvas = document.querySelector('.detail-particles');
+        const ctx = canvas.getContext('2d');
+        let width = 0, height = 0;
+        const dots = Array.from({ length: 150 }, () => ({ x: 0, y: 0, r: 0, speed: 0 }));
+        const resize = () => { width = canvas.width = innerWidth * devicePixelRatio; height = canvas.height = innerHeight * devicePixelRatio; canvas.style.width = `${innerWidth}px`; canvas.style.height = `${innerHeight}px`; ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0); dots.forEach(dot => { dot.x = Math.random() * innerWidth; dot.y = Math.random() * innerHeight; dot.r = .6 + Math.random() * 1.8; dot.speed = .08 + Math.random() * .25; }); };
+        const draw = () => { ctx.clearRect(0, 0, innerWidth, innerHeight); dots.forEach(dot => { dot.y -= dot.speed; if (dot.y < -4) { dot.y = innerHeight + 4; dot.x = Math.random() * innerWidth; } ctx.fillStyle = 'rgba(49, 81, 218, .38)'; ctx.beginPath(); ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2); ctx.fill(); }); requestAnimationFrame(draw); };
+        addEventListener('resize', resize); resize(); draw();
+      }
+      function setupProcessGallery() {
+        const gallery = document.querySelector('#detail-process-gallery');
+        let active = Math.floor((gallery.children.length - 1) / 2);
+        const arrange = () => [...gallery.children].forEach((card, index) => {
+          const offset = index - active;
+          card.style.transform = `translate(-50%, -50%) translateX(${offset * 62}%) rotate(${offset * 6}deg)`;
+          card.style.opacity = Math.max(.18, 1 - Math.abs(offset) * .3);
+          card.style.filter = `blur(${Math.min(3, Math.abs(offset) * 1.25)}px)`;
+          card.style.zIndex = String(10 - Math.abs(offset));
+        });
+        const move = direction => { active = Math.max(0, Math.min(gallery.children.length - 1, active + direction)); arrange(); };
+        let wheelLocked = false;
+        gallery.addEventListener('wheel', event => {
+          const bounds = gallery.getBoundingClientRect();
+          const inMiddleZone = Math.abs(event.clientX - (bounds.left + bounds.width / 2)) <= Math.min(bounds.width * .31, 360)
+            && Math.abs(event.clientY - (bounds.top + bounds.height / 2)) <= Math.min(bounds.height * .39, 210);
+          if (!inMiddleZone || Math.abs(event.deltaY) <= 12) return;
+          event.preventDefault();
+          if (wheelLocked) return;
+          move(event.deltaY > 0 ? 1 : -1);
+          wheelLocked = true;
+          setTimeout(() => { wheelLocked = false; }, 480);
+        }, { passive: false });
+        gallery.addEventListener('click', event => { const card = event.target.closest('.detail-process-card'); if (card) { active = [...gallery.children].indexOf(card); arrange(); } });
+        arrange();
+      }
+      startParticles();
       render();
+      setupProcessGallery();
     </script>
   </body>
 </html>
