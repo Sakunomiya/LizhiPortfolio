@@ -49,6 +49,35 @@
         <div class="detail-exhibition-grid" id="detail-exhibition-grid" aria-label="项目展览图片"></div>
       </section>
 
+      <section class="maskora-rulebook" id="maskora-rulebook" aria-labelledby="maskora-rulebook-title" hidden>
+        <header>
+          <h2 id="maskora-rulebook-title">桌游规则书</h2>
+          <p id="maskora-rulebook-subtitle">桌游规则历经4次迭代测试调整最终敲定，平衡了玩家策略与博弈的平衡性</p>
+        </header>
+        <div class="maskora-rulebook-grid" id="maskora-rulebook-grid" aria-label="桌游规则书图片"></div>
+      </section>
+
+      <section class="maskora-board-design" id="maskora-board-design" aria-labelledby="maskora-board-design-title" hidden>
+        <header>
+          <h2 id="maskora-board-design-title">棋盘设计</h2>
+        </header>
+        <div class="maskora-board-layout">
+          <div class="maskora-board-media">
+            <div class="maskora-board-grid" id="maskora-board-grid" aria-label="四种棋盘设计"></div>
+            <div class="maskora-currency-grid" id="maskora-currency-grid" aria-label="四种货币图"></div>
+          </div>
+          <aside class="maskora-board-detail">
+            <figure><img id="maskora-board-iteration" alt="棋盘迭代图" /></figure>
+            <div>
+              <p>棋盘迭代</p>
+              <h3>从关卡结构到博弈</h3>
+              <span></span>
+              <p>桌游地图多次迭代，我们尝试了许多形态的地图，将“单局时间”，“博弈玩法和得分稳健玩法平衡”，“玩家体验”等方面列为评估标准，并灵活协调对应地图的游戏核心机制，例如将可使用的卡牌从1-9减少到1-6以适应X型地图，每次迭代均做详细记录与受试者回访；最终还是选定了最经典的数独地图，并且还挑选了若干个测试效果不错的关卡结构作为拓展玩法的DLC；</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
       <section class="detail-review" id="detail-review" aria-labelledby="detail-review-title">
         <header class="detail-section-heading">
           <h2 id="detail-review-title">项目设计</h2>
@@ -57,10 +86,22 @@
       </section>
     </main>
 
+    <div class="maskora-rulebook-lightbox" id="maskora-rulebook-lightbox" role="dialog" aria-modal="true" aria-label="放大查看规则书" hidden>
+      <button type="button" id="maskora-rulebook-lightbox-close" aria-label="关闭放大图片">×</button>
+      <img id="maskora-rulebook-lightbox-image" alt="" />
+    </div>
+    <div class="maskora-development-player" id="maskora-development-player" role="dialog" aria-modal="true" aria-label="播放开发记录视频" hidden>
+      <button type="button" id="maskora-development-player-close" aria-label="关闭视频">×</button>
+      <video id="maskora-development-video" controls playsinline></video>
+    </div>
+
     <script>
       const catalog = {
         game: [
-          { zh: '星际饕餮', en: 'Maskora', zhType: '桌游', enType: 'Table game', image: 'assets/game-01-maskora.png' },
+          {
+            zh: '星际饕餮', en: 'Maskora', zhType: '桌游', enType: 'Table game', image: 'assets/game-01-maskora.png',
+            maskoraCards: ['assets/maskora/cards/通用卡.png', 'assets/maskora/cards/一版1.png', 'assets/maskora/cards/一版2.png', 'assets/maskora/cards/一版3.png', 'assets/maskora/cards/一版4.png', 'assets/maskora/cards/一版5.png', 'assets/maskora/cards/一版6.png', 'assets/maskora/cards/一版7.png', 'assets/maskora/cards/一版8.png', 'assets/maskora/cards/一版9.png']
+          },
           {
             zh: 'HelloWorld', en: 'HelloWorld', zhType: '步行模拟器', enType: 'Walking simulator', image: 'assets/game-02-helloworld.png',
             heroImage: 'assets/detail-02-helloworld-hero.png', backgroundImage: 'assets/detail-02-helloworld-05.png',
@@ -79,7 +120,7 @@
           {
             zh: 'LoopingRoom', en: 'LoopingRoom', zhType: '叙事解谜游戏', enType: 'Narrative puzzle game', image: 'assets/game-05-loopingroom.png',
             heroImage: 'assets/detail-05-loopingroom-hero.png', backgroundImage: 'assets/detail-05-loopingroom-05.png',
-            exhibitionImages: ['assets/detail-05-loopingroom-01.png', 'assets/detail-05-loopingroom-02.png', 'assets/detail-05-loopingroom-03.png', 'assets/detail-05-loopingroom-04.png', 'assets/detail-05-loopingroom-05.png']
+            exhibitionImages: ['assets/detail-05-loopingroom-01.png', 'assets/detail-05-loopingroom-02.png', 'assets/detail-05-loopingroom-03.png', 'assets/detail-05-loopingroom-04.png', 'assets/detail-05-loopingroom-exhibition-05.png']
           },
           {
             zh: '狩虫人', en: 'Verminex', zhType: '关卡 Demo', enType: 'Level design demo', image: 'assets/game-06-verminex.png',
@@ -142,6 +183,16 @@
         zh: { title: '项目展览', captions: ['项目主视觉', '场景与氛围', '玩法片段', '设计素材', '补充展示'] },
         en: { title: 'Project exhibition', captions: ['Project visual', 'Environment & mood', 'Gameplay moment', 'Design material', 'Additional view'] }
       };
+      const maskoraCardCopy = {
+        zh: { deck: 'MASKORA / CARD DECK', title: '卡牌档案', hint: '拖动卡牌或使用箭头浏览', body: '《星际饕餮》的十张卡牌构成了一套可探索的游戏信息系统。每张卡牌均以原始 675 × 1050 比例呈现。', common: '通用卡', card: '卡牌设计', previous: '上一张卡牌', next: '下一张卡牌' },
+        en: { deck: 'MASKORA / CARD DECK', title: 'Card dossier', hint: 'Drag cards or use the arrows to browse', body: 'Ten cards make up the exploratory information system for Maskora. Each card is displayed at its original 675 × 1050 proportion.', common: 'Universal card', card: 'Card design', previous: 'Previous card', next: 'Next card' }
+      };
+      const maskoraDevelopmentCopy = {
+        zh: { title: '开发记录', cards: ['开发过程', '规则介绍 / 产品宣传'], close: '关闭视频' },
+        en: { title: 'Development log', cards: ['Development process', 'Rules introduction & promotion'], close: 'Close video' }
+      };
+      let maskoraCardIndex = 0;
+      let maskoraAutoplay;
       const mediaCopy = {
         zh: { title: '项目媒体', video: '项目视频', game: '在线体验' },
         en: { title: 'Project media', video: 'Project video', game: 'Playable build' }
@@ -169,6 +220,116 @@
         } else grid.innerHTML = '';
         return { videoUrl, gameUrl };
       }
+      function isMaskoraProject() {
+        return category === 'game' && id === 1 && project.maskoraCards;
+      }
+      function renderMaskoraCardExhibition() {
+        if (!isMaskoraProject()) return;
+        clearInterval(maskoraAutoplay);
+        const t = maskoraCardCopy[language];
+        const cards = project.maskoraCards;
+        const grid = document.querySelector('#detail-exhibition-grid');
+        const labelFor = index => index === 0 ? t.common : `${t.card} ${String(index).padStart(2, '0')}`;
+        grid.className = 'detail-exhibition-grid maskora-depth-exhibition';
+        grid.setAttribute('aria-label', language === 'en' ? 'Maskora card carousel' : 'Maskora 卡牌轮播');
+        grid.innerHTML = `<div class="maskora-depth-carousel"><div class="maskora-depth-stage" id="maskora-depth-stage" tabindex="0">${cards.map((image, index) => `<button class="maskora-depth-card" type="button" data-card-index="${index}" aria-label="${labelFor(index)}"><img src="${image}" alt="${labelFor(index)}" /></button>`).join('')}</div><div class="maskora-depth-controls"><button type="button" data-card-direction="-1" aria-label="${t.previous}">←</button><button type="button" data-card-direction="1" aria-label="${t.next}">→</button></div></div><aside class="maskora-card-intro"><p>${t.deck}</p><h3>${t.title}</h3><strong id="maskora-card-count"></strong><h4 id="maskora-card-name"></h4><span class="maskora-card-rule"></span><p id="maskora-card-description">${t.body}</p><div class="maskora-card-progress"><i id="maskora-card-progress"></i></div></aside>`;
+        const stage = grid.querySelector('#maskora-depth-stage');
+        const cardNodes = [...grid.querySelectorAll('.maskora-depth-card')];
+        const update = () => {
+          cardNodes.forEach((card, index) => {
+            let offset = index - maskoraCardIndex;
+            if (offset > cards.length / 2) offset -= cards.length;
+            if (offset < -cards.length / 2) offset += cards.length;
+            const distance = Math.abs(offset);
+            const visible = distance <= 2;
+            card.style.setProperty('--depth-x', `${offset * 115}`);
+            card.style.setProperty('--depth-z', `${-distance * 220}`);
+            card.style.setProperty('--depth-tilt', `${-offset * 22}`);
+            card.style.opacity = visible ? String(Math.max(.28, 1 - distance * .25)) : '0';
+            card.style.filter = `blur(${Math.min(7, distance * 3.5)}px)`;
+            card.style.zIndex = String(20 - distance);
+            card.tabIndex = visible ? 0 : -1;
+            card.classList.toggle('is-current', index === maskoraCardIndex);
+          });
+          grid.querySelector('#maskora-card-count').textContent = `${String(maskoraCardIndex + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+          grid.querySelector('#maskora-card-name').textContent = labelFor(maskoraCardIndex);
+          grid.querySelector('#maskora-card-progress').style.width = `${((maskoraCardIndex + 1) / cards.length) * 100}%`;
+        };
+        const move = direction => { maskoraCardIndex = (maskoraCardIndex + direction + cards.length) % cards.length; update(); };
+        cardNodes.forEach(card => card.addEventListener('click', () => { maskoraCardIndex = Number(card.dataset.cardIndex); update(); }));
+        grid.querySelectorAll('[data-card-direction]').forEach(button => button.addEventListener('click', () => move(Number(button.dataset.cardDirection))));
+        stage.addEventListener('keydown', event => { if (event.key === 'ArrowLeft') move(-1); if (event.key === 'ArrowRight') move(1); });
+        let pointerStart;
+        stage.addEventListener('pointerdown', event => { pointerStart = event.clientX; stage.setPointerCapture(event.pointerId); });
+        stage.addEventListener('pointerup', event => { if (pointerStart === undefined) return; const distance = event.clientX - pointerStart; if (Math.abs(distance) > 35) move(distance < 0 ? 1 : -1); pointerStart = undefined; });
+        update();
+        maskoraAutoplay = setInterval(() => move(1), 4200);
+      }
+      function closeMaskoraRulebookLightbox() {
+        const lightbox = document.querySelector('#maskora-rulebook-lightbox');
+        lightbox.hidden = true;
+        lightbox.classList.remove('is-open');
+        lightbox.querySelector('img').removeAttribute('src');
+      }
+      function renderMaskoraRulebook() {
+        const section = document.querySelector('#maskora-rulebook');
+        if (!isMaskoraProject()) {
+          section.hidden = true;
+          closeMaskoraRulebookLightbox();
+          return;
+        }
+        const images = ['assets/maskora/rules/Page1.png', 'assets/maskora/rules/Page2.png', 'assets/maskora/rules/Page3.png'];
+        section.hidden = false;
+        document.querySelector('#maskora-rulebook-grid').innerHTML = images.map((image, index) => `<button type="button" class="maskora-rulebook-page" data-rulebook-image="${image}" aria-label="放大查看规则书第 ${index + 1} 页"><img src="${image}" alt="桌游规则书第 ${index + 1} 页" /><span>0${index + 1}</span></button>`).join('');
+        document.querySelectorAll('[data-rulebook-image]').forEach(button => button.addEventListener('click', () => {
+          const lightbox = document.querySelector('#maskora-rulebook-lightbox');
+          const image = lightbox.querySelector('img');
+          image.src = button.dataset.rulebookImage;
+          image.alt = button.querySelector('img').alt;
+          lightbox.hidden = false;
+          requestAnimationFrame(() => lightbox.classList.add('is-open'));
+          lightbox.querySelector('button').focus();
+        }));
+      }
+      function renderMaskoraBoardDesign() {
+        const section = document.querySelector('#maskora-board-design');
+        if (!isMaskoraProject()) {
+          section.hidden = true;
+          return;
+        }
+        const boards = ['assets/maskora/boards/微信图片_20251119094002_443_3.png', 'assets/maskora/boards/微信图片_20251119094008_444_3.png', 'assets/maskora/boards/微信图片_20251119094014_445_3.png', 'assets/maskora/boards/微信图片_20251119094018_446_3.png'];
+        section.hidden = false;
+        document.querySelector('#maskora-board-grid').innerHTML = boards.map((image, index) => `<figure class="maskora-board-tile"><img src="${image}" alt="棋盘设计方案 ${index + 1}" /></figure>`).join('');
+        document.querySelector('#maskora-currency-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure class="maskora-currency-icon"><img src="assets/maskora/currency/${index}.png" alt="货币图 ${index}" /></figure>`).join('');
+        document.querySelector('#maskora-board-iteration').src = 'assets/maskora/boards/iteration-process.jpg';
+      }
+      function closeMaskoraDevelopmentPlayer() {
+        const player = document.querySelector('#maskora-development-player');
+        const video = document.querySelector('#maskora-development-video');
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+        player.hidden = true;
+        player.classList.remove('is-open');
+      }
+      function renderMaskoraDevelopment() {
+        const gallery = document.querySelector('#detail-process-gallery');
+        if (!isMaskoraProject()) return;
+        const t = maskoraDevelopmentCopy[language];
+        const videos = ['assets/maskora/development/development-process.mp4', 'assets/maskora/development/rules-promotion.mp4'];
+        const covers = ['assets/maskora/development/development-process-cover.png', 'assets/maskora/development/rules-promotion-cover.png'];
+        gallery.className = 'detail-process-gallery maskora-development-gallery';
+        gallery.setAttribute('aria-label', language === 'en' ? 'Maskora development videos' : 'Maskora 开发记录视频');
+        gallery.innerHTML = videos.map((video, index) => `<button type="button" class="maskora-development-card" data-development-video="${video}" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${covers[index]}')" aria-label="播放${t.cards[index]}"><span>0${index + 1}</span><b>${t.cards[index]}</b><i>▶</i></button>`).join('');
+        gallery.querySelectorAll('[data-development-video]').forEach(card => card.addEventListener('click', () => {
+          const player = document.querySelector('#maskora-development-player');
+          const video = document.querySelector('#maskora-development-video');
+          video.src = card.dataset.developmentVideo;
+          player.hidden = false;
+          requestAnimationFrame(() => player.classList.add('is-open'));
+          video.play().catch(() => {});
+        }));
+      }
       function render() {
         const isEnglish = language === 'en';
         const t = copy[language];
@@ -184,7 +345,8 @@
         if (action) actionLink.textContent = action[isEnglish ? 1 : 0];
         document.querySelector('#detail-secondary').textContent = t.secondary;
         document.querySelector('#detail-exhibition-link').textContent = isEnglish ? 'Project exhibition' : '项目展览';
-        document.querySelector('#detail-review-title').textContent = t.reviewTitle;
+        const isMaskoraDetail = isMaskoraProject();
+        document.querySelector('#detail-review-title').textContent = isMaskoraDetail ? maskoraDevelopmentCopy[language].title : t.reviewTitle;
         document.querySelector('#detail-back').textContent = t.back;
         document.querySelector('#detail-back').href = `index.html?return=${categories[category].anchor}#${categories[category].anchor}`;
         document.querySelector('#detail-language').textContent = t.toggle;
@@ -192,19 +354,43 @@
         document.body.style.backgroundImage = '';
         const heroSection = document.querySelector('.detail-hero');
         heroSection.style.backgroundImage = '';
-        const processItems = project.processItems || t.processTitles.map((_, index) => index);
         document.querySelector('#detail-visual-label').textContent = t.visual;
         document.querySelector('#detail-visual').style.backgroundImage = `linear-gradient(140deg, rgba(4, 6, 16, .12), rgba(4, 6, 16, .78)), url("${heroImage}")`;
-        document.querySelector('#detail-process-gallery').innerHTML = processItems.map((contentIndex, index) => `<article class="detail-process-card" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${project.image}')"><span>0${index + 1}</span><h3>${t.processTitles[contentIndex]}</h3><p>${t.processText[contentIndex]}</p></article>`).join('');
+        if (isMaskoraDetail) {
+          renderMaskoraDevelopment();
+        } else {
+          const processItems = project.processItems || t.processTitles.map((_, index) => index);
+          const processGallery = document.querySelector('#detail-process-gallery');
+          processGallery.className = 'detail-process-gallery';
+          processGallery.innerHTML = processItems.map((contentIndex, index) => `<article class="detail-process-card" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${project.image}')"><span>0${index + 1}</span><h3>${t.processTitles[contentIndex]}</h3><p>${t.processText[contentIndex]}</p></article>`).join('');
+        }
         const exhibition = exhibitionCopy[language];
-        const exhibitionImages = (project.exhibitionImages || Array.from({ length: 5 }, () => project.image)).slice(0, 5);
+        const hasMaskoraExhibition = isMaskoraProject();
+        const exhibitionSection = document.querySelector('#detail-exhibition');
+        exhibitionSection.classList.toggle('is-maskora-card-exhibition', hasMaskoraExhibition);
         document.querySelector('#detail-exhibition-title').textContent = exhibition.title;
-        document.querySelector('#detail-exhibition-grid').innerHTML = exhibitionImages.map((image, index) => `<article class="detail-exhibition-card detail-exhibition-${index}" style="background-image:linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%),url('${image}')"><h3>${exhibition.captions[index] || exhibition.captions[0]}</h3></article>`).join('');
+        if (hasMaskoraExhibition) {
+          renderMaskoraCardExhibition();
+        } else {
+          clearInterval(maskoraAutoplay);
+          const exhibitionImages = (project.exhibitionImages || Array.from({ length: 5 }, () => project.image)).slice(0, 5);
+          const grid = document.querySelector('#detail-exhibition-grid');
+          grid.className = 'detail-exhibition-grid';
+          grid.setAttribute('aria-label', language === 'en' ? 'Project exhibition images' : '项目展览图片');
+          grid.innerHTML = exhibitionImages.map((image, index) => `<article class="detail-exhibition-card detail-exhibition-${index}" style="background-image:linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%),url('${image}')"><h3>${exhibition.captions[index] || exhibition.captions[0]}</h3></article>`).join('');
+        }
+        renderMaskoraRulebook();
+        renderMaskoraBoardDesign();
         const mediaLinks = renderMediaSlots();
         if (action) actionLink.href = mediaLinks.gameUrl || mediaLinks.videoUrl || '#detail-exhibition';
       }
       document.querySelector('#detail-language').addEventListener('click', () => { language = language === 'zh' ? 'en' : 'zh'; render(); setupProcessGallery(); });
       document.querySelector('#detail-back').addEventListener('click', event => { event.preventDefault(); location.replace(event.currentTarget.href); });
+      document.querySelector('#maskora-rulebook-lightbox-close').addEventListener('click', closeMaskoraRulebookLightbox);
+      document.querySelector('#maskora-rulebook-lightbox').addEventListener('click', event => { if (event.target === event.currentTarget) closeMaskoraRulebookLightbox(); });
+      document.querySelector('#maskora-development-player-close').addEventListener('click', closeMaskoraDevelopmentPlayer);
+      document.querySelector('#maskora-development-player').addEventListener('click', event => { if (event.target === event.currentTarget) closeMaskoraDevelopmentPlayer(); });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeMaskoraRulebookLightbox(); closeMaskoraDevelopmentPlayer(); } });
       document.addEventListener('pointermove', event => {
         const button = event.target.closest('.detail-play-link');
         if (!button) return;
@@ -223,6 +409,7 @@
       }
       function setupProcessGallery() {
         const gallery = document.querySelector('#detail-process-gallery');
+        if (gallery.classList.contains('maskora-development-gallery')) return;
         let active = Math.floor((gallery.children.length - 1) / 2);
         const arrange = () => [...gallery.children].forEach((card, index) => {
           const offset = index - active;
