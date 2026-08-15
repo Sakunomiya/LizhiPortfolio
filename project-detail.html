@@ -329,14 +329,14 @@
         actionLink.hidden = !action;
         if (action) actionLink.textContent = action[isEnglish ? 1 : 0];
         const secondary = document.querySelector('#detail-secondary');
-        const exhibition = document.querySelector('#detail-exhibition-link');
+        const exhibitionLink = document.querySelector('#detail-exhibition-link');
         const rulebook = document.querySelector('#maskora-rulebook-link');
         const development = document.querySelector('#maskora-development-link');
         if (isMaskoraDetail) {
           secondary.textContent = isEnglish ? 'Card design' : '卡牌设计';
           secondary.href = '#detail-exhibition';
-          exhibition.textContent = isEnglish ? 'Board design' : '棋盘设计';
-          exhibition.href = '#maskora-board-design';
+          exhibitionLink.textContent = isEnglish ? 'Board design' : '棋盘设计';
+          exhibitionLink.href = '#maskora-board-design';
           rulebook.textContent = isEnglish ? 'Rulebook' : '桌游规则书';
           development.textContent = isEnglish ? 'Development log' : '开发记录';
           rulebook.hidden = false;
@@ -344,8 +344,8 @@
         } else {
           secondary.textContent = t.secondary;
           secondary.href = '#detail-review';
-          exhibition.textContent = isEnglish ? 'Project exhibition' : '项目展览';
-          exhibition.href = '#detail-exhibition';
+          exhibitionLink.textContent = isEnglish ? 'Project exhibition' : '项目展览';
+          exhibitionLink.href = '#detail-exhibition';
           rulebook.hidden = true;
           development.hidden = true;
         }
