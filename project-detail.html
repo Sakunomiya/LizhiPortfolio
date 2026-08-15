@@ -31,6 +31,7 @@
           <div class="detail-hero-actions">
             <a class="detail-action-secondary" id="detail-exhibition-link" href="#detail-exhibition">项目展览</a>
             <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
+            <a class="detail-action-secondary" id="verminex-concept-link" href="#verminex-concept" hidden>概念设计</a>
             <a class="detail-action-secondary" id="maskora-rulebook-link" href="#maskora-rulebook" hidden>桌游规则书</a>
             <a class="detail-action-secondary" id="maskora-development-link" href="#detail-review" hidden>开发记录</a>
           </div>
@@ -96,6 +97,13 @@
           <h2 id="detail-review-title">项目设计</h2>
         </header>
         <div class="detail-process-gallery" id="detail-process-gallery" aria-label="项目设计过程素材"></div>
+      </section>
+
+      <section class="verminex-concept" id="verminex-concept" aria-labelledby="verminex-concept-title" hidden>
+        <header class="detail-section-heading">
+          <h2 id="verminex-concept-title">概念设计</h2>
+        </header>
+        <div class="verminex-concept-grid" id="verminex-concept-grid" aria-label="Verminex 概念设计图"></div>
       </section>
     </main>
 
@@ -200,12 +208,31 @@
           {
             zh: '狩虫人', en: 'Verminex', zhType: '关卡 Demo', enType: 'Level design demo', image: 'assets/game-06-verminex.png',
             heroImage: 'assets/detail-06-verminex-hero.png', backgroundImage: 'assets/detail-06-verminex-05.png',
-            exhibitionImages: ['assets/detail-06-verminex-01.png', 'assets/detail-06-verminex-02.png', 'assets/detail-06-verminex-03.png', 'assets/detail-06-verminex-04.png', 'assets/detail-06-verminex-05.png']
+            exhibitionImages: ['assets/detail-06-verminex-01.png', 'assets/detail-06-verminex-02.png', 'assets/detail-06-verminex-03.png', 'assets/detail-06-verminex-04.png', 'assets/detail-06-verminex-05.png'],
+            exhibitionLabels: { zh: ['枪械配件购买', '游戏场景', '怪物战斗', '关卡地编', '游戏封面'], en: ['Gun Attachment Shop', 'Game Environment', 'Monster Combat', 'Level Layout', 'Game Cover'] },
+            downloadUrl: 'assets/verminex/download/VerminEx-1.0.0.zip', downloadSize: '211.4MB',
+            conceptDesign: { zh: { title: '概念设计' }, en: { title: 'Concept Design' } },
+            processCards: {
+              zh: [{ title: '开发过程与游玩视频', link: 'https://www.bilibili.com/video/BV1aibk6SEQW/', image: 'assets/verminex/process/development-gameplay-cover.jpg' }, { title: '开发团队分工', link: 'https://www.bilibili.com/video/BV1Yibk6SEHB/', image: 'assets/verminex/process/team-roles-cover.jpg' }],
+              en: [{ title: 'Development Process & Gameplay', link: 'https://www.bilibili.com/video/BV1aibk6SEQW/', image: 'assets/verminex/process/development-gameplay-cover.jpg' }, { title: 'Development Team Roles', link: 'https://www.bilibili.com/video/BV1Yibk6SEHB/', image: 'assets/verminex/process/team-roles-cover.jpg' }]
+            },
+            summary: {
+              zh: 'Verminex 是一款基于 Unity 开发的第一人称射击游戏。玩家将扮演狩虫人（Verminex），使用虫体锻造的枪械击杀肆虐太空的虫族，夺回人类的家园。<br><br>游戏围绕枪械改造 Roguelite 与 FPS 进行玩法构建，为玩家塑造类《吸血鬼幸存者》式的游戏体验。<br><br>游戏目前仍在开发阶段：已完成前三个小关卡的关卡设计与场景美术，完成射击手感调试，并初步实现 Roguelike 机制。<span class="detail-summary-divider"></span><span class="detail-summary-meta">开发团队：<br>关卡设计：李植、林子成<br>程序：林子成<br>2D 美术：刘汗青<br>战斗／数值设计：王本涵<br>怪物 AI 与寻路：王子仪</span>',
+              en: 'Verminex is a Unity-developed first-person shooter. Players take on the role of a Verminex hunter, wielding weapons forged from insect bodies to eliminate the insect swarm ravaging space and reclaim humanity’s home.<br><br>Combining gun-modification roguelite systems with FPS gameplay, the game aims to create a Vampire Survivors-inspired combat experience.<br><br>The game is currently in development. Level design and environmental art for its first three stages are complete, the shooting feel has been tuned, and an initial roguelike system has been implemented.<span class="detail-summary-divider"></span><span class="detail-summary-meta">Development Team:<br>Level Design: Zhi Li, Zicheng Lin<br>Programming: Zicheng Lin<br>2D Art: Hanqing Liu<br>Combat & Balance Design: Benhan Wang<br>Monster AI & Pathfinding: Ziyi Wang</span>'
+            },
+            keywords: { zh: ['FPS', 'Roguelike', '游戏 Demo', '枪械改造', '射击刷宝', '关卡设计／美术', '太空虫族'], en: ['FPS', 'Roguelike', 'Game Demo', 'Gun Modification', 'Looter Shooter', 'Level Design / Art', 'Space Insects'] }
           },
           {
-            zh: '无限黄昏', en: 'Infinity', zhType: '2D 地牢刷宝游戏', enType: '2D dungeon grind', image: 'assets/game-07-infinity.png',
+            zh: '无限黄昏', en: 'Infinity', zhType: '2D 地牢刷宝游戏', enType: '2D dungeon looter', image: 'assets/game-07-infinity.png',
             heroImage: 'assets/detail-07-infinity-hero.png', backgroundImage: 'assets/detail-07-infinity-05.png',
             exhibitionImages: ['assets/detail-07-infinity-01.png', 'assets/detail-07-infinity-02.png', 'assets/detail-07-infinity-03.png', 'assets/detail-07-infinity-04.png', 'assets/detail-07-infinity-05.png'],
+            exhibitionLabels: { zh: ['Boss 战－死神海拉', '地牢关卡', '商店节点', '地牢战斗', '游戏封面'], en: ['Boss Fight — Hel, Goddess of Death', 'Dungeon Level', 'Shop Node', 'Dungeon Combat', 'Game Cover'] },
+            downloadUrl: 'assets/infinity/download/Infinity.zip', downloadSize: '43.9MB',
+            summary: {
+              zh: '无限黄昏是一款基于 Unity 开发的 2D 地牢刷宝游戏。玩家将扮演失去记忆的“奥丁”，通过在九界中的冒险逐渐找回记忆，最终发现诸神黄昏与世界轮回的隐秘。<br><br>该项目为 2025 GMTK Game Jam 项目，历时 4 天，实现了游戏的基础玩法循环（如战斗系统、道具系统、怪物 AI 等）和第一关“赫尔海姆”的关卡搭建。<span class="detail-summary-divider"></span><span class="detail-summary-meta">项目角色：主策划、关卡设计、道具数值配置、玩法设计、叙事设计。</span>',
+              en: 'Infinity is a Unity-developed 2D dungeon looter game. Players take the role of a memoryless Odin and gradually regain their memories through adventures across the Nine Realms, ultimately uncovering the secrets behind Ragnarök and the world\'s cycle.<br><br>Created for the 2025 GMTK Game Jam, the project was completed over four days. It implements a foundational gameplay loop—including combat, item systems, and monster AI—as well as the first level, “Helheim.”<span class="detail-summary-divider"></span><span class="detail-summary-meta">Role: Lead Game Designer, Level Design, Item & Balance Configuration, Gameplay Design, Narrative Design.</span>'
+            },
+            keywords: { zh: ['2D', '地牢刷宝游戏', '北欧神话', '2025 GMTK Game Jam', '游戏 Demo'], en: ['2D', 'Dungeon Looter', 'Norse Mythology', '2025 GMTK Game Jam', 'Game Demo'] },
             processItems: [0]
           }
         ],
@@ -235,7 +262,7 @@
         other: { zh: '跨界探索', en: 'CROSS-DISCIPLINARY EXPLORATIONS', anchor: 'other' }
       };
       const projectAction = {
-        game: { 2: ['体验游戏', 'PLAY GAME'], 6: ['体验游戏', 'PLAY GAME'], 7: ['体验游戏', 'PLAY GAME'] },
+        game: { 2: ['体验游戏', 'PLAY GAME'] },
         research: { 1: ['查看详情', 'VIEW DETAILS'], 2: ['查看详情', 'VIEW DETAILS'] },
         other: { 4: ['体验游戏', 'PLAY GAME'] }
       };
@@ -344,6 +371,21 @@
       }
       function isLoopingRoomProject() {
         return category === 'game' && id === 5;
+      }
+      function isVerminexProject() {
+        return category === 'game' && id === 6 && project.conceptDesign;
+      }
+      function renderVerminexConceptDesign() {
+        const section = document.querySelector('#verminex-concept');
+        if (!isVerminexProject()) {
+          section.hidden = true;
+          return;
+        }
+        const concept = project.conceptDesign[language];
+        section.hidden = false;
+        document.querySelector('#verminex-concept-title').textContent = concept.title;
+        document.querySelector('#verminex-concept-grid').setAttribute('aria-label', language === 'en' ? 'Verminex concept design images' : 'Verminex 概念设计图');
+        document.querySelector('#verminex-concept-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure><img src="assets/verminex/concept-design/${index}.png" alt="${language === 'en' ? `Verminex concept design ${index}` : `Verminex 概念设计 ${index}`}" /></figure>`).join('');
       }
       function renderGravityLevelDesign() {
         if (!isGravityProject()) return false;
@@ -496,6 +538,9 @@
         document.querySelector('#detail-type').innerHTML = keywords ? keywords.map(keyword => `<span class="detail-keyword">${keyword}</span>`).join('') : project[isEnglish ? 'enType' : 'zhType'];
         const isMaskoraDetail = isMaskoraProject();
         const isLoopingRoomDetail = isLoopingRoomProject();
+        const isVerminexDetail = isVerminexProject();
+        const reviewSection = document.querySelector('#detail-review');
+        if (isLoopingRoomDetail) reviewSection.remove();
         document.querySelector('#detail-summary').innerHTML = isMaskoraDetail ? maskoraDetailCopy[language].summary : (project.summary?.[language] || t.summary);
         const action = projectAction[category]?.[id];
         const actionGroup = document.querySelector('#detail-play-actions');
@@ -517,6 +562,10 @@
         const exhibitionLink = document.querySelector('#detail-exhibition-link');
         const rulebook = document.querySelector('#maskora-rulebook-link');
         const development = document.querySelector('#maskora-development-link');
+        const conceptLink = document.querySelector('#verminex-concept-link');
+        conceptLink.hidden = !isVerminexDetail;
+        conceptLink.textContent = isEnglish ? 'Concept Design' : '概念设计';
+        conceptLink.href = '#verminex-concept';
         if (isMaskoraDetail) {
           secondary.textContent = isEnglish ? 'Card design' : '卡牌设计';
           secondary.href = '#detail-exhibition';
@@ -535,8 +584,9 @@
           rulebook.hidden = true;
           development.hidden = true;
         }
-        document.querySelector('#detail-review').hidden = isLoopingRoomDetail;
-        document.querySelector('#detail-review-title').textContent = isMaskoraDetail ? maskoraDevelopmentCopy[language].title : (project.designLabel?.[language] || t.reviewTitle);
+        if (reviewSection.isConnected) {
+          document.querySelector('#detail-review-title').textContent = isMaskoraDetail ? maskoraDevelopmentCopy[language].title : (project.designLabel?.[language] || t.reviewTitle);
+        }
         document.querySelector('#detail-back').textContent = t.back;
         document.querySelector('#detail-back').href = `index.html?return=${categories[category].anchor}#${categories[category].anchor}`;
         document.querySelector('#detail-language').textContent = t.toggle;
@@ -546,18 +596,18 @@
         heroSection.style.backgroundImage = '';
         document.querySelector('#detail-visual-label').textContent = t.visual;
         document.querySelector('#detail-visual').style.backgroundImage = `linear-gradient(140deg, rgba(4, 6, 16, .12), rgba(4, 6, 16, .78)), url("${heroImage}")`;
-        document.querySelector('#detail-review').classList.remove('is-gravity-level-design');
-        if (isMaskoraDetail) {
+        if (reviewSection.isConnected) reviewSection.classList.remove('is-gravity-level-design');
+        if (!isLoopingRoomDetail && isMaskoraDetail) {
           renderMaskoraDevelopment();
-        } else if (renderGravityLevelDesign()) {
+        } else if (!isLoopingRoomDetail && renderGravityLevelDesign()) {
           // GravitySpaceship uses its own level-design layout instead of the shared process gallery.
-        } else {
+        } else if (!isLoopingRoomDetail) {
           const processItems = project.processItems || t.processTitles.map((_, index) => index);
           const processCards = project.processCards?.[language] || processItems.map(contentIndex => ({ title: t.processTitles[contentIndex], text: t.processText[contentIndex] }));
-          const isKittyBurgerRecords = category === 'game' && id === 4 && Boolean(project.processCards);
+          const isTwoCardRecords = category === 'game' && [4, 6].includes(id) && Boolean(project.processCards);
           const processGallery = document.querySelector('#detail-process-gallery');
-          processGallery.className = isKittyBurgerRecords ? 'detail-process-gallery maskora-development-gallery' : 'detail-process-gallery';
-          processGallery.innerHTML = processCards.map((card, index) => isKittyBurgerRecords ? `<a class="maskora-development-card" href="${card.link}" target="_blank" rel="noopener noreferrer" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${card.image || project.image}')"><span>0${index + 1}</span><b>${card.title}</b><i aria-hidden="true">↗</i></a>` : card.link ? `<a class="detail-process-card" href="${card.link}" target="_blank" rel="noopener noreferrer" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${card.image || project.image}')"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</a>` : `<article class="detail-process-card" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${card.image || project.image}')"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</article>`).join('');
+          processGallery.className = isTwoCardRecords ? 'detail-process-gallery maskora-development-gallery' : 'detail-process-gallery';
+          processGallery.innerHTML = processCards.map((card, index) => isTwoCardRecords ? `<a class="maskora-development-card" href="${card.link}" target="_blank" rel="noopener noreferrer" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${card.image || project.image}')"><span>0${index + 1}</span><b>${card.title}</b><i aria-hidden="true">↗</i></a>` : card.link ? `<a class="detail-process-card" href="${card.link}" target="_blank" rel="noopener noreferrer" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${card.image || project.image}')"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</a>` : `<article class="detail-process-card" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${card.image || project.image}')"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</article>`).join('');
         }
         const exhibition = exhibitionCopy[language];
         const hasMaskoraExhibition = isMaskoraProject();
@@ -577,6 +627,7 @@
         }
         renderMaskoraRulebook();
         renderMaskoraBoardDesign();
+        renderVerminexConceptDesign();
         const mediaLinks = renderMediaSlots();
         if (action) actionLink.href = project.playUrl || mediaLinks.gameUrl || mediaLinks.videoUrl || '#detail-exhibition';
       }

@@ -352,6 +352,9 @@ html.is-returning-to-section { scroll-behavior: auto !important; }
 /* Compact GravitySpaceship level-design chapter. */
 .detail-review.is-gravity-level-design { min-height: 0; justify-content: flex-start; padding: 38px 0 34px; }
 
+/* Verminex concept-design chapter. */
+.verminex-concept { display: flex; min-height: 100vh; flex-direction: column; justify-content: center; padding: 72px 0; border-bottom: 1px solid rgba(255,255,255,.62); }.verminex-concept .detail-section-heading { margin-bottom: 42px; }.verminex-concept-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }.verminex-concept-grid figure { min-height: min(29vw, 390px); margin: 0; overflow: hidden; border: 1px solid rgba(182,195,246,.26); border-radius: 14px; background: #0b0f1c; }.verminex-concept-grid img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }.verminex-concept-grid figure:hover img { transform: scale(1.035); }@media (max-width: 700px) { .verminex-concept { min-height: auto; padding: 86px 0; }.verminex-concept-grid { grid-template-columns: 1fr; }.verminex-concept-grid figure { min-height: 290px; } }
+
 /* Compact horizontal board row and covered development cards. */
 .maskora-board-media .maskora-board-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 1fr; gap: 10px; }.maskora-board-tile { width: 100%; }.maskora-currency-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 850px) { .maskora-board-media .maskora-board-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }@media (max-width: 560px) { .maskora-board-media .maskora-board-grid, .maskora-currency-grid { gap: 6px; } }
