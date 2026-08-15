@@ -27,6 +27,8 @@
           <div class="detail-hero-actions">
             <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
             <a class="detail-action-secondary" id="detail-exhibition-link" href="#detail-exhibition">项目展览</a>
+            <a class="detail-action-secondary" id="maskora-rulebook-link" href="#maskora-rulebook" hidden>桌游规则书</a>
+            <a class="detail-action-secondary" id="maskora-development-link" href="#detail-review" hidden>开发记录</a>
           </div>
           <a class="detail-scroll-down" href="#detail-exhibition" aria-label="向下查看项目展览">↓</a>
         </div>
@@ -186,6 +188,7 @@
         zh: { title: '开发记录', cards: ['开发过程', '规则介绍 / 产品宣传'], close: '关闭视频' },
         en: { title: 'Development log', cards: ['Development process', 'Rules introduction & promotion'], close: 'Close video' }
       };
+      const maskoraSummary = 'Maskora是一款以数独为灵感设计的策略型桌游，游戏在数独策略的基础上，引入了玩家博弈和资源管理的玩法；<br><br>Maskora的背景被设置在一片战争不断的银河，历经百年的战乱，各个星系都早已支撑不起无休的征伐，但即使热战停止，冷战还在表面脆弱的和平下持续进行。于是，每十年一次的星际美食盛会Maskora成为了各方暗地里扳手腕的擂台，最重要的军机情报都隐藏在一道又一道被呈上的美食中，尽可能尝试破译它们吧！<br><br>制作团队：<br>美术：SAKANA~🎵<br>玩法策划与游戏测试：zeze、Sakunomiya';
       let maskoraCardIndex = 0;
       let maskoraAutoplay;
       const mediaCopy = {
@@ -319,14 +322,33 @@
         document.querySelector('#detail-kicker').textContent = `${String(id).padStart(2, '0')} / ${categories[category][isEnglish ? 'en' : 'zh']}`;
         document.querySelector('#detail-title').innerHTML = [...project[isEnglish ? 'en' : 'zh']].map((char, index) => `<span style="--char-index:${index}">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
         document.querySelector('#detail-type').textContent = project[isEnglish ? 'enType' : 'zhType'];
-        document.querySelector('#detail-summary').textContent = t.summary;
+        const isMaskoraDetail = isMaskoraProject();
+        document.querySelector('#detail-summary').innerHTML = isMaskoraDetail && !isEnglish ? maskoraSummary : t.summary;
         const action = projectAction[category]?.[id];
         const actionLink = document.querySelector('#detail-play-link');
         actionLink.hidden = !action;
         if (action) actionLink.textContent = action[isEnglish ? 1 : 0];
-        document.querySelector('#detail-secondary').textContent = t.secondary;
-        document.querySelector('#detail-exhibition-link').textContent = isEnglish ? 'Project exhibition' : '项目展览';
-        const isMaskoraDetail = isMaskoraProject();
+        const secondary = document.querySelector('#detail-secondary');
+        const exhibition = document.querySelector('#detail-exhibition-link');
+        const rulebook = document.querySelector('#maskora-rulebook-link');
+        const development = document.querySelector('#maskora-development-link');
+        if (isMaskoraDetail) {
+          secondary.textContent = isEnglish ? 'Card design' : '卡牌设计';
+          secondary.href = '#detail-exhibition';
+          exhibition.textContent = isEnglish ? 'Board design' : '棋盘设计';
+          exhibition.href = '#maskora-board-design';
+          rulebook.textContent = isEnglish ? 'Rulebook' : '桌游规则书';
+          development.textContent = isEnglish ? 'Development log' : '开发记录';
+          rulebook.hidden = false;
+          development.hidden = false;
+        } else {
+          secondary.textContent = t.secondary;
+          secondary.href = '#detail-review';
+          exhibition.textContent = isEnglish ? 'Project exhibition' : '项目展览';
+          exhibition.href = '#detail-exhibition';
+          rulebook.hidden = true;
+          development.hidden = true;
+        }
         document.querySelector('#detail-review-title').textContent = isMaskoraDetail ? maskoraDevelopmentCopy[language].title : t.reviewTitle;
         document.querySelector('#detail-back').textContent = t.back;
         document.querySelector('#detail-back').href = `index.html?return=${categories[category].anchor}#${categories[category].anchor}`;
