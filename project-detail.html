@@ -23,17 +23,28 @@
           <h1 id="detail-title"></h1>
           <p class="detail-type" id="detail-type"></p>
           <p class="detail-summary" id="detail-summary"></p>
-          <a class="detail-play-link" id="detail-play-link" href="#detail-exhibition" hidden></a>
+          <div class="detail-play-actions" id="detail-play-actions" hidden>
+            <a class="detail-play-link" id="detail-play-link" href="#detail-exhibition" hidden></a>
+            <button class="detail-play-link" id="detail-mechanics-toggle" type="button" hidden></button>
+            <a class="detail-play-link" id="detail-download-link" href="#" download hidden></a>
+          </div>
           <div class="detail-hero-actions">
-            <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
             <a class="detail-action-secondary" id="detail-exhibition-link" href="#detail-exhibition">项目展览</a>
+            <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
             <a class="detail-action-secondary" id="maskora-rulebook-link" href="#maskora-rulebook" hidden>桌游规则书</a>
             <a class="detail-action-secondary" id="maskora-development-link" href="#detail-review" hidden>开发记录</a>
           </div>
           <a class="detail-scroll-down" href="#detail-exhibition" aria-label="向下查看项目展览">↓</a>
         </div>
-        <div class="detail-visual" id="detail-visual" aria-label="项目主视觉">
-          <span id="detail-visual-label">PROJECT VISUAL</span>
+        <div class="detail-visual-stage" id="detail-visual-stage">
+          <div class="detail-visual" id="detail-visual" aria-label="项目主视觉">
+            <span id="detail-visual-label">PROJECT VISUAL</span>
+          </div>
+          <aside class="gravity-mechanics-panel" id="gravity-mechanics-panel" aria-live="polite" hidden>
+            <p id="gravity-mechanics-kicker"></p>
+            <h2 id="gravity-mechanics-title"></h2>
+            <div id="gravity-mechanics-content"></div>
+          </aside>
         </div>
       </section>
 
@@ -92,22 +103,70 @@
       <button type="button" id="maskora-rulebook-lightbox-close" aria-label="关闭放大图片">×</button>
       <img id="maskora-rulebook-lightbox-image" alt="" />
     </div>
+    <div class="gravity-excel-viewer" id="gravity-excel-viewer" role="dialog" aria-modal="true" aria-label="关卡设计 Excel" hidden>
+      <div class="gravity-excel-viewer-panel">
+        <button type="button" id="gravity-excel-viewer-close" aria-label="关闭 Excel">×</button>
+        <iframe id="gravity-excel-frame" title="关卡设计 Excel 表格"></iframe>
+      </div>
+    </div>
     <script>
       const catalog = {
         game: [
           {
             zh: '星际饕餮', en: 'Maskora', zhType: '桌游', enType: 'Table game', image: 'assets/game-01-maskora.png',
-            maskoraCards: ['assets/maskora/cards/通用卡.png', 'assets/maskora/cards/一版1.png', 'assets/maskora/cards/一版2.png', 'assets/maskora/cards/一版3.png', 'assets/maskora/cards/一版4.png', 'assets/maskora/cards/一版5.png', 'assets/maskora/cards/一版6.png', 'assets/maskora/cards/一版7.png', 'assets/maskora/cards/一版8.png', 'assets/maskora/cards/一版9.png']
+            maskoraCards: ['assets/maskora/cards/通用卡.png', 'assets/maskora/cards/一版1.png', 'assets/maskora/cards/一版2.png', 'assets/maskora/cards/一版3.png', 'assets/maskora/cards/一版4.png', 'assets/maskora/cards/一版5.png', 'assets/maskora/cards/一版6.png', 'assets/maskora/cards/一版7.png', 'assets/maskora/cards/一版8.png', 'assets/maskora/cards/一版9.png'],
+            keywords: { zh: ['桌游', '数独', '玩家博弈', '星际美食'], en: ['Tabletop Game', 'Sudoku', 'Player Rivalry', 'Interstellar Cuisine'] }
           },
           {
             zh: 'HelloWorld', en: 'HelloWorld', zhType: '步行模拟器', enType: 'Walking simulator', image: 'assets/game-02-helloworld.png',
             heroImage: 'assets/detail-02-helloworld-hero.png', backgroundImage: 'assets/detail-02-helloworld-05.png',
-            exhibitionImages: ['assets/detail-02-helloworld-01.png', 'assets/detail-02-helloworld-02.png', 'assets/detail-02-helloworld-03.png', 'assets/detail-02-helloworld-04.png', 'assets/detail-02-helloworld-05.png']
+            exhibitionImages: ['assets/detail-02-helloworld-01.png', 'assets/detail-02-helloworld-02.png', 'assets/detail-02-helloworld-03.png', 'assets/detail-02-helloworld-04.png', 'assets/detail-02-helloworld-05.png'],
+            exhibitionLabels: { zh: ['01', '02', '03', '04', '05'], en: ['01', '02', '03', '04', '05'] },
+            playUrl: 'https://923343488qqcom.itch.io/hello-world',
+            downloadUrl: 'assets/helloworld/download/digital_download.zip',
+            downloadSize: '75MB',
+            processCards: {
+              zh: [{ title: '开发过程', link: 'https://www.bilibili.com/video/BV1qng369EA9/', image: 'assets/helloworld/process/development-process-cover.png' }, { title: '游戏演示', link: 'https://www.bilibili.com/video/BV1XUgg61ETQ/', image: 'assets/helloworld/process/gameplay-demo-cover.jpg' }],
+              en: [{ title: 'Development Process', link: 'https://www.bilibili.com/video/BV1qng369EA9/', image: 'assets/helloworld/process/development-process-cover.png' }, { title: 'Gameplay Demo', link: 'https://www.bilibili.com/video/BV1XUgg61ETQ/', image: 'assets/helloworld/process/gameplay-demo-cover.jpg' }]
+            },
+            summary: {
+              zh: 'HelloWorld是一款Walking Simulator游戏，游戏通过风格化的场景美术和极简的游戏流程，对环境叙事设计理论进行践行实验——“在不依赖文字的情况下将故事传递给玩家”。在游戏中，玩家将扮演到餐厅上班的厨师，在机械化的重复日常中，逐渐发现周遭世界的异常。<span class="detail-summary-divider"></span><span class="detail-summary-meta">项目角色：全栈开发。</span>',
+              en: 'HelloWorld is a walking simulator that puts environmental storytelling into practice through stylized environments and a minimalist game flow: telling a story without relying on text. Players take the role of a chef beginning work at a restaurant and, amid the mechanical repetition of everyday life, gradually uncover the unsettling anomalies in the world around them.<span class="detail-summary-divider"></span><span class="detail-summary-meta">Role: Full-stack Development.</span>'
+            },
+            keywords: { zh: ['步行模拟器（Walking Simulator）', '环境叙事', '极简流程', '风格化', '实验性游戏'], en: ['Walking Simulator', 'Environmental Storytelling', 'Minimalist Flow', 'Stylized', 'Experimental Game'] }
           },
           {
             zh: '重力飞船', en: 'GravitySpaceship', zhType: '关卡设计 Demo', enType: 'Level design demo', image: 'assets/game-03-gravity.png',
             heroImage: 'assets/detail-03-gravity-hero.png', backgroundImage: 'assets/detail-03-gravity-05.png',
-            exhibitionImages: ['assets/detail-03-gravity-01.png', 'assets/detail-03-gravity-02.png', 'assets/detail-03-gravity-03.png', 'assets/detail-03-gravity-04.png', 'assets/detail-03-gravity-05.png']
+            exhibitionImages: ['assets/detail-03-gravity-01.png', 'assets/detail-03-gravity-02.png', 'assets/detail-03-gravity-03.png', 'assets/detail-03-gravity-04.png', 'assets/detail-03-gravity-05.png'],
+            exhibitionLabels: { zh: ['缩略地图', '推动方块以通关', '地图旋转机制', '关卡展示', '关卡展示'], en: ['Minimap', 'Push Blocks to Clear the Level', 'Map Rotation Mechanic', 'Level Showcase', 'Level Showcase'] },
+            downloadUrl: 'assets/gravity-spaceship/download/Demo.zip',
+            downloadSize: '38.8MB',
+            playthroughUrl: 'https://www.bilibili.com/video/BV1X7bC6DEsW/',
+            designLabel: { zh: '关卡设计', en: 'Level Design' },
+            levelDesign: {
+              zh: {
+                description: '以重力变化、方块推动与地图旋转为核心，关卡通过空间布局、路线拆分和机关组合，逐步引导玩家理解移动方式与目标之间的关系。',
+                mechanicsImage: 'assets/gravity-spaceship/level-mechanics.png',
+                detail: { title: '关卡细节', image: 'assets/detail-03-gravity-02.png', excel: 'assets/gravity-spaceship/level-design/关卡细节.xlsx' },
+                overview: { title: '关卡概览', image: 'assets/detail-03-gravity-01.png', excel: 'assets/gravity-spaceship/level-design/关卡概览.xlsx' }
+              },
+              en: {
+                description: 'Built around gravity shifts, block-pushing, and map rotation, the levels use spatial composition, route branching, and mechanic combinations to gradually teach the relationship between movement and objectives.',
+                mechanicsImage: 'assets/gravity-spaceship/level-mechanics.png',
+                detail: { title: 'Level Details', image: 'assets/detail-03-gravity-02.png', excel: 'assets/gravity-spaceship/level-design/关卡细节.xlsx' },
+                overview: { title: 'Level Overview', image: 'assets/detail-03-gravity-01.png', excel: 'assets/gravity-spaceship/level-design/关卡概览.xlsx' }
+              }
+            },
+            summary: {
+              zh: '重力飞船是一个正在开发的 2D 平台跳跃独立游戏。玩家将扮演一名飞船中的船员，利用关卡中的重力背包等道具向前推进，寻找飞船沉没的秘密。<br><br>该游戏目前仍在开发阶段。<span class="detail-summary-divider"></span><span class="detail-summary-meta">项目角色：关卡设计、叙事设计、玩法设计（部分）。</span>',
+              en: 'GravitySpaceship is a 2D indie platformer currently in development. Players take the role of a crew member aboard a spaceship, using tools such as a gravity jetpack to press onward and uncover the secret behind the ship’s sinking.<br><br>The game is currently in development.<span class="detail-summary-divider"></span><span class="detail-summary-meta">Role: Level Design, Narrative Design, and Partial Gameplay Design.</span>'
+            },
+            keywords: { zh: ['关卡设计 Demo', '2D', '平台跳跃', '推箱子', '重力机制', '太空飞船'], en: ['Level Design Demo', '2D', 'Platformer', 'Sokoban', 'Gravity Mechanics', 'Spaceship'] },
+            mechanics: {
+              zh: { button: '关卡机制', back: '返回', kicker: 'GRAVITYSPACESHIP / LEVEL MECHANICS', title: '关卡机制', content: '<section><h3>紫色物体：零重力背包</h3><p>按下 K 启动背包，进入零重力状态，玩家可以自由向任意方向移动。</p></section><section><h3>深黑色物体：金属方块</h3><p>金属方块在普通重力状态下无法推动；进入零重力状态后即可移动。切换回普通重力时，方块会遵循重力下落。</p></section><section><h3>黄色物体：存档点</h3><p>靠近存档点后按下 W 互动，即可保存游戏进度。</p></section><section><h3>红色物体：激光与尖刺</h3><p>接触这些危险物会立即死亡。</p></section><section><h3>深蓝色物体：跨区域传送器</h3><p>用于在不同区域之间传送，但只能与另一个跨区域传送器建立连接。</p></section><section><h3>浅蓝色物体：重力泡泡</h3><p>玩家或其他物体进入重力泡泡后，移动会暂时停止。</p></section><section><h3>移动规则</h3><p>零重力状态下按下移动键，会持续朝对应方向移动；普通重力状态下按下移动键，则会触发一段短距离冲刺。</p></section><section><h3>白色横条：单向平台</h3><p>可从下方跳过，并站立于其上表面的平台。</p></section>' },
+              en: { button: 'LEVEL MECHANICS', back: 'BACK', kicker: 'GRAVITYSPACESHIP / LEVEL MECHANICS', title: 'Level Mechanics', content: '<section><h3>Purple Object: Zero-Gravity Jetpack</h3><p>Press K to activate the jetpack and enter a zero-gravity state, allowing the player to move freely in all directions.</p></section><section><h3>Dark Black Object: Metal Block</h3><p>Metal blocks cannot be pushed under normal gravity. However, they can be moved while in zero gravity. When normal gravity returns, the blocks will fall according to gravity.</p></section><section><h3>Yellow Object: Checkpoint</h3><p>Approach the checkpoint and press W to interact and save progress.</p></section><section><h3>Red Object: Lasers and Spikes</h3><p>Contact with these hazards will instantly kill the player.</p></section><section><h3>Dark Blue Object: Cross-Area Teleporter</h3><p>Travels between different areas, but can only connect with another cross-area teleporter.</p></section><section><h3>Light Blue Object: Gravity Bubble</h3><p>When the player or other objects enter the gravity bubble, their movement temporarily stops.</p></section><section><h3>Movement Rules</h3><p>In zero gravity, holding a movement key keeps the player moving in that direction. In normal gravity, pressing a movement key triggers a short burst of movement.</p></section><section><h3>White Horizontal Bar: One-Way Platform</h3><p>A platform that can be jumped through from below and stood on from above.</p></section>' }
+            }
           },
           {
             zh: '滚滚猫汉堡', en: 'RollingRollingKittyBuger', zhType: '2D 替代控制器平台跳跃', enType: '2D alt-controller platformer', image: 'assets/game-04-kittyburger.png',
@@ -157,7 +216,7 @@
         other: { zh: '跨界探索', en: 'CROSS-DISCIPLINARY EXPLORATIONS', anchor: 'other' }
       };
       const projectAction = {
-        game: { 2: ['体验游戏', 'PLAY GAME'], 3: ['体验游戏', 'PLAY GAME'], 4: ['体验游戏', 'PLAY GAME'], 5: ['体验游戏', 'PLAY GAME'], 6: ['体验游戏', 'PLAY GAME'], 7: ['体验游戏', 'PLAY GAME'] },
+        game: { 2: ['体验游戏', 'PLAY GAME'], 4: ['体验游戏', 'PLAY GAME'], 5: ['体验游戏', 'PLAY GAME'], 6: ['体验游戏', 'PLAY GAME'], 7: ['体验游戏', 'PLAY GAME'] },
         research: { 1: ['查看详情', 'VIEW DETAILS'], 2: ['查看详情', 'VIEW DETAILS'] },
         other: { 4: ['体验游戏', 'PLAY GAME'] }
       };
@@ -166,6 +225,8 @@
       const id = Math.max(1, Number(params.get('id')) || 1);
       const project = catalog[category][id - 1] || catalog[category][0];
       let language = 'zh';
+      let mechanicsOpen = false;
+      let levelMechanicsPreviewOpen = false;
       const copy = {
         zh: {
           summary: '这是该项目的作品详情页模板。后续将在此呈现项目概念、设计过程、关键内容、图像、视频与可游玩文件。',
@@ -188,7 +249,45 @@
         zh: { title: '开发记录', cards: ['开发过程', '规则介绍 / 产品宣传'], close: '关闭视频' },
         en: { title: 'Development log', cards: ['Development process', 'Rules introduction & promotion'], close: 'Close video' }
       };
-      const maskoraSummary = 'Maskora是一款以数独为灵感设计的策略型桌游，游戏在数独策略的基础上，引入了玩家博弈和资源管理的玩法；<br><br>Maskora的背景被设置在一片战争不断的银河，历经百年的战乱，各个星系都早已支撑不起无休的征伐，但即使热战停止，冷战还在表面脆弱的和平下持续进行。于是，每十年一次的星际美食盛会Maskora成为了各方暗地里扳手腕的擂台，最重要的军机情报都隐藏在一道又一道被呈上的美食中，尽可能尝试破译它们吧！<br><br>制作团队：<br>美术：SAKANA~🎵<br>玩法策划与游戏测试：zeze、Sakunomiya';
+      const maskoraSummary = 'Maskora是一款以数独为灵感设计的策略型桌游，游戏在数独策略的基础上，引入了玩家博弈和资源管理的玩法；<br><br>Maskora的背景被设置在一片战争不断的银河，历经百年的战乱，各个星系都早已支撑不起无休的征伐，但即使热战停止，冷战还在表面脆弱的和平下持续进行。于是，每十年一次的星际美食盛会Maskora成为了各方暗地里扳手腕的擂台，最重要的军机情报都隐藏在一道又一道被呈上的美食中，尽可能尝试破译它们吧！<span class="detail-summary-divider"></span><span class="detail-summary-meta">制作团队：<br>美术：SAKANA~🎵<br>玩法策划与游戏测试：zeze、Sakunomiya（本人）</span>';
+      const maskoraDetailCopy = {
+        zh: {
+          summary: maskoraSummary,
+          rulebookTitle: '桌游规则书',
+          rulebookSubtitle: '桌游规则历经4次迭代测试调整最终敲定，平衡了玩家策略与博弈的平衡性',
+          rulebookImage: index => `放大查看规则书第 ${index} 页`,
+          rulebookPage: index => `桌游规则书第 ${index} 页`,
+          boardTitle: '棋盘设计',
+          boardsLabel: '四种棋盘设计',
+          currenciesLabel: '四种货币图',
+          boardImage: index => `棋盘设计方案 ${index}`,
+          currencyImage: index => `货币图 ${index}`,
+          iterationImage: '棋盘迭代图',
+          iterationKicker: '棋盘迭代',
+          iterationTitle: '从关卡结构到博弈',
+          iterationBody: '桌游地图多次迭代，我们尝试了许多形态的地图，将“单局时间”，“博弈玩法和得分稳健玩法平衡”，“玩家体验”等方面列为评估标准，并灵活协调对应地图的游戏核心机制，例如将可使用的卡牌从1-9减少到1-6以适应X型地图，每次迭代均做详细记录与受试者回访；最终还是选定了最经典的数独地图，并且还挑选了若干个测试效果不错的关卡结构作为拓展玩法的DLC；',
+          lightbox: '放大查看规则书',
+          closeLightbox: '关闭放大图片'
+        },
+        en: {
+          summary: 'Maskora is a strategic tabletop game inspired by Sudoku. It builds on Sudoku’s deductive structure with player rivalry and resource management.<br><br>Maskora is set in a galaxy scarred by unending war. After centuries of conflict, every star system is exhausted by ceaseless campaigns. Though open warfare has ended, a cold war continues beneath a fragile peace. Held once every decade, the interstellar culinary festival Maskora has become an arena for competing powers to test one another in secret. The most vital military intelligence is hidden within dish after dish—see how much of it you can decipher.<span class="detail-summary-divider"></span><span class="detail-summary-meta">Team:<br>Art: SAKANA~🎵<br>Gameplay Design & Playtesting: zeze, Sakunomiya (myself)</span>',
+          rulebookTitle: 'Tabletop Rulebook',
+          rulebookSubtitle: 'The rules were finalized through four rounds of iterative playtesting, balancing strategic depth with competitive play.',
+          rulebookImage: index => `Enlarge rulebook page ${index}`,
+          rulebookPage: index => `Tabletop rulebook, page ${index}`,
+          boardTitle: 'Board Design',
+          boardsLabel: 'Four board designs',
+          currenciesLabel: 'Four currency tokens',
+          boardImage: index => `Board design option ${index}`,
+          currencyImage: index => `Currency token ${index}`,
+          iterationImage: 'Board iteration sketch',
+          iterationKicker: 'BOARD ITERATION',
+          iterationTitle: 'From Level Structure to Strategic Play',
+          iterationBody: 'The game board went through multiple iterations across a range of layouts. We evaluated every version by session length, the balance between competitive play and reliable scoring strategies, and the overall player experience. Core mechanics were adapted to each layout—for example, the X-shaped board reduced the usable card range from 1–9 to 1–6. Each iteration was documented in detail and followed by participant interviews. We ultimately chose the classic Sudoku board, while retaining several promising layouts as potential DLC modes.',
+          lightbox: 'Enlarged rulebook view',
+          closeLightbox: 'Close enlarged image'
+        }
+      };
       let maskoraCardIndex = 0;
       let maskoraAutoplay;
       const mediaCopy = {
@@ -220,6 +319,20 @@
       }
       function isMaskoraProject() {
         return category === 'game' && id === 1 && project.maskoraCards;
+      }
+      function isGravityProject() {
+        return category === 'game' && id === 3 && project.levelDesign;
+      }
+      function renderGravityLevelDesign() {
+        if (!isGravityProject()) return false;
+        const level = project.levelDesign[language];
+        const gallery = document.querySelector('#detail-process-gallery');
+        document.querySelector('#detail-review').classList.add('is-gravity-level-design');
+        gallery.className = 'gravity-level-design-layout';
+        gallery.setAttribute('aria-label', language === 'en' ? 'GravitySpaceship level design' : '重力飞船关卡设计');
+        gallery.classList.toggle('is-level-mechanics-preview-open', levelMechanicsPreviewOpen);
+        gallery.innerHTML = `<div class="gravity-level-design-links"><a class="gravity-level-design-card" href="#gravity-excel-viewer" data-excel-src="${level.detail.excel}" data-excel-title="${level.detail.title}" style="background-image:linear-gradient(180deg,rgba(8,9,20,.05) 25%,rgba(5,6,14,.84)),url('${level.detail.image}')"><span>01</span><b>${level.detail.title}</b><i>↗</i></a><a class="gravity-level-design-card" href="#gravity-excel-viewer" data-excel-src="${level.overview.excel}" data-excel-title="${level.overview.title}" style="background-image:linear-gradient(180deg,rgba(8,9,20,.05) 25%,rgba(5,6,14,.84)),url('${level.overview.image}')"><span>02</span><b>${level.overview.title}</b><i>↗</i></a><button class="gravity-level-design-card gravity-level-mechanics-trigger" type="button" data-level-mechanics-toggle style="background-image:linear-gradient(180deg,rgba(8,9,20,.18) 25%,rgba(5,6,14,.88)),url('${project.heroImage}')"><span>03</span><b>${project.mechanics[language].title}</b><i>↗</i></button></div><aside class="gravity-level-design-copy"><p>GRAVITYSPACESHIP / LEVEL DESIGN</p><div class="gravity-level-design-title-row"><h3>${project.designLabel[language]}</h3><a href="${project.playthroughUrl}" target="_blank" rel="noopener noreferrer">${language === 'en' ? 'WATCH VIDEO' : '游玩视频'}</a></div><span></span><p>${level.description}</p></aside><figure class="gravity-level-mechanics-drawer"><img src="${level.mechanicsImage}" alt="${language === 'en' ? 'Level mechanics guide' : '关卡机制说明'}" /></figure>`;
+        return true;
       }
       function renderMaskoraCardExhibition() {
         if (!isMaskoraProject()) return;
@@ -276,9 +389,15 @@
           closeMaskoraRulebookLightbox();
           return;
         }
+        const detail = maskoraDetailCopy[language];
         const images = ['assets/maskora/rules/Page1.png', 'assets/maskora/rules/Page2.png', 'assets/maskora/rules/Page3.png'];
         section.hidden = false;
-        document.querySelector('#maskora-rulebook-grid').innerHTML = images.map((image, index) => `<button type="button" class="maskora-rulebook-page" data-rulebook-image="${image}" aria-label="放大查看规则书第 ${index + 1} 页"><img src="${image}" alt="桌游规则书第 ${index + 1} 页" /><span>0${index + 1}</span></button>`).join('');
+        document.querySelector('#maskora-rulebook-title').textContent = detail.rulebookTitle;
+        document.querySelector('#maskora-rulebook-subtitle').textContent = detail.rulebookSubtitle;
+        document.querySelector('#maskora-rulebook-grid').setAttribute('aria-label', detail.rulebookTitle);
+        document.querySelector('#maskora-rulebook-lightbox').setAttribute('aria-label', detail.lightbox);
+        document.querySelector('#maskora-rulebook-lightbox-close').setAttribute('aria-label', detail.closeLightbox);
+        document.querySelector('#maskora-rulebook-grid').innerHTML = images.map((image, index) => `<button type="button" class="maskora-rulebook-page" data-rulebook-image="${image}" aria-label="${detail.rulebookImage(index + 1)}"><img src="${image}" alt="${detail.rulebookPage(index + 1)}" /><span>0${index + 1}</span></button>`).join('');
         document.querySelectorAll('[data-rulebook-image]').forEach(button => button.addEventListener('click', () => {
           const lightbox = document.querySelector('#maskora-rulebook-lightbox');
           const image = lightbox.querySelector('img');
@@ -295,11 +414,19 @@
           section.hidden = true;
           return;
         }
+        const detail = maskoraDetailCopy[language];
         const boards = ['assets/maskora/boards/微信图片_20251119094002_443_3.png', 'assets/maskora/boards/微信图片_20251119094008_444_3.png', 'assets/maskora/boards/微信图片_20251119094014_445_3.png', 'assets/maskora/boards/微信图片_20251119094018_446_3.png'];
         section.hidden = false;
-        document.querySelector('#maskora-board-grid').innerHTML = boards.map((image, index) => `<figure class="maskora-board-tile"><img src="${image}" alt="棋盘设计方案 ${index + 1}" /></figure>`).join('');
-        document.querySelector('#maskora-currency-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure class="maskora-currency-icon"><img src="assets/maskora/currency/${index}.png" alt="货币图 ${index}" /></figure>`).join('');
+        document.querySelector('#maskora-board-design-title').textContent = detail.boardTitle;
+        document.querySelector('#maskora-board-grid').setAttribute('aria-label', detail.boardsLabel);
+        document.querySelector('#maskora-currency-grid').setAttribute('aria-label', detail.currenciesLabel);
+        document.querySelector('#maskora-board-grid').innerHTML = boards.map((image, index) => `<figure class="maskora-board-tile"><img src="${image}" alt="${detail.boardImage(index + 1)}" /></figure>`).join('');
+        document.querySelector('#maskora-currency-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure class="maskora-currency-icon"><img src="assets/maskora/currency/${index}.png" alt="${detail.currencyImage(index)}" /></figure>`).join('');
         document.querySelector('#maskora-board-iteration').src = 'assets/maskora/boards/iteration-process.jpg';
+        document.querySelector('#maskora-board-iteration').alt = detail.iterationImage;
+        document.querySelector('.maskora-board-detail p').textContent = detail.iterationKicker;
+        document.querySelector('.maskora-board-detail h3').textContent = detail.iterationTitle;
+        document.querySelector('.maskora-board-detail p:last-child').textContent = detail.iterationBody;
       }
       function renderMaskoraDevelopment() {
         const gallery = document.querySelector('#detail-process-gallery');
@@ -314,20 +441,55 @@
         gallery.setAttribute('aria-label', language === 'en' ? 'Maskora development records' : 'Maskora 开发记录');
         gallery.innerHTML = covers.map((cover, index) => `<a class="maskora-development-card" href="${videoLinks[index]}" target="_blank" rel="noopener noreferrer" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${cover}')"><span>0${index + 1}</span><b>${t.cards[index]}</b><i aria-hidden="true">↗</i></a>`).join('');
       }
+      function updateMechanicsPanel() {
+        const mechanics = project.mechanics?.[language];
+        const toggle = document.querySelector('#detail-mechanics-toggle');
+        const stage = document.querySelector('#detail-visual-stage');
+        const panel = document.querySelector('#gravity-mechanics-panel');
+        if (!mechanics) {
+          mechanicsOpen = false;
+          toggle.hidden = true;
+          panel.hidden = true;
+          stage.classList.remove('is-mechanics-open');
+          return;
+        }
+        toggle.hidden = false;
+        toggle.textContent = mechanicsOpen ? mechanics.back : mechanics.button;
+        document.querySelector('#gravity-mechanics-kicker').textContent = mechanics.kicker;
+        document.querySelector('#gravity-mechanics-title').textContent = mechanics.title;
+        document.querySelector('#gravity-mechanics-content').innerHTML = mechanics.content;
+        panel.hidden = !mechanicsOpen;
+        stage.classList.toggle('is-mechanics-open', mechanicsOpen);
+      }
       function render() {
         const isEnglish = language === 'en';
         const t = copy[language];
         document.documentElement.lang = isEnglish ? 'en' : 'zh-CN';
         document.title = `${project[isEnglish ? 'en' : 'zh']} | Lizhi`;
         document.querySelector('#detail-kicker').textContent = `${String(id).padStart(2, '0')} / ${categories[category][isEnglish ? 'en' : 'zh']}`;
-        document.querySelector('#detail-title').innerHTML = [...project[isEnglish ? 'en' : 'zh']].map((char, index) => `<span style="--char-index:${index}">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
-        document.querySelector('#detail-type').textContent = project[isEnglish ? 'enType' : 'zhType'];
+        const detailTitle = document.querySelector('#detail-title');
+        detailTitle.classList.toggle('detail-title-gravity-en', isEnglish && isGravityProject());
+        detailTitle.innerHTML = [...project[isEnglish ? 'en' : 'zh']].map((char, index) => `<span style="--char-index:${index}">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+        const keywords = project.keywords?.[language];
+        document.querySelector('#detail-type').innerHTML = keywords ? keywords.map(keyword => `<span class="detail-keyword">${keyword}</span>`).join('') : project[isEnglish ? 'enType' : 'zhType'];
         const isMaskoraDetail = isMaskoraProject();
-        document.querySelector('#detail-summary').innerHTML = isMaskoraDetail && !isEnglish ? maskoraSummary : t.summary;
+        document.querySelector('#detail-summary').innerHTML = isMaskoraDetail ? maskoraDetailCopy[language].summary : (project.summary?.[language] || t.summary);
         const action = projectAction[category]?.[id];
+        const actionGroup = document.querySelector('#detail-play-actions');
         const actionLink = document.querySelector('#detail-play-link');
+        const downloadLink = document.querySelector('#detail-download-link');
         actionLink.hidden = !action;
         if (action) actionLink.textContent = action[isEnglish ? 1 : 0];
+        downloadLink.hidden = !project.downloadUrl;
+        if (project.downloadUrl) {
+          downloadLink.href = project.downloadUrl;
+          downloadLink.textContent = `${isEnglish ? 'DOWNLOAD GAME' : '下载游戏'} / ${project.downloadSize || ''}`.trim();
+          downloadLink.setAttribute('download', '');
+        } else {
+          downloadLink.removeAttribute('download');
+        }
+        updateMechanicsPanel();
+        actionGroup.hidden = !action && !project.downloadUrl && !project.mechanics;
         const secondary = document.querySelector('#detail-secondary');
         const exhibitionLink = document.querySelector('#detail-exhibition-link');
         const rulebook = document.querySelector('#maskora-rulebook-link');
@@ -342,14 +504,14 @@
           rulebook.hidden = false;
           development.hidden = false;
         } else {
-          secondary.textContent = t.secondary;
+          secondary.textContent = project.designLabel?.[language] || t.secondary;
           secondary.href = '#detail-review';
           exhibitionLink.textContent = isEnglish ? 'Project exhibition' : '项目展览';
           exhibitionLink.href = '#detail-exhibition';
           rulebook.hidden = true;
           development.hidden = true;
         }
-        document.querySelector('#detail-review-title').textContent = isMaskoraDetail ? maskoraDevelopmentCopy[language].title : t.reviewTitle;
+        document.querySelector('#detail-review-title').textContent = isMaskoraDetail ? maskoraDevelopmentCopy[language].title : (project.designLabel?.[language] || t.reviewTitle);
         document.querySelector('#detail-back').textContent = t.back;
         document.querySelector('#detail-back').href = `index.html?return=${categories[category].anchor}#${categories[category].anchor}`;
         document.querySelector('#detail-language').textContent = t.toggle;
@@ -359,13 +521,17 @@
         heroSection.style.backgroundImage = '';
         document.querySelector('#detail-visual-label').textContent = t.visual;
         document.querySelector('#detail-visual').style.backgroundImage = `linear-gradient(140deg, rgba(4, 6, 16, .12), rgba(4, 6, 16, .78)), url("${heroImage}")`;
+        document.querySelector('#detail-review').classList.remove('is-gravity-level-design');
         if (isMaskoraDetail) {
           renderMaskoraDevelopment();
+        } else if (renderGravityLevelDesign()) {
+          // GravitySpaceship uses its own level-design layout instead of the shared process gallery.
         } else {
           const processItems = project.processItems || t.processTitles.map((_, index) => index);
+          const processCards = project.processCards?.[language] || processItems.map(contentIndex => ({ title: t.processTitles[contentIndex], text: t.processText[contentIndex] }));
           const processGallery = document.querySelector('#detail-process-gallery');
           processGallery.className = 'detail-process-gallery';
-          processGallery.innerHTML = processItems.map((contentIndex, index) => `<article class="detail-process-card" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${project.image}')"><span>0${index + 1}</span><h3>${t.processTitles[contentIndex]}</h3><p>${t.processText[contentIndex]}</p></article>`).join('');
+          processGallery.innerHTML = processCards.map((card, index) => card.link ? `<a class="detail-process-card" href="${card.link}" target="_blank" rel="noopener noreferrer" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${card.image || project.image}')"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</a>` : `<article class="detail-process-card" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${card.image || project.image}')"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</article>`).join('');
         }
         const exhibition = exhibitionCopy[language];
         const hasMaskoraExhibition = isMaskoraProject();
@@ -380,18 +546,52 @@
           const grid = document.querySelector('#detail-exhibition-grid');
           grid.className = 'detail-exhibition-grid';
           grid.setAttribute('aria-label', language === 'en' ? 'Project exhibition images' : '项目展览图片');
-          grid.innerHTML = exhibitionImages.map((image, index) => `<article class="detail-exhibition-card detail-exhibition-${index}" style="background-image:linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%),url('${image}')"><h3>${exhibition.captions[index] || exhibition.captions[0]}</h3></article>`).join('');
+          const exhibitionLabels = project.exhibitionLabels?.[language] || project.exhibitionLabels || [];
+          grid.innerHTML = exhibitionImages.map((image, index) => `<article class="detail-exhibition-card detail-exhibition-${index}" style="background-image:linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%),url('${image}')"><h3>${exhibitionLabels[index] || exhibition.captions[index] || exhibition.captions[0]}</h3></article>`).join('');
         }
         renderMaskoraRulebook();
         renderMaskoraBoardDesign();
         const mediaLinks = renderMediaSlots();
-        if (action) actionLink.href = mediaLinks.gameUrl || mediaLinks.videoUrl || '#detail-exhibition';
+        if (action) actionLink.href = project.playUrl || mediaLinks.gameUrl || mediaLinks.videoUrl || '#detail-exhibition';
       }
       document.querySelector('#detail-language').addEventListener('click', () => { language = language === 'zh' ? 'en' : 'zh'; render(); setupProcessGallery(); });
+      document.querySelector('#detail-mechanics-toggle').addEventListener('click', () => { mechanicsOpen = !mechanicsOpen; updateMechanicsPanel(); });
+      document.addEventListener('click', event => {
+        const trigger = event.target.closest('[data-level-mechanics-toggle]');
+        if (!trigger) return;
+        levelMechanicsPreviewOpen = !levelMechanicsPreviewOpen;
+        const gallery = document.querySelector('#detail-process-gallery');
+        gallery.classList.toggle('is-level-mechanics-preview-open', levelMechanicsPreviewOpen);
+      });
+      document.addEventListener('click', event => {
+        const trigger = event.target.closest('[data-open-mechanics]');
+        if (!trigger) return;
+        event.preventDefault();
+        mechanicsOpen = true;
+        updateMechanicsPanel();
+        document.querySelector('.detail-hero').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
       document.querySelector('#detail-back').addEventListener('click', event => { event.preventDefault(); location.replace(event.currentTarget.href); });
       document.querySelector('#maskora-rulebook-lightbox-close').addEventListener('click', closeMaskoraRulebookLightbox);
       document.querySelector('#maskora-rulebook-lightbox').addEventListener('click', event => { if (event.target === event.currentTarget) closeMaskoraRulebookLightbox(); });
-      document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMaskoraRulebookLightbox(); });
+      function closeGravityExcelViewer() {
+        const viewer = document.querySelector('#gravity-excel-viewer');
+        viewer.hidden = true;
+        document.querySelector('#gravity-excel-frame').src = 'about:blank';
+      }
+      document.querySelector('#gravity-excel-viewer-close').addEventListener('click', closeGravityExcelViewer);
+      document.querySelector('#gravity-excel-viewer').addEventListener('click', event => { if (event.target === event.currentTarget) closeGravityExcelViewer(); });
+      document.addEventListener('click', event => {
+        const trigger = event.target.closest('[data-excel-src]');
+        if (!trigger) return;
+        event.preventDefault();
+        const sourceUrl = new URL(trigger.dataset.excelSrc, location.href).href;
+        const frame = document.querySelector('#gravity-excel-frame');
+        frame.title = trigger.dataset.excelTitle || 'Excel spreadsheet';
+        frame.src = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(sourceUrl)}`;
+        document.querySelector('#gravity-excel-viewer').hidden = false;
+      });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeMaskoraRulebookLightbox(); closeGravityExcelViewer(); } });
       document.addEventListener('pointermove', event => {
         const button = event.target.closest('.detail-play-link');
         if (!button) return;
@@ -410,7 +610,7 @@
       }
       function setupProcessGallery() {
         const gallery = document.querySelector('#detail-process-gallery');
-        if (gallery.classList.contains('maskora-development-gallery')) return;
+        if (gallery.classList.contains('maskora-development-gallery') || gallery.classList.contains('gravity-level-design-layout')) return;
         let active = Math.floor((gallery.children.length - 1) / 2);
         const arrange = () => [...gallery.children].forEach((card, index) => {
           const offset = index - active;
@@ -432,7 +632,7 @@
           wheelLocked = true;
           setTimeout(() => { wheelLocked = false; }, 480);
         }, { passive: false });
-        gallery.addEventListener('click', event => { const card = event.target.closest('.detail-process-card'); if (card) { active = [...gallery.children].indexOf(card); arrange(); } });
+        gallery.addEventListener('click', event => { const card = event.target.closest('.detail-process-card'); if (card && card.tagName !== 'A') { active = [...gallery.children].indexOf(card); arrange(); } });
         arrange();
       }
       startParticles();
