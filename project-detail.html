@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>项目详情 | 李植</title>
-    <link rel="stylesheet" href="style.css?v=20260814-detail-background1" />
+    <link rel="stylesheet" href="style.css?v=20260815-infinity-static-01" />
   </head>
   <body class="project-detail-page">
     <canvas class="detail-particles" aria-hidden="true"></canvas>
@@ -229,9 +229,14 @@
             exhibitionLabels: { zh: ['Boss 战－死神海拉', '地牢关卡', '商店节点', '地牢战斗', '游戏封面'], en: ['Boss Fight — Hel, Goddess of Death', 'Dungeon Level', 'Shop Node', 'Dungeon Combat', 'Game Cover'] },
             downloadUrl: 'assets/infinity/download/Infinity.zip', downloadSize: '43.9MB',
             summary: {
-              zh: '无限黄昏是一款基于 Unity 开发的 2D 地牢刷宝游戏。玩家将扮演失去记忆的“奥丁”，通过在九界中的冒险逐渐找回记忆，最终发现诸神黄昏与世界轮回的隐秘。<br><br>该项目为 2025 GMTK Game Jam 项目，历时 4 天，实现了游戏的基础玩法循环（如战斗系统、道具系统、怪物 AI 等）和第一关“赫尔海姆”的关卡搭建。<span class="detail-summary-divider"></span><span class="detail-summary-meta">项目角色：主策划、关卡设计、道具数值配置、玩法设计、叙事设计。</span>',
-              en: 'Infinity is a Unity-developed 2D dungeon looter game. Players take the role of a memoryless Odin and gradually regain their memories through adventures across the Nine Realms, ultimately uncovering the secrets behind Ragnarök and the world\'s cycle.<br><br>Created for the 2025 GMTK Game Jam, the project was completed over four days. It implements a foundational gameplay loop—including combat, item systems, and monster AI—as well as the first level, “Helheim.”<span class="detail-summary-divider"></span><span class="detail-summary-meta">Role: Lead Game Designer, Level Design, Item & Balance Configuration, Gameplay Design, Narrative Design.</span>'
+              zh: '无限黄昏是一款基于 Unity 开发的 2D 地牢刷宝游戏。玩家将扮演失去记忆的“奥丁”，通过在九界中的冒险逐渐找回记忆，最终发现诸神黄昏与世界轮回的隐秘。<br><br>该项目为 2025 GMTK Game Jam 项目，历时 4 天，实现了游戏的基础玩法循环（如战斗系统、道具系统、怪物 AI 等）和第一关“赫尔海姆”的关卡搭建。<span class="detail-summary-divider"></span><span class="detail-summary-meta">项目角色：主策划、关卡设计、道具数值配置、战斗设计、叙事设计。</span>',
+              en: 'Infinity is a Unity-developed 2D dungeon looter game. Players take the role of a memoryless Odin and gradually regain their memories through adventures across the Nine Realms, ultimately uncovering the secrets behind Ragnarök and the world\'s cycle.<br><br>Created for the 2025 GMTK Game Jam, the project was completed over four days. It implements a foundational gameplay loop—including combat, item systems, and monster AI—as well as the first level, “Helheim.”<span class="detail-summary-divider"></span><span class="detail-summary-meta">Role: Lead Game Designer, Level Design, Item & Balance Configuration, Combat Design, Narrative Design.</span>'
             },
+            valueTableDesign: {
+              zh: { title: '数值配表', description: '围绕怪物属性、掉落率与装备道具的数值配置，建立支撑地牢战斗节奏与玩家成长体验的基础平衡体系。', images: ['assets/infinity/value-tables/01.png', 'assets/infinity/value-tables/02.png'] },
+              en: { title: 'Balance Tables', description: 'Monster attributes, drop rates, and equipment values form the balancing foundation for dungeon-combat pacing and player progression.', images: ['assets/infinity/value-tables/01.png', 'assets/infinity/value-tables/02.png'] }
+            },
+            designLabel: { zh: '数值配表', en: 'Balance Tables' },
             keywords: { zh: ['2D', '地牢刷宝游戏', '北欧神话', '2025 GMTK Game Jam', '游戏 Demo'], en: ['2D', 'Dungeon Looter', 'Norse Mythology', '2025 GMTK Game Jam', 'Game Demo'] },
             processItems: [0]
           }
@@ -375,14 +380,30 @@
       function isVerminexProject() {
         return category === 'game' && id === 6 && project.conceptDesign;
       }
+      function isInfinityProject() {
+        return category === 'game' && id === 7 && project.valueTableDesign;
+      }
+      function renderInfinityValueTableDesign() {
+        if (!isInfinityProject()) return false;
+        const design = project.valueTableDesign[language];
+        const review = document.querySelector('#detail-review');
+        const gallery = document.querySelector('#detail-process-gallery');
+        review.classList.add('is-infinity-value-design');
+        gallery.className = 'infinity-value-layout';
+        gallery.setAttribute('aria-label', language === 'en' ? 'Infinity balance tables' : '无限黄昏数值配表');
+        gallery.innerHTML = `<div class="infinity-value-cards">${design.images.map((image, index) => `<figure class="infinity-value-card"><img src="${image}" alt="${language === 'en' ? `Infinity balance table ${index + 1}` : `无限黄昏数值配表 ${index + 1}`}" /></figure>`).join('')}</div><aside class="infinity-value-copy"><h3>${design.title}</h3><span></span><p>${design.description}</p></aside>`;
+        return true;
+      }
       function renderVerminexConceptDesign() {
         const section = document.querySelector('#verminex-concept');
         if (!isVerminexProject()) {
           section.hidden = true;
+          section.style.display = 'none';
           return;
         }
         const concept = project.conceptDesign[language];
         section.hidden = false;
+        section.style.display = 'flex';
         document.querySelector('#verminex-concept-title').textContent = concept.title;
         document.querySelector('#verminex-concept-grid').setAttribute('aria-label', language === 'en' ? 'Verminex concept design images' : 'Verminex 概念设计图');
         document.querySelector('#verminex-concept-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure><img src="assets/verminex/concept-design/${index}.png" alt="${language === 'en' ? `Verminex concept design ${index}` : `Verminex 概念设计 ${index}`}" /></figure>`).join('');
@@ -540,7 +561,8 @@
         const isLoopingRoomDetail = isLoopingRoomProject();
         const isVerminexDetail = isVerminexProject();
         const reviewSection = document.querySelector('#detail-review');
-        if (isLoopingRoomDetail) reviewSection.remove();
+        const omitReview = isLoopingRoomDetail;
+        if (omitReview && reviewSection) reviewSection.remove();
         document.querySelector('#detail-summary').innerHTML = isMaskoraDetail ? maskoraDetailCopy[language].summary : (project.summary?.[language] || t.summary);
         const action = projectAction[category]?.[id];
         const actionGroup = document.querySelector('#detail-play-actions');
@@ -576,7 +598,7 @@
           rulebook.hidden = false;
           development.hidden = false;
         } else {
-          secondary.hidden = isLoopingRoomDetail;
+          secondary.hidden = omitReview;
           secondary.textContent = project.designLabel?.[language] || t.secondary;
           secondary.href = '#detail-review';
           exhibitionLink.textContent = isEnglish ? 'Project exhibition' : '项目展览';
@@ -584,7 +606,7 @@
           rulebook.hidden = true;
           development.hidden = true;
         }
-        if (reviewSection.isConnected) {
+        if (reviewSection?.isConnected) {
           document.querySelector('#detail-review-title').textContent = isMaskoraDetail ? maskoraDevelopmentCopy[language].title : (project.designLabel?.[language] || t.reviewTitle);
         }
         document.querySelector('#detail-back').textContent = t.back;
@@ -596,12 +618,14 @@
         heroSection.style.backgroundImage = '';
         document.querySelector('#detail-visual-label').textContent = t.visual;
         document.querySelector('#detail-visual').style.backgroundImage = `linear-gradient(140deg, rgba(4, 6, 16, .12), rgba(4, 6, 16, .78)), url("${heroImage}")`;
-        if (reviewSection.isConnected) reviewSection.classList.remove('is-gravity-level-design');
-        if (!isLoopingRoomDetail && isMaskoraDetail) {
+        if (reviewSection?.isConnected) reviewSection.classList.remove('is-gravity-level-design', 'is-infinity-value-design');
+        if (!omitReview && isMaskoraDetail) {
           renderMaskoraDevelopment();
-        } else if (!isLoopingRoomDetail && renderGravityLevelDesign()) {
+        } else if (!omitReview && renderGravityLevelDesign()) {
           // GravitySpaceship uses its own level-design layout instead of the shared process gallery.
-        } else if (!isLoopingRoomDetail) {
+        } else if (!omitReview && renderInfinityValueTableDesign()) {
+          // Infinity uses its own static balance-table layout.
+        } else if (!omitReview) {
           const processItems = project.processItems || t.processTitles.map((_, index) => index);
           const processCards = project.processCards?.[language] || processItems.map(contentIndex => ({ title: t.processTitles[contentIndex], text: t.processText[contentIndex] }));
           const isTwoCardRecords = category === 'game' && [4, 6].includes(id) && Boolean(project.processCards);
@@ -687,7 +711,7 @@
       }
       function setupProcessGallery() {
         const gallery = document.querySelector('#detail-process-gallery');
-        if (gallery.classList.contains('maskora-development-gallery') || gallery.classList.contains('gravity-level-design-layout')) return;
+        if (gallery.classList.contains('maskora-development-gallery') || gallery.classList.contains('gravity-level-design-layout') || gallery.classList.contains('infinity-value-layout')) return;
         let active = Math.floor((gallery.children.length - 1) / 2);
         const arrange = () => [...gallery.children].forEach((card, index) => {
           const offset = index - active;
