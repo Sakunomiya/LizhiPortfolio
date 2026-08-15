@@ -303,9 +303,13 @@
         if (!isMaskoraProject()) return;
         const t = maskoraDevelopmentCopy[language];
         const covers = ['assets/maskora/development/development-process-cover.png', 'assets/maskora/development/rules-promotion-cover.png'];
+        const videoLinks = [
+          'https://www.bilibili.com/video/BV1VCgM6GEyr/',
+          'https://www.bilibili.com/video/BV1VCgM6GEms/'
+        ];
         gallery.className = 'detail-process-gallery maskora-development-gallery';
         gallery.setAttribute('aria-label', language === 'en' ? 'Maskora development records' : 'Maskora 开发记录');
-        gallery.innerHTML = covers.map((cover, index) => `<article class="maskora-development-card" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${cover}')"><span>0${index + 1}</span><b>${t.cards[index]}</b></article>`).join('');
+        gallery.innerHTML = covers.map((cover, index) => `<a class="maskora-development-card" href="${videoLinks[index]}" target="_blank" rel="noopener noreferrer" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${cover}')"><span>0${index + 1}</span><b>${t.cards[index]}</b><i aria-hidden="true">↗</i></a>`).join('');
       }
       function render() {
         const isEnglish = language === 'en';
