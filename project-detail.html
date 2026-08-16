@@ -4,36 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>项目详情 | 李植</title>
-    <link rel="stylesheet" href="style.css?v=20260815-infinity-static-01" />
+    <link rel="stylesheet" href="style.css?v=20260816-beyond-tcg-clear-01" />
   </head>
   <body class="project-detail-page">
+    <img class="beyond-page-backdrop" id="beyond-page-backdrop" src="assets/beyond/page-background.png" alt="" aria-hidden="true" hidden />
     <canvas class="detail-particles" aria-hidden="true"></canvas>
+    <img class="beyond-page-symbol" id="beyond-page-symbol" src="assets/beyond/page-symbol.png" alt="" aria-hidden="true" hidden />
     <main class="project-detail-shell">
       <nav class="detail-nav" aria-label="项目详情导航">
         <a class="detail-brand" href="index.html">LZ / PORTFOLIO</a>
         <div class="detail-actions">
           <button class="detail-language" id="detail-language" type="button">EN</button>
           <a class="detail-back" id="detail-back" href="index.html#work">返回导览 ←</a>
+          <button class="research-outline-toggle" id="research-outline-toggle" type="button" aria-controls="research-outline" aria-expanded="false" hidden>目录</button>
         </div>
       </nav>
 
       <section class="detail-hero">
         <div class="detail-intro">
           <p class="detail-kicker" id="detail-kicker"></p>
-          <h1 id="detail-title"></h1>
-          <p class="detail-type" id="detail-type"></p>
-          <p class="detail-summary" id="detail-summary"></p>
-          <div class="detail-play-actions" id="detail-play-actions" hidden>
-            <a class="detail-play-link" id="detail-play-link" href="#detail-exhibition" hidden></a>
-            <button class="detail-play-link" id="detail-mechanics-toggle" type="button" hidden></button>
-            <a class="detail-play-link" id="detail-download-link" href="#" download hidden></a>
+          <div class="detail-title-row">
+            <h1 id="detail-title"></h1>
+            <img class="detail-title-symbol" id="beyond-title-symbol" src="assets/beyond/title-symbol.png" alt="" hidden />
           </div>
-          <div class="detail-hero-actions">
-            <a class="detail-action-secondary" id="detail-exhibition-link" href="#detail-exhibition">项目展览</a>
-            <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
-            <a class="detail-action-secondary" id="verminex-concept-link" href="#verminex-concept" hidden>概念设计</a>
-            <a class="detail-action-secondary" id="maskora-rulebook-link" href="#maskora-rulebook" hidden>桌游规则书</a>
-            <a class="detail-action-secondary" id="maskora-development-link" href="#detail-review" hidden>开发记录</a>
+          <p class="detail-type" id="detail-type"></p>
+          <div class="detail-summary-panel">
+            <p class="detail-summary" id="detail-summary"></p>
+            <div class="detail-play-actions" id="detail-play-actions" hidden>
+              <a class="detail-play-link" id="detail-play-link" href="#detail-exhibition" hidden></a>
+              <button class="detail-play-link" id="detail-mechanics-toggle" type="button" hidden></button>
+              <a class="detail-play-link" id="detail-download-link" href="#" download hidden></a>
+            </div>
+            <div class="detail-hero-actions">
+              <a class="detail-action-secondary" id="detail-exhibition-link" href="#detail-exhibition">项目展览</a>
+              <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
+              <a class="detail-action-secondary" id="verminex-concept-link" href="#verminex-concept" hidden>概念设计</a>
+              <a class="detail-action-secondary" id="maskora-rulebook-link" href="#maskora-rulebook" hidden>桌游规则书</a>
+              <a class="detail-action-secondary" id="maskora-development-link" href="#detail-review" hidden>开发记录</a>
+              <a class="detail-action-secondary" id="beyond-tcg-link" href="#beyond-tcg" hidden>终焉英杰颂</a>
+            </div>
           </div>
           <a class="detail-scroll-down" href="#detail-exhibition" aria-label="向下查看项目展览">↓</a>
         </div>
@@ -48,6 +57,8 @@
           </aside>
         </div>
       </section>
+
+      <section class="research-paper-content" id="research-paper-content" aria-live="polite" hidden></section>
 
       <section class="detail-media" id="detail-media" aria-labelledby="detail-media-title" hidden>
         <header class="detail-section-heading">
@@ -99,6 +110,56 @@
         <div class="detail-process-gallery" id="detail-process-gallery" aria-label="项目设计过程素材"></div>
       </section>
 
+      <section class="beyond-tcg" id="beyond-tcg" aria-labelledby="beyond-tcg-title" hidden>
+        <div class="beyond-tcg-visual" id="beyond-tcg-visual">
+          <span>04</span>
+          <div class="beyond-tcg-carousel" id="beyond-tcg-carousel" tabindex="0">
+            <div class="beyond-tcg-track" id="beyond-tcg-track"></div>
+            <button class="beyond-tcg-arrow beyond-tcg-arrow-prev" type="button" data-beyond-tcg-direction="-1">←</button>
+            <button class="beyond-tcg-arrow beyond-tcg-arrow-next" type="button" data-beyond-tcg-direction="1">→</button>
+            <div class="beyond-tcg-count" id="beyond-tcg-count" aria-live="polite"></div>
+          </div>
+          <p>BEYOND THE BOUNDARY / TCG</p>
+        </div>
+        <div class="beyond-tcg-copy">
+          <p class="beyond-tcg-kicker">BEYOND THE BOUNDARY / NEW PROJECT</p>
+          <h2 id="beyond-tcg-title">境界之外：终焉英杰颂</h2>
+          <div class="beyond-tcg-keywords" id="beyond-tcg-keywords"></div>
+          <span class="beyond-tcg-rule"></span>
+          <p class="beyond-tcg-description" id="beyond-tcg-description"></p>
+          <p class="beyond-tcg-developer" id="beyond-tcg-developer"></p>
+          <a class="beyond-tcg-library-link" id="beyond-tcg-library-link" href="#beyond-tcg-library">卡牌库</a>
+        </div>
+      </section>
+
+      <section class="beyond-tcg-library" id="beyond-tcg-library" aria-labelledby="beyond-tcg-library-title" hidden>
+        <header class="detail-section-heading beyond-tcg-library-heading">
+          <h2 id="beyond-tcg-library-title">终焉英杰颂 - 卡牌库</h2>
+          <p class="beyond-tcg-library-note">卡牌美术为AIGC先行版，后续将作跳转</p>
+        </header>
+        <div class="beyond-tcg-library-layout">
+          <nav class="beyond-tcg-library-filters" id="beyond-tcg-library-filters" aria-label="卡牌分类"></nav>
+          <div class="beyond-tcg-library-browser">
+            <div class="beyond-tcg-library-grid" id="beyond-tcg-library-grid" aria-label="终焉英杰颂卡牌库"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="underground-game-design" id="underground-game-design" aria-labelledby="underground-game-design-title" hidden>
+        <header class="detail-section-heading">
+          <h2 id="underground-game-design-title">游戏设计</h2>
+        </header>
+        <p class="underground-game-subtitle" id="underground-game-subtitle">资源收集 - 材料合成 - 蓝图解锁 - 提高生产 - 地下城规划 - 应对自然事件 - 大幅收集资源...</p>
+        <div class="underground-game-gallery" id="underground-game-gallery" aria-label="Underground 游戏内界面"></div>
+      </section>
+
+      <section class="underground-awards" id="underground-awards" aria-labelledby="underground-awards-title" hidden>
+        <header class="detail-section-heading">
+          <h2 id="underground-awards-title">项目获奖</h2>
+        </header>
+        <div class="underground-awards-grid" id="underground-awards-grid" aria-label="Underground 项目获奖图片"></div>
+      </section>
+
       <section class="verminex-concept" id="verminex-concept" aria-labelledby="verminex-concept-title" hidden>
         <header class="detail-section-heading">
           <h2 id="verminex-concept-title">概念设计</h2>
@@ -106,6 +167,13 @@
         <div class="verminex-concept-grid" id="verminex-concept-grid" aria-label="Verminex 概念设计图"></div>
       </section>
     </main>
+
+    <aside class="research-outline" id="research-outline" aria-label="论文目录" aria-hidden="true" hidden>
+      <button class="research-outline-close" id="research-outline-close" type="button" aria-label="关闭目录">×</button>
+      <p class="research-outline-label" id="research-outline-label">论文目录</p>
+      <nav class="research-outline-links" id="research-outline-links" aria-label="论文分段目录"></nav>
+    </aside>
+    <div class="research-outline-scrim" id="research-outline-scrim" hidden></div>
 
     <div class="maskora-rulebook-lightbox" id="maskora-rulebook-lightbox" role="dialog" aria-modal="true" aria-label="放大查看规则书" hidden>
       <button type="button" id="maskora-rulebook-lightbox-close" aria-label="关闭放大图片">×</button>
@@ -243,18 +311,68 @@
         ],
         research: [
           { zh: '《崩坏：星穹铁道》关卡拆解案', en: 'HONKAI: STAR RAIL — LEVEL ANALYSIS', zhType: '游戏关卡拆解', enType: 'Game level analysis', image: 'assets/category-research.png' },
-          { zh: '认知预期如何塑造游戏关卡的隐性引导', en: 'How Cognitive Expectations Support Implicit Guidance in Game Level Design', zhType: '研究论文', enType: 'Research paper', image: 'assets/category-research.png' }
+          { zh: '认知预期如何塑造游戏关卡的隐性引导', en: 'How Cognitive Expectations Support Implicit Guidance in Game Level Design', zhType: '研究论文', enType: 'Research paper', image: 'assets/research/cognitive-expectations/image1.png' }
         ],
         interaction: [
-          { zh: '身体保卫战', en: 'Body Battle Defense', zhType: '就诊儿童产品', enType: "Children's healthcare product", image: 'assets/interaction-01-body-battle.png', heroImage: 'assets/detail-interaction-01-body-hero.png', backgroundImage: 'assets/detail-interaction-01-body-05.png', exhibitionImages: ['assets/detail-interaction-01-body-01.png', 'assets/detail-interaction-01-body-02.png', 'assets/detail-interaction-01-body-03.png', 'assets/detail-interaction-01-body-04.png', 'assets/detail-interaction-01-body-05.png'] },
+          {
+            zh: '身体保卫战', en: 'Body Battle Defense', zhType: '就诊儿童产品', enType: "Children's healthcare product",
+            image: 'assets/interaction-01-body-battle.png', heroImage: 'assets/detail-interaction-01-body-hero.png', backgroundImage: 'assets/detail-interaction-01-body-05.png',
+            exhibitionImages: ['assets/detail-interaction-01-body-01.png', 'assets/detail-interaction-01-body-02.png', 'assets/detail-interaction-01-body-03.png', 'assets/detail-interaction-01-body-04.png', 'assets/detail-interaction-01-body-05.png'],
+            designImages: ['assets/body-battle/process-01.png', 'assets/body-battle/process-02.png', 'assets/body-battle/process-03.png', 'assets/body-battle/process-04.png'],
+            designCopy: {
+              zh: { title: '设计思路', description: '以儿童就诊中的沟通障碍为切入，围绕症状识别、感受表达与治疗流程，构建儿童可理解、可参与的互动体验，并延展至配套 App 与儿童药盒的产品设计。' },
+              en: { title: 'Design Approach', description: 'Addressing communication barriers in pediatric visits, the project builds an understandable and participatory experience around symptom recognition, emotional expression, and treatment flow, then extends the system through a companion app and children’s medicine-box design.' }
+            },
+            exhibitionLabels: { zh: ['选择病症怪物', '与细菌军团决战', '感受量级', '产品流程', '病因分析'], en: ['Choose a Symptom Monster', 'Battle the Bacteria Legion', 'Pain Level', 'Product Flow', 'Cause Analysis'] },
+            summary: {
+              zh: '针对儿科就诊过程中医患交流障碍问题，《身体保卫战》为就诊儿童制作一款交互娱乐性的产品，旨在优化就诊流程，缓解儿童病症表述不清的问题。同时，该项目还提出了配套 APP 和儿童药盒的设计思考。',
+              en: 'To address communication barriers between clinicians and children during pediatric consultations, <em>Body Battle Defense</em> is an interactive entertainment product designed for children receiving care. It aims to streamline the consultation process and help alleviate difficulties children may have in clearly describing their symptoms. The project also explores companion app and children’s medicine-box design concepts.'
+            },
+            keywords: { zh: ['就诊', '儿童游戏', '交互设计', '卡通', '引导'], en: ['Medical Visits', "Children's Game", 'Interaction Design', 'Cartoon Style', 'Guidance'] }
+          },
           { zh: '单词迷境', en: 'Word Relic', zhType: '盲童认知桌游', enType: 'Cognitive board game for visually impaired children', image: 'assets/interaction-02-word-relic.png', heroImage: 'assets/detail-interaction-02-word-hero.png', backgroundImage: 'assets/detail-interaction-02-word-05.png', exhibitionImages: ['assets/detail-interaction-02-word-01.png', 'assets/detail-interaction-02-word-02.png', 'assets/detail-interaction-02-word-03.png', 'assets/detail-interaction-02-word-04.png', 'assets/detail-interaction-02-word-05.png'] }
         ],
         other: [
-          { zh: 'Underground', en: 'Underground', zhType: '游戏 × 建筑概念设计', enType: 'Game × architectural concept design', image: 'assets/project-02.png', heroImage: 'assets/detail-other-01-underground-hero.png', backgroundImage: 'assets/detail-other-01-underground-05.png', exhibitionImages: ['assets/detail-other-01-underground-01.png', 'assets/detail-other-01-underground-02.png', 'assets/detail-other-01-underground-03.png', 'assets/detail-other-01-underground-04.png', 'assets/detail-other-01-underground-05.png'] },
+          {
+            zh: 'Underground', en: 'Underground', zhType: '游戏 × 建筑概念设计', enType: 'Game × architectural concept design',
+            image: 'assets/project-02.png', heroImage: 'assets/detail-other-01-underground-hero.png', backgroundImage: 'assets/detail-other-01-underground-05.png',
+            exhibitionImages: ['assets/detail-other-01-underground-01.png', 'assets/detail-other-01-underground-02.png', 'assets/detail-other-01-underground-03.png', 'assets/detail-other-01-underground-04.png', 'assets/detail-other-01-underground-05.png'],
+            exhibitionLabels: { zh: ['存档选择', '设置界面', '地下城规划 01', '地下城规划 02', '主视觉图'], en: ['Save Selection', 'Settings Screen', 'Underground Planning 01', 'Underground Planning 02', 'Key Visual'] },
+            architecturalDesign: {
+              zh: { title: '建筑设计', description: '面向海平面上升与陆地淹没后的生存环境，方案以未来聚居空间为核心，探索建筑、资源系统与游戏化叙事之间的结合方式。', image: 'assets/underground/architectural-design.png' },
+              en: { title: 'Architectural Design', description: 'Responding to rising seas and submerged land, this proposal centres on future habitats and explores the relationship between architecture, resource systems, and game-based narrative.', image: 'assets/underground/architectural-design.png' }
+            },
+            gameDesign: {
+              zh: { title: '游戏设计', captions: ['开始界面', '存档选择', '游戏设置', '蓝图解锁', '材料合成', '单区域规划', '宏观规划', '地下城规划01', '地下城规划02'] },
+              en: { title: 'Game Design', captions: ['Start Screen', 'Save Selection', 'Game Settings', 'Blueprint Unlock', 'Material Synthesis', 'Single-Area Planning', 'Macro Planning', 'Underground Planning 01', 'Underground Planning 02'] },
+              images: ['assets/underground/game-ui/01.png', 'assets/underground/game-ui/02.png', 'assets/underground/game-ui/03.png', 'assets/underground/game-ui/04.png', 'assets/underground/game-ui/05.png', 'assets/underground/game-ui/06.png', 'assets/underground/game-ui/07.png', 'assets/underground/game-ui/08.png', 'assets/underground/game-ui/09.png']
+            },
+            designLabel: { zh: '建筑设计', en: 'Architectural Design' },
+            summary: {
+              zh: '科技与工业化发展导致的全球变暖加剧，海平面上升速度在近十年急剧加快。本项目针对环境严重污染、海平面上升淹没陆地后的后人类文明生存空间进行未来环境设计，并通过建筑与游戏结合的方式进行呈现。<span class="detail-summary-divider"></span><span class="detail-summary-meta">项目团队：<br>概念设计：李植<br>建筑设计：郑馨怡、朱马悦<br>效果图：田泽川、郑馨怡<br>项目管理：李植<br>UI 排版：李植、田泽川<br>算法预研：朱马悦</span>',
+              en: 'As technological and industrial development accelerates global warming, the rate of sea-level rise has increased sharply over the past decade. This project imagines future living spaces for a post-human civilization after severe pollution and rising seas have submerged the land, presenting the proposal through a combination of architecture and game design.<span class="detail-summary-divider"></span><span class="detail-summary-meta">Project Team:<br>Concept Design: Zhi Li<br>Architectural Design: Xinyi Zheng, Mayue Zhu<br>Visualisation: Zechuan Tian, Xinyi Zheng<br>Project Management: Zhi Li<br>UI Layout: Zhi Li, Zechuan Tian<br>Algorithm Research: Mayue Zhu</span>'
+            },
+            keywords: { zh: ['游戏概念设计', '后时代建筑设计', 'SLG'], en: ['Game Concept Design', 'Post-Industrial Architecture', 'SLG'] }
+          },
           {
             zh: '境界之外系列', en: 'Beyond the Boundary Series', zhType: '游戏世界观概念设计', enType: 'Game world-building concept design', image: 'assets/project-01.png',
             heroImage: 'assets/detail-other-02-beyond-05.png', backgroundImage: 'assets/detail-other-02-beyond-hero.png',
-            exhibitionImages: ['assets/detail-other-02-beyond-01.png', 'assets/detail-other-02-beyond-02.png', 'assets/detail-other-02-beyond-03.png', 'assets/detail-other-02-beyond-04.png', 'assets/detail-other-02-beyond-05.png']
+            exhibitionImages: ['assets/detail-other-02-beyond-01.png', 'assets/detail-other-02-beyond-02.png', 'assets/detail-other-02-beyond-03.png', 'assets/detail-other-02-beyond-04.png', 'assets/detail-other-02-beyond-05.png'],
+            exhibitionLabels: { zh: ['开始界面', '加载界面', '游戏界面', '过场剧情', '场景概念'], en: ['Start Screen', 'Loading Screen', 'Game Interface', 'Cutscene', 'Environment Concept'] },
+            developmentImages: ['assets/beyond/development/01.png', 'assets/beyond/development/02.png', 'assets/beyond/development/03.png', 'assets/beyond/development/04.png', 'assets/beyond/development/05.png', 'assets/beyond/development/06.png'],
+            tcgCards: ['assets/beyond/tcg/cards/00.png', 'assets/beyond/tcg/cards/01.png', 'assets/beyond/tcg/cards/02.png', 'assets/beyond/tcg/cards/03.png', 'assets/beyond/tcg/cards/04.png', 'assets/beyond/tcg/cards/05.png', 'assets/beyond/tcg/cards/06.png', 'assets/beyond/tcg/cards/07.png', 'assets/beyond/tcg/cards/08.png'],
+            tcgLibrarySlugs: ['normal', 'continuous', 'ambush', 'quick', 'field', 'character', 'memory', 'attack', 'equipment'],
+            tcgLibraryCounts: [27, 2, 7, 6, 25, 13, 31, 6, 10],
+            designLabel: { zh: '开发过程', en: 'Development Process' },
+            tcgFeature: {
+              zh: { title: '境界之外：终焉英杰颂', keywords: ['卡牌游戏', 'TCG', '策略', '境界之外系列', '动漫风', '奇幻', '神魔'], description: '《境界之外：终焉英杰颂》是一款基于境界之外系列世界观开发的1v1卡牌对战游戏，玩家将操控场上的四名“英雄”，运用阵法卡、场地卡、记忆卡、装备卡、进攻卡灵活对敌，目前正在迭代测试中。', developer: '开发者：李植' },
+              en: { title: 'Beyond the Boundary: Swansong of the Final Heroes', keywords: ['Card Game', 'TCG', 'Strategy', 'Beyond the Boundary Series', 'Anime Style', 'Fantasy', 'Gods & Demons'], description: 'Beyond the Boundary: Swansong of the Final Heroes is a 1v1 card-battling game developed within the world of the Beyond the Boundary series. Players command four Heroes on the field and respond flexibly to their opponent through Formation, Field, Memory, Equipment, and Attack cards. The game is currently undergoing iterative testing.', developer: 'Developer: Zhi Li' }
+            },
+            summary: {
+              zh: '《境界之外》是一套奇幻、神魔题材的动漫风世界观，其来源于正在撰写的小说《境界之外：救赎灯塔的绝唱》（Swansong of Eden）。<br><br>《境界之外》讲述的是总世界观下的主角——叶恒，一个“不幸却终获救赎”的矛盾体。他的父母因忙碌的工作缺席了他的童年，只得与爷爷奶奶相依为命。性格孤僻敏感的他，只能通过书籍触碰母亲的创作世界，借助游戏贴近父亲的技术领域，在虚拟与文字中寻找情感寄托。<br><br>校园里，孤僻、软弱与优渥家境的反差，让他成为校园霸凌的长期受害者。爷爷奶奶的相继离世让他再也不堪重负，陷入深度意识休眠，被确诊为罕见的“抑郁相关性神经突触休眠综合征（DR-NSDS）”。<br><br>其病理机制源于长期重度抑郁引发的神经递质失衡，导致大脑前额叶皮层、海马体等关键区域的神经突触进入“保护性休眠”：大脑为隔绝持续的自我否定与绝望，主动关闭了与外界的感知连接，使叶恒呈现“植物人”的躯体状态，对外界呼唤与药物刺激毫无应答。<br><br>叶恒的沉睡，终于让父母意识到多年缺席的代价。他们辞去工作，将所有精力投入到儿子的唤醒事业中。在遍寻名医无果、常规治疗仅能维持脑功能不衰退的绝境下，父亲凭借自身在完全沉浸技术领域的积累，结合前沿临床试验成果，锁定了“沉浸式神经反馈 VR”这一唯一可能。<br><br>这个由父亲打造、只为救回儿子的 VR 完全沉浸系统，被称作“Transcendental Consciousness Full-Immersion Interaction System”（超验意识全沉浸交互系统），缩写为 TCFIIS，即“境界之外”。<br><br>在境界之外系列中，共有八部系列主线作品，按照发生顺序分别为《众生清梦的凝噎》、《青天史诗的吟咏》、《异星舞会的悲鸣》、《永夜王城的呢喃》、《碧落三千的诗歌》、《腐烂王座的轻言》、《救赎灯塔的绝唱》、《无垠乐土的合奏》。每部作品都对应一个独立的世界观，即 TCFIIS 系统的一个独立世界单元。<br><br>在一次又一次的世界故事中，叶恒最终将从系统中苏醒，经由境界之外的故事重新拾起面对未来的勇气。<span class="detail-summary-divider"></span><span class="detail-summary-meta">开发团队：<br>项目策划：李植<br>氛围渲染：田泽川</span>',
+              en: 'Beyond the Boundary is an anime-inspired fantasy universe centred on gods and demons. It originates from the novel currently being written, Beyond the Boundary: Swansong of the Beacon of Salvation (Swansong of Eden).<br><br>The series follows Ye Heng, the protagonist who connects its overarching worlds—a contradiction defined by misfortune yet destined to find redemption. His parents’ demanding careers left them absent throughout his childhood, so he grew up relying on his grandparents. Withdrawn and sensitive, he could only reach his mother’s creative world through books and approach his father’s technical field through games, searching for emotional refuge in fiction and virtual spaces.<br><br>At school, the contrast between his isolation, vulnerability, and privileged background made him a long-term victim of bullying. After the successive deaths of his grandparents, he could no longer bear the accumulated strain and entered a state of deep conscious dormancy. He was diagnosed with the rare Depression-Related Neural Synaptic Dormancy Syndrome (DR-NSDS).<br><br>The condition stems from neurotransmitter imbalance caused by prolonged severe depression. Synapses in key regions such as the prefrontal cortex and hippocampus enter a protective dormant state: to shut out persistent self-denial and despair, the brain severs its perceptual connection with the outside world. Ye Heng consequently appears to be in a vegetative physical state, unresponsive to voices or medication.<br><br>His dormancy finally forces his parents to confront the cost of their long absence. They leave their jobs and devote themselves entirely to awakening their son. After every specialist fails and conventional treatment can do no more than prevent further decline in brain function, his father draws on years of work in full-immersion technology and the results of advanced clinical trials to identify the only remaining possibility: immersive neurofeedback VR.<br><br>The full-immersion VR system he builds solely to save his son is named the Transcendental Consciousness Full-Immersion Interaction System, abbreviated TCFIIS—Beyond the Boundary.<br><br>The Beyond the Boundary series contains eight main works in chronological order: The Choked Dream of All Beings, The Chant of the Azure Epic, The Lament of the Alien Ball, The Whisper of the Eternal-Night Royal City, The Song of Three Thousand Heavens, The Murmur of the Decaying Throne, Swansong of the Beacon of Salvation, and The Ensemble of the Boundless Paradise. Each work corresponds to an independent world: a self-contained world unit within TCFIIS.<br><br>Through story after story across these worlds, Ye Heng will ultimately awaken from the system and rediscover the courage to face the future through his journey beyond the boundary.<span class="detail-summary-divider"></span><span class="detail-summary-meta">Development Team:<br>Project Planning: Zhi Li<br>Atmosphere Rendering: Zechuan Tian</span>'
+            },
+            keywords: { zh: ['概念设计', '世界观设计', '奇幻', '叙事', '动漫风'], en: ['Concept Design', 'World-building', 'Fantasy', 'Narrative', 'Anime Style'] }
           },
           { zh: 'The LOOP POETICS', en: 'The LOOP POETICS', zhType: '游戏展览策划', enType: 'Game exhibition curation', image: 'assets/project-03-infinity-v2.png' },
           { zh: '只能爬', en: 'Only Climb', zhType: '小游戏 Demo', enType: 'Mini-game demo', image: 'assets/project-05-hello-world.png' }
@@ -274,7 +392,21 @@
       const params = new URLSearchParams(location.search);
       const category = catalog[params.get('category')] ? params.get('category') : 'game';
       const id = Math.max(1, Number(params.get('id')) || 1);
-      const project = catalog[category][id - 1] || catalog[category][0];
+      let project = catalog[category][id - 1] || catalog[category][0];
+      if (category === 'interaction' && id === 2) {
+        project = {
+          ...project,
+          zh: '单词迷境',
+          en: 'Word Relic',
+          zhType: '盲童认知桌游',
+          enType: 'Cognitive board game for visually impaired children',
+          summary: {
+            zh: '针对视障儿童在早期学习过程中的概念认知与联系困难，以及因此产生的沟通交流问题，本项目开发了一款桌面游戏以解决问题。',
+            en: 'Addressing the challenges visually impaired children face in early learning—especially in understanding concepts, forming connections between them, and communicating with others—this project develops a tabletop game as an educational aid.'
+          },
+          keywords: { zh: ['交互设计', '盲人儿童', '学习认知', '桌游教具'], en: ['Interaction Design', 'Visually Impaired Children', 'Learning & Cognition', 'Educational Tabletop Game'] }
+        };
+      }
       let language = 'zh';
       let mechanicsOpen = false;
       let levelMechanicsPreviewOpen = false;
@@ -341,6 +473,9 @@
       };
       let maskoraCardIndex = 0;
       let maskoraAutoplay;
+      let beyondTcgCardIndex = 0;
+      let beyondTcgAutoplay;
+      let beyondTcgLibraryCategory = 0;
       const mediaCopy = {
         zh: { title: '项目媒体', video: '项目视频', game: '在线体验' },
         en: { title: 'Project media', video: 'Project video', game: 'Playable build' }
@@ -377,11 +512,173 @@
       function isLoopingRoomProject() {
         return category === 'game' && id === 5;
       }
+      function isWordRelicProject() {
+        return category === 'interaction' && id === 2;
+      }
       function isVerminexProject() {
         return category === 'game' && id === 6 && project.conceptDesign;
       }
       function isInfinityProject() {
         return category === 'game' && id === 7 && project.valueTableDesign;
+      }
+      function isBodyBattleProject() {
+        return category === 'interaction' && id === 1;
+      }
+      function isUndergroundProject() {
+        return category === 'other' && id === 1 && project.architecturalDesign;
+      }
+      function isBeyondProject() {
+        return category === 'other' && id === 2 && project.developmentImages;
+      }
+      function isResearchPaperTitleOnly() {
+        return category === 'research' && id === 2;
+      }
+      let researchPaperData = null;
+      let researchPaperLoad = null;
+      function escapePaperHTML(value = '') {
+        return String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+      }
+      function formatPaperText(value = '') {
+        return escapePaperHTML(value).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+      }
+      function researchHeadingLevel(text) {
+        const trimmed = text.trim();
+        if (/^(References|Reference|参考文献)\b/i.test(trimmed)) return 2;
+        if (/^\d+[.．、]\d+\s+/.test(trimmed) && trimmed.length < 120) return 3;
+        if (/^\d+[.．、]\s*(Introduction|Guidance|Expectation|Case Study|Discussion|Conclusion)/i.test(trimmed) && trimmed.length < 130) return 2;
+        return 0;
+      }
+      function paperImageMarkup(paths, caption) {
+        const images = paths.map(path => `<img src="${escapePaperHTML(path)}" alt="${escapePaperHTML(caption || 'Research paper figure')}" loading="lazy" />`).join('');
+        return `<figure class="research-paper-figure">${images}${caption ? `<figcaption>${formatPaperText(caption)}</figcaption>` : ''}</figure>`;
+      }
+      function localizeChinesePaperTerms(value = '') {
+        return String(value)
+          .replace(/Landmark Guidance/g, '地标引导')
+          .replace(/\bGenshin\b/g, '原神')
+          .replace(/\bFontaine\b/g, '枫丹')
+          .replace(/\bWangshu Inn\b/g, '望舒客栈')
+          .replace(/\b(?:Acocpan|Atocpan)\b/g, '安饶之野')
+          .replace(/阿托克潘/g, '安饶之野');
+      }
+      function paperBodyMarkup(elements, isEnglish) {
+        return elements.map((element, index) => {
+          if (element.kind === 'table') {
+            const rows = (element.rows || []).map(row => `<tr>${row.map(cell => `<td>${formatPaperText(isEnglish ? cell : localizeChinesePaperTerms(cell))}</td>`).join('')}</tr>`).join('');
+            return `<div class="research-paper-table-wrap"><table>${rows}</table></div>`;
+          }
+          const text = (isEnglish ? element.text : localizeChinesePaperTerms(element.text || '')).trim();
+          const imagePaths = element.image_paths || [];
+          if (imagePaths.length) return paperImageMarkup(imagePaths, text);
+          if (!text) return '';
+          const heading = researchHeadingLevel(text);
+          if (heading) return `<h${heading} id="research-section-${index}">${formatPaperText(text)}</h${heading}>`;
+          if (/^-\s+/.test(text)) return `<p class="research-paper-list-item">${formatPaperText(text.replace(/^-\s+/, ''))}</p>`;
+          if (/^(Figure|Fig\.|图\s*\d)/i.test(text)) return `<p class="research-paper-caption">${formatPaperText(text)}</p>`;
+          const quote = /^[“\"‘]/.test(text) || (!isEnglish && /^“/.test(text));
+          return `<p${quote ? ' class="research-paper-quote"' : ''}>${formatPaperText(text)}</p>`;
+        }).join('');
+      }
+      function closeResearchOutline() {
+        const outline = document.querySelector('#research-outline');
+        const scrim = document.querySelector('#research-outline-scrim');
+        const toggle = document.querySelector('#research-outline-toggle');
+        outline.classList.remove('is-open');
+        scrim.classList.remove('is-open');
+        outline.setAttribute('aria-hidden', 'true');
+        toggle.setAttribute('aria-expanded', 'false');
+        window.setTimeout(() => { if (!outline.classList.contains('is-open')) { outline.hidden = true; scrim.hidden = true; } }, 420);
+      }
+      function toggleResearchOutline() {
+        if (!isResearchPaperTitleOnly()) return;
+        const outline = document.querySelector('#research-outline');
+        const scrim = document.querySelector('#research-outline-scrim');
+        const toggle = document.querySelector('#research-outline-toggle');
+        if (outline.classList.contains('is-open')) { closeResearchOutline(); return; }
+        outline.hidden = false;
+        scrim.hidden = false;
+        window.requestAnimationFrame(() => { outline.classList.add('is-open'); scrim.classList.add('is-open'); });
+        outline.setAttribute('aria-hidden', 'false');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+      function renderResearchOutline() {
+        const toggle = document.querySelector('#research-outline-toggle');
+        const outline = document.querySelector('#research-outline');
+        const links = document.querySelector('#research-outline-links');
+        const label = document.querySelector('#research-outline-label');
+        if (!isResearchPaperTitleOnly() || !researchPaperData) {
+          toggle.hidden = true;
+          closeResearchOutline();
+          links.innerHTML = '';
+          return;
+        }
+        const isEnglish = language === 'en';
+        const headings = Array.from(document.querySelectorAll('#research-paper-content .research-paper-body h2, #research-paper-content .research-paper-body h3'));
+        toggle.hidden = false;
+        toggle.textContent = isEnglish ? 'Contents' : '目录';
+        label.textContent = isEnglish ? 'Paper contents' : '论文目录';
+        links.innerHTML = headings.map((heading, index) => `<a class="research-outline-link research-outline-level-${heading.tagName === 'H3' ? '3' : '2'}" style="--outline-index:${index}" href="#${heading.id}"><span>${String(index + 1).padStart(2, '0')}</span><b>${heading.textContent}</b><i>↗</i></a>`).join('');
+      }
+      function withChinesePaperFigures(elements) {
+        const figures = [
+          { match: 'Magritte', key: 'magritte', paths: ['assets/research/cognitive-expectations/image1.png'], caption: '图 1 《图像的背叛》' },
+          { match: 'Fig.2', key: 'esa-model', paths: ['assets/research/cognitive-expectations/image2.png'], caption: '图 2 ESA 模型' },
+          { match: 'Fig.3', key: 'wangshu-inn', paths: ['assets/research/cognitive-expectations/image3.png'], caption: '图 3 《原神》中的望舒客栈' },
+          { match: 'Fig.4,5', key: 'fontaine-waterway', paths: ['assets/research/cognitive-expectations/image4.png', 'assets/research/cognitive-expectations/image5.png'], caption: '图 4—5 《原神》中通往枫丹主城的水道' },
+          { match: 'Fig.6', key: 'atocpan', paths: ['assets/research/cognitive-expectations/image6.png'], caption: '图 6 《原神》阿托克潘地区' },
+          { match: 'Fig.7-8', key: 'chests', paths: ['assets/research/cognitive-expectations/image7.png', 'assets/research/cognitive-expectations/image8.png'], caption: '图 7—8 《原神》中的宝箱' }
+        ];
+        return figures.reduce((updated, figure) => {
+          if (updated.some(element => element.researchFigureKey === figure.key)) return updated;
+          const index = updated.findIndex(element => element.text?.includes(figure.match));
+          if (index < 0) return updated;
+          const inserted = { kind: 'figure', text: figure.caption, image_paths: figure.paths, researchFigureKey: figure.key };
+          return [...updated.slice(0, index + 1), inserted, ...updated.slice(index + 1)];
+        }, elements.slice());
+      }
+      function withChinesePaperReferences(elements) {
+        const referenceIndex = elements.findIndex(element => /^(References?|参考文献)[:：]?$/i.test((element.text || '').trim()));
+        if (referenceIndex < 0 || elements.some(element => element.researchReferenceKey === 'english-reference-list')) return elements;
+        const references = (researchPaperData.en?.elements || []).slice(183)
+          .filter(element => element.text?.trim())
+          .map(element => ({ ...element, researchReferenceKey: 'english-reference-list' }));
+        return [...elements.slice(0, referenceIndex + 1), ...references, ...elements.slice(referenceIndex + 1)];
+      }
+      function renderResearchPaper() {
+        const section = document.querySelector('#research-paper-content');
+        if (!isResearchPaperTitleOnly()) {
+          section.hidden = true;
+          section.innerHTML = '';
+          return;
+        }
+        section.hidden = false;
+        if (!researchPaperData) {
+          section.innerHTML = `<p class="research-paper-loading">${language === 'en' ? 'Loading paper…' : '正在载入论文…'}</p>`;
+          return;
+        }
+        const isEnglish = language === 'en';
+        const sourceElements = researchPaperData[language]?.elements || [];
+        const elements = isEnglish ? sourceElements : withChinesePaperReferences(withChinesePaperFigures(sourceElements));
+        const bodyElements = isEnglish ? elements.slice(21) : elements;
+        const coverMeta = isEnglish
+          ? elements.slice(6, 15).filter((item, index) => item.text?.trim() && index !== 2).map(item => `<p>${formatPaperText(item.text.replace(' (Avery)', ''))}</p>`).join('')
+          : `<p>选题：现有游戏案例分析</p><p>李植</p><p>字数：8132</p><p>AI 使用说明：我使用生成式 AI 翻译本论文，并检索与两种心理学理论相关的出版物。</p><p><strong>示例：</strong></p><p><strong>问题：</strong>《图像的背叛》呈现了一种心理现象：人们并非直接感知现实，而是通过先前经验、符号与认知结构来解释世界。请问这一现象的具体名称是什么？又有哪些相关理论著作可供参考？</p><p><strong>回答：</strong>你描述的心理学概念可能与图式理论（Schema Theory）有关。其核心观点是，人们并非被动接收信息，而是借由既有的知识结构或“图式”主动解释新信息。</p><p><strong>来源：</strong>Frederic Bartlett，《Remembering: A Study in Experimental and Social Psychology》（1932）。</p>`;
+        section.innerHTML = `<article class="research-paper-article"><header class="research-paper-cover"><p class="research-paper-cover-label">${isEnglish ? 'Research paper' : '研究论文'}</p><div class="research-paper-cover-meta">${coverMeta}</div></header><div class="research-paper-body">${paperBodyMarkup(bodyElements, isEnglish)}</div></article>`;
+        renderResearchOutline();
+      }
+      function loadResearchPaperContent() {
+        if (!isResearchPaperTitleOnly() || researchPaperData || researchPaperLoad) return;
+        researchPaperLoad = fetch('assets/research/cognitive-expectations/paper-content.json')
+          .then(response => {
+            if (!response.ok) throw new Error(`Unable to load paper content (${response.status})`);
+            return response.json();
+          })
+          .then(data => { researchPaperData = data; renderResearchPaper(); })
+          .catch(() => {
+            const section = document.querySelector('#research-paper-content');
+            section.hidden = false;
+            section.innerHTML = `<p class="research-paper-loading">${language === 'en' ? 'The paper content could not be loaded.' : '论文内容暂时无法加载。'}</p>`;
+          });
       }
       function renderInfinityValueTableDesign() {
         if (!isInfinityProject()) return false;
@@ -393,6 +690,280 @@
         gallery.setAttribute('aria-label', language === 'en' ? 'Infinity balance tables' : '无限黄昏数值配表');
         gallery.innerHTML = `<div class="infinity-value-cards">${design.images.map((image, index) => `<figure class="infinity-value-card"><img src="${image}" alt="${language === 'en' ? `Infinity balance table ${index + 1}` : `无限黄昏数值配表 ${index + 1}`}" /></figure>`).join('')}</div><aside class="infinity-value-copy"><h3>${design.title}</h3><span></span><p>${design.description}</p></aside>`;
         return true;
+      }
+      function renderBodyBattleDesign() {
+        if (!isBodyBattleProject()) return false;
+        const gallery = document.querySelector('#detail-process-gallery');
+        document.querySelector('#detail-review').classList.add('is-body-battle-design');
+        gallery.className = 'body-battle-design-layout';
+        gallery.setAttribute('aria-label', language === 'en' ? 'Body Battle Defense design images' : '身体保卫战项目设计图');
+        const images = (project.designImages || project.exhibitionImages).slice(0, 4);
+        const copy = project.designCopy[language];
+        const image = (index) => `<img src="${images[index]}" alt="${language === 'en' ? `Body Battle Defense design image ${index + 1}` : `身体保卫战项目设计图 ${index + 1}`}" />`;
+        gallery.innerHTML = `<figure class="body-battle-design-card body-battle-design-card-1">${image(0)}</figure><aside class="body-battle-design-copy"><p>${copy.title}</p><span></span><h3>${copy.description}</h3></aside><figure class="body-battle-design-card body-battle-design-card-2">${image(1)}</figure><div class="body-battle-design-lower"><figure class="body-battle-design-card body-battle-design-card-3">${image(2)}</figure><figure class="body-battle-design-card body-battle-design-card-4">${image(3)}</figure></div>`;
+        return true;
+      }
+      function renderBeyondDevelopment() {
+        if (!isBeyondProject()) return false;
+        const review = document.querySelector('#detail-review');
+        const gallery = document.querySelector('#detail-process-gallery');
+        review.classList.add('is-beyond-development');
+        gallery.className = 'beyond-development-grid';
+        gallery.setAttribute('aria-label', language === 'en' ? 'Beyond the Boundary development process' : '境界之外开发过程');
+        gallery.innerHTML = project.developmentImages.map((image, index) => `<figure class="beyond-development-card"><img src="${image}" alt="${language === 'en' ? `Beyond the Boundary development process ${index + 1}` : `境界之外开发过程 ${index + 1}`}" /></figure>`).join('');
+        return true;
+      }
+      function renderBeyondTcgFeature() {
+        const section = document.querySelector('#beyond-tcg');
+        if (!isBeyondProject()) {
+          clearInterval(beyondTcgAutoplay);
+          section.hidden = true;
+          return;
+        }
+        const feature = project.tcgFeature[language];
+        const cards = project.tcgCards;
+        const carousel = document.querySelector('#beyond-tcg-carousel');
+        const track = document.querySelector('#beyond-tcg-track');
+        const count = document.querySelector('#beyond-tcg-count');
+        section.hidden = false;
+        document.querySelector('#beyond-tcg-title').textContent = feature.title;
+        document.querySelector('#beyond-tcg-keywords').innerHTML = feature.keywords.map(keyword => `<span>${keyword}</span>`).join('');
+        document.querySelector('#beyond-tcg-description').textContent = feature.description;
+        document.querySelector('#beyond-tcg-developer').textContent = feature.developer;
+        document.querySelector('#beyond-tcg-visual').style.backgroundImage = '';
+        carousel.setAttribute('aria-label', language === 'en' ? 'Final Heroes card carousel. Swipe horizontally or use the arrow keys.' : '终焉英杰颂卡牌轮播，可左右滑动或使用方向键切换。');
+        track.innerHTML = cards.map((image, index) => `<figure class="beyond-tcg-slide"><img src="${image}" alt="${language === 'en' ? `Final Heroes card ${String(index).padStart(2, '0')}` : `终焉英杰颂卡牌 ${String(index).padStart(2, '0')}`}" /></figure>`).join('');
+        carousel.querySelector('[data-beyond-tcg-direction="-1"]').setAttribute('aria-label', language === 'en' ? 'Previous card' : '上一张卡牌');
+        carousel.querySelector('[data-beyond-tcg-direction="1"]').setAttribute('aria-label', language === 'en' ? 'Next card' : '下一张卡牌');
+        const update = (dragOffset = 0, animate = true) => {
+          track.style.transition = animate ? '' : 'none';
+          track.style.transform = `translate3d(calc(${-beyondTcgCardIndex * 100}% + ${dragOffset}px), 0, 0)`;
+          count.textContent = `${String(beyondTcgCardIndex).padStart(2, '0')} / ${String(cards.length - 1).padStart(2, '0')}`;
+        };
+        const move = direction => {
+          beyondTcgCardIndex = (beyondTcgCardIndex + direction + cards.length) % cards.length;
+          update();
+        };
+        const startAutoplay = () => {
+          clearInterval(beyondTcgAutoplay);
+          beyondTcgAutoplay = setInterval(() => move(1), 4200);
+        };
+        carousel.querySelectorAll('[data-beyond-tcg-direction]').forEach(button => {
+          button.onclick = () => { move(Number(button.dataset.beyondTcgDirection)); startAutoplay(); };
+        });
+        let pointerId = null;
+        let dragStart = 0;
+        carousel.onpointerdown = event => {
+          if (event.target.closest('button')) return;
+          pointerId = event.pointerId;
+          dragStart = event.clientX;
+          carousel.setPointerCapture(pointerId);
+          clearInterval(beyondTcgAutoplay);
+        };
+        carousel.onpointermove = event => {
+          if (event.pointerId !== pointerId) return;
+          update(event.clientX - dragStart, false);
+        };
+        const finishDrag = event => {
+          if (event.pointerId !== pointerId) return;
+          const distance = event.clientX - dragStart;
+          pointerId = null;
+          if (Math.abs(distance) > Math.min(70, carousel.clientWidth * .16)) move(distance < 0 ? 1 : -1);
+          else update();
+          startAutoplay();
+        };
+        carousel.onpointerup = finishDrag;
+        carousel.onpointercancel = finishDrag;
+        carousel.onkeydown = event => {
+          if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+          event.preventDefault();
+          move(event.key === 'ArrowRight' ? 1 : -1);
+          startAutoplay();
+        };
+        let wheelLocked = false;
+        carousel.onwheel = event => {
+          const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+          if (Math.abs(delta) < 8) return;
+          event.preventDefault();
+          if (wheelLocked) return;
+          move(delta > 0 ? 1 : -1);
+          startAutoplay();
+          wheelLocked = true;
+          window.setTimeout(() => { wheelLocked = false; }, 420);
+        };
+        carousel.onmouseenter = () => clearInterval(beyondTcgAutoplay);
+        carousel.onmouseleave = startAutoplay;
+        carousel.onfocusin = () => clearInterval(beyondTcgAutoplay);
+        carousel.onfocusout = startAutoplay;
+        update();
+        startAutoplay();
+      }
+      function renderBeyondTcgLibrary() {
+        const section = document.querySelector('#beyond-tcg-library');
+        const grid = document.querySelector('#beyond-tcg-library-grid');
+        const filters = document.querySelector('#beyond-tcg-library-filters');
+        if (!isBeyondProject()) {
+          section.hidden = true;
+          grid.innerHTML = '';
+          filters.innerHTML = '';
+          return;
+        }
+        const categoryLabels = language === 'en'
+          ? ['Normal Formations', 'Continuous Formations', 'Ambush Formations', 'Quick-Play Formations', 'Field Cards', 'Character Cards', 'Memory Cards', 'Attack Cards', 'Equipment Cards']
+          : ['一般阵法', '永续阵法', '伏击阵法', '速攻阵法', '场地卡', '角色卡', '记忆卡', '进攻卡', '装备卡'];
+        section.hidden = false;
+        document.querySelector('#beyond-tcg-library-title').textContent = language === 'en' ? 'Final Heroes - Card Library' : '终焉英杰颂 - 卡牌库';
+        grid.setAttribute('aria-label', language === 'en' ? 'Final Heroes card library' : '终焉英杰颂卡牌库');
+        const renderLibraryCards = () => {
+          const slug = project.tcgLibrarySlugs[beyondTcgLibraryCategory];
+          const count = project.tcgLibraryCounts[beyondTcgLibraryCategory] || 0;
+          const categoryLabel = categoryLabels[beyondTcgLibraryCategory];
+          grid.innerHTML = Array.from({ length: count }, (_, index) => {
+            const cardNumber = String(index + 1).padStart(2, '0');
+            const image = `assets/beyond/tcg/library/${slug}/${String(index).padStart(3, '0')}.png`;
+            const alt = language === 'en' ? `${categoryLabel} ${cardNumber}` : `${categoryLabel} ${cardNumber}`;
+            return `<figure class="beyond-tcg-library-card"><img src="${image}" alt="${alt}" /><figcaption>${cardNumber} / ${String(count).padStart(2, '0')}</figcaption></figure>`;
+          }).join('');
+          grid.querySelectorAll('.beyond-tcg-library-card').forEach(card => {
+            card.onpointermove = event => {
+              if (event.pointerType !== 'mouse') return;
+              const bounds = card.getBoundingClientRect();
+              const x = (event.clientX - bounds.left) / bounds.width;
+              const y = (event.clientY - bounds.top) / bounds.height;
+              card.style.setProperty('--library-tilt-x', `${(0.5 - y) * 7}deg`);
+              card.style.setProperty('--library-tilt-y', `${(x - 0.5) * 7}deg`);
+              card.style.setProperty('--library-scale', '1.045');
+            };
+            card.onpointerleave = () => {
+              card.style.setProperty('--library-tilt-x', '0deg');
+              card.style.setProperty('--library-tilt-y', '0deg');
+              card.style.setProperty('--library-scale', '1');
+            };
+          });
+        };
+        filters.setAttribute('aria-label', language === 'en' ? 'Card categories' : '卡牌分类');
+        filters.innerHTML = categoryLabels.map((label, index) => `<button type="button" data-beyond-library-category="${index}" aria-pressed="${index === beyondTcgLibraryCategory}">${label}</button>`).join('');
+        const categoryButtons = [...filters.querySelectorAll('button')];
+        const updateCategoryButtons = () => categoryButtons.forEach((button, index) => {
+          const active = index === beyondTcgLibraryCategory;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        categoryButtons.forEach(button => button.onclick = () => {
+          beyondTcgLibraryCategory = Number(button.dataset.beyondLibraryCategory);
+          updateCategoryButtons();
+          renderLibraryCards();
+          document.querySelector('.beyond-tcg-library-browser').scrollTop = 0;
+        });
+        updateCategoryButtons();
+        renderLibraryCards();
+        document.querySelector('#beyond-tcg-library-link').textContent = language === 'en' ? 'Card Library' : '卡牌库';
+      }
+      function setupBeyondSpecularButtons() {
+        if (!isBeyondProject()) return;
+        const selector = [
+          '.detail-language',
+          '.detail-back',
+          '.detail-play-link',
+          '.detail-action-secondary',
+          '.beyond-tcg-arrow',
+          '.beyond-tcg-library-link'
+        ].join(',');
+        document.querySelectorAll(selector).forEach(button => {
+          button.classList.add('beyond-specular-button');
+          button.onpointermove = event => {
+            if (event.pointerType && event.pointerType !== 'mouse') return;
+            const bounds = button.getBoundingClientRect();
+            button.style.setProperty('--specular-x', `${event.clientX - bounds.left}px`);
+            button.style.setProperty('--specular-y', `${event.clientY - bounds.top}px`);
+          };
+          button.onpointerleave = () => {
+            button.style.setProperty('--specular-x', '50%');
+            button.style.setProperty('--specular-y', '50%');
+          };
+        });
+      }
+      function renderUndergroundArchitecturalDesign() {
+        if (!isUndergroundProject()) return false;
+        const design = project.architecturalDesign[language];
+        const review = document.querySelector('#detail-review');
+        const gallery = document.querySelector('#detail-process-gallery');
+        review.classList.add('is-underground-architectural-design');
+        gallery.className = 'underground-architectural-layout';
+        gallery.setAttribute('aria-label', language === 'en' ? 'Underground architectural design' : 'Underground 建筑设计');
+        gallery.innerHTML = `<aside class="underground-architectural-copy"><p>UNDERGROUND / ${language === 'en' ? 'ARCHITECTURAL DESIGN' : '建筑设计'}</p><h3>${design.title}</h3><span></span><p>${design.description}</p></aside><figure class="underground-architectural-image"><img src="${design.image}" alt="${design.title}" /></figure>`;
+        return true;
+      }
+      function renderUndergroundGameDesign() {
+        const section = document.querySelector('#underground-game-design');
+        const gallery = document.querySelector('#underground-game-gallery');
+        if (!isUndergroundProject()) {
+          section.hidden = true;
+          section.style.display = 'none';
+          gallery.innerHTML = '';
+          return;
+        }
+        const design = project.gameDesign;
+        const details = design[language];
+        const cardImages = design.images.slice(0, 9);
+        const title = details.title;
+        section.hidden = false;
+        section.style.display = 'flex';
+        document.querySelector('#underground-game-design-title').textContent = title;
+        document.querySelector('#underground-game-subtitle').textContent = language === 'en'
+          ? 'Resource Collection - Material Synthesis - Blueprint Unlocking - Production Growth - Underground Planning - Natural Event Response - Large-Scale Resource Gathering...'
+          : '资源收集 - 材料合成 - 蓝图解锁 - 提高生产 - 地下城规划 - 应对自然事件 - 大幅收集资源...';
+        gallery.setAttribute('aria-label', language === 'en' ? 'Underground in-game interface designs' : 'Underground 游戏内界面');
+        gallery.innerHTML = cardImages.map((image, index) => `<figure class="underground-game-card" style="--game-card-index:${index}"><img src="${image}" alt="${language === 'en' ? `Underground in-game interface ${index + 1}` : `Underground 游戏内界面 ${index + 1}`}" /><figcaption>${details.captions[index]}</figcaption></figure>`).join('');
+        let active = 0;
+        const arrange = () => Array.from(gallery.children).forEach((card, index) => {
+          let offset = index - active;
+          const half = cardImages.length / 2;
+          if (offset > half) offset -= cardImages.length;
+          if (offset < -half) offset += cardImages.length;
+          const distance = Math.abs(offset);
+          card.style.transform = `translate(-50%, -50%) translateX(${offset * 53}%) translateY(${distance * 7}%) rotate(${offset * 5}deg)`;
+          card.style.opacity = String(Math.max(0.3, 1 - distance * 0.28));
+          card.style.zIndex = String(10 - distance);
+          card.classList.toggle('is-active', offset === 0);
+        });
+        const move = direction => {
+          active = (active + direction + cardImages.length) % cardImages.length;
+          arrange();
+        };
+        let locked = false;
+        gallery.onwheel = event => {
+          if (Math.abs(event.deltaY) < 12) return;
+          event.preventDefault();
+          if (locked) return;
+          move(event.deltaY > 0 ? 1 : -1);
+          locked = true;
+          window.setTimeout(() => { locked = false; }, 420);
+        };
+        gallery.onclick = event => {
+          const card = event.target.closest('.underground-game-card');
+          if (!card) return;
+          const index = Array.from(gallery.children).indexOf(card);
+          if (index !== active) { active = index; arrange(); }
+        };
+        arrange();
+      }
+      function renderUndergroundAwards() {
+        const section = document.querySelector('#underground-awards');
+        const grid = document.querySelector('#underground-awards-grid');
+        if (!isUndergroundProject()) {
+          section.hidden = true;
+          grid.innerHTML = '';
+          return;
+        }
+        section.hidden = false;
+        document.querySelector('#underground-awards-title').textContent = language === 'en' ? 'Project Awards' : '项目获奖';
+        grid.setAttribute('aria-label', language === 'en' ? 'Underground project award images' : 'Underground 项目获奖图片');
+        grid.innerHTML = Array.from({ length: 6 }, (_, index) => {
+          const number = String(index + 1).padStart(2, '0');
+          const label = language === 'en' ? `Award image ${number}` : `获奖图片 ${number}`;
+          return `<figure class="underground-award-frame" aria-label="${label}"><span aria-hidden="true">${number}</span></figure>`;
+        }).join('');
       }
       function renderVerminexConceptDesign() {
         const section = document.querySelector('#verminex-concept');
@@ -554,14 +1125,22 @@
         document.querySelector('#detail-kicker').textContent = `${String(id).padStart(2, '0')} / ${categories[category][isEnglish ? 'en' : 'zh']}`;
         const detailTitle = document.querySelector('#detail-title');
         detailTitle.classList.toggle('detail-title-gravity-en', isEnglish && isGravityProject());
+        detailTitle.classList.toggle('detail-title-research-en', isEnglish && isResearchPaperTitleOnly());
         detailTitle.innerHTML = [...project[isEnglish ? 'en' : 'zh']].map((char, index) => `<span style="--char-index:${index}">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
         const keywords = project.keywords?.[language];
         document.querySelector('#detail-type').innerHTML = keywords ? keywords.map(keyword => `<span class="detail-keyword">${keyword}</span>`).join('') : project[isEnglish ? 'enType' : 'zhType'];
         const isMaskoraDetail = isMaskoraProject();
         const isLoopingRoomDetail = isLoopingRoomProject();
+        const isWordRelicDetail = isWordRelicProject();
         const isVerminexDetail = isVerminexProject();
+        const isBeyondDetail = isBeyondProject();
+        const isResearchPaper = isResearchPaperTitleOnly();
+        document.body.classList.toggle('research-paper-title-only', isResearchPaper);
+        document.body.classList.toggle('is-beyond-detail', isBeyondDetail);
+        renderResearchPaper();
+        loadResearchPaperContent();
         const reviewSection = document.querySelector('#detail-review');
-        const omitReview = isLoopingRoomDetail;
+        const omitReview = isLoopingRoomDetail || isWordRelicDetail;
         if (omitReview && reviewSection) reviewSection.remove();
         document.querySelector('#detail-summary').innerHTML = isMaskoraDetail ? maskoraDetailCopy[language].summary : (project.summary?.[language] || t.summary);
         const action = projectAction[category]?.[id];
@@ -585,9 +1164,12 @@
         const rulebook = document.querySelector('#maskora-rulebook-link');
         const development = document.querySelector('#maskora-development-link');
         const conceptLink = document.querySelector('#verminex-concept-link');
+        const beyondTcgLink = document.querySelector('#beyond-tcg-link');
         conceptLink.hidden = !isVerminexDetail;
         conceptLink.textContent = isEnglish ? 'Concept Design' : '概念设计';
         conceptLink.href = '#verminex-concept';
+        beyondTcgLink.hidden = !isBeyondProject();
+        beyondTcgLink.textContent = isEnglish ? 'Final Heroes TCG' : '终焉英杰颂';
         if (isMaskoraDetail) {
           secondary.textContent = isEnglish ? 'Card design' : '卡牌设计';
           secondary.href = '#detail-exhibition';
@@ -609,22 +1191,40 @@
         if (reviewSection?.isConnected) {
           document.querySelector('#detail-review-title').textContent = isMaskoraDetail ? maskoraDevelopmentCopy[language].title : (project.designLabel?.[language] || t.reviewTitle);
         }
-        document.querySelector('#detail-back').textContent = t.back;
-        document.querySelector('#detail-back').href = `index.html?return=${categories[category].anchor}#${categories[category].anchor}`;
+        const backLink = document.querySelector('#detail-back');
+        backLink.textContent = isResearchPaper ? (isEnglish ? 'Back' : '返回') : t.back;
+        backLink.href = isResearchPaper ? 'index.html#design-docs' : `index.html?return=${categories[category].anchor}#${categories[category].anchor}`;
+        backLink.dataset.restorePreviousPage = isResearchPaper ? 'true' : 'false';
         document.querySelector('#detail-language').textContent = t.toggle;
         const heroImage = project.heroImage || project.image;
         document.body.style.backgroundImage = '';
         const heroSection = document.querySelector('.detail-hero');
+        const visualStage = document.querySelector('#detail-visual-stage');
+        const titleSymbol = document.querySelector('#beyond-title-symbol');
+        const pageSymbol = document.querySelector('#beyond-page-symbol');
+        const pageBackdrop = document.querySelector('#beyond-page-backdrop');
+        heroSection.classList.toggle('is-beyond-hero', isBeyondDetail);
         heroSection.style.backgroundImage = '';
+        visualStage.hidden = isBeyondDetail;
+        titleSymbol.hidden = !isBeyondDetail;
+        titleSymbol.alt = isBeyondDetail ? (isEnglish ? 'Final Heroes emblem' : '终焉英杰颂图形标识') : '';
+        pageSymbol.hidden = !isBeyondDetail;
+        pageBackdrop.hidden = !isBeyondDetail;
         document.querySelector('#detail-visual-label').textContent = t.visual;
         document.querySelector('#detail-visual').style.backgroundImage = `linear-gradient(140deg, rgba(4, 6, 16, .12), rgba(4, 6, 16, .78)), url("${heroImage}")`;
-        if (reviewSection?.isConnected) reviewSection.classList.remove('is-gravity-level-design', 'is-infinity-value-design');
+        if (reviewSection?.isConnected) reviewSection.classList.remove('is-gravity-level-design', 'is-infinity-value-design', 'is-body-battle-design', 'is-beyond-development', 'is-underground-architectural-design');
         if (!omitReview && isMaskoraDetail) {
           renderMaskoraDevelopment();
         } else if (!omitReview && renderGravityLevelDesign()) {
           // GravitySpaceship uses its own level-design layout instead of the shared process gallery.
         } else if (!omitReview && renderInfinityValueTableDesign()) {
           // Infinity uses its own static balance-table layout.
+        } else if (!omitReview && renderBodyBattleDesign()) {
+          // Body Battle Defense uses a fixed, uncropped four-image design layout.
+        } else if (!omitReview && renderBeyondDevelopment()) {
+          // Beyond the Boundary uses a fixed, uncropped six-image development layout.
+        } else if (!omitReview && renderUndergroundArchitecturalDesign()) {
+          // Underground uses a static architectural-design composition.
         } else if (!omitReview) {
           const processItems = project.processItems || t.processTitles.map((_, index) => index);
           const processCards = project.processCards?.[language] || processItems.map(contentIndex => ({ title: t.processTitles[contentIndex], text: t.processText[contentIndex] }));
@@ -652,10 +1252,23 @@
         renderMaskoraRulebook();
         renderMaskoraBoardDesign();
         renderVerminexConceptDesign();
+        renderUndergroundGameDesign();
+        renderUndergroundAwards();
+        renderBeyondTcgFeature();
+        renderBeyondTcgLibrary();
+        setupBeyondSpecularButtons();
         const mediaLinks = renderMediaSlots();
         if (action) actionLink.href = project.playUrl || mediaLinks.gameUrl || mediaLinks.videoUrl || '#detail-exhibition';
       }
       document.querySelector('#detail-language').addEventListener('click', () => { language = language === 'zh' ? 'en' : 'zh'; render(); setupProcessGallery(); });
+      document.querySelector('#research-outline-toggle').addEventListener('click', toggleResearchOutline);
+      document.querySelector('#research-outline-close').addEventListener('click', closeResearchOutline);
+      document.querySelector('#research-outline-scrim').addEventListener('click', closeResearchOutline);
+      document.querySelector('#research-outline-links').addEventListener('click', event => {
+        if (!event.target.closest('.research-outline-link')) return;
+        closeResearchOutline();
+      });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') closeResearchOutline(); });
       document.querySelector('#detail-mechanics-toggle').addEventListener('click', () => { mechanicsOpen = !mechanicsOpen; updateMechanicsPanel(); });
       document.addEventListener('click', event => {
         const trigger = event.target.closest('[data-level-mechanics-toggle]');
@@ -672,7 +1285,16 @@
         updateMechanicsPanel();
         document.querySelector('.detail-hero').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
-      document.querySelector('#detail-back').addEventListener('click', event => { event.preventDefault(); location.replace(event.currentTarget.href); });
+      document.querySelector('#detail-back').addEventListener('click', event => {
+        event.preventDefault();
+        const backLink = event.currentTarget;
+        const cameFromSite = document.referrer && new URL(document.referrer).origin === location.origin;
+        if (backLink.dataset.restorePreviousPage === 'true' && cameFromSite && history.length > 1) {
+          history.back();
+          return;
+        }
+        location.replace(backLink.href);
+      });
       document.querySelector('#maskora-rulebook-lightbox-close').addEventListener('click', closeMaskoraRulebookLightbox);
       document.querySelector('#maskora-rulebook-lightbox').addEventListener('click', event => { if (event.target === event.currentTarget) closeMaskoraRulebookLightbox(); });
       function closeGravityExcelViewer() {
@@ -711,7 +1333,7 @@
       }
       function setupProcessGallery() {
         const gallery = document.querySelector('#detail-process-gallery');
-        if (gallery.classList.contains('maskora-development-gallery') || gallery.classList.contains('gravity-level-design-layout') || gallery.classList.contains('infinity-value-layout')) return;
+        if (gallery.classList.contains('maskora-development-gallery') || gallery.classList.contains('gravity-level-design-layout') || gallery.classList.contains('infinity-value-layout') || gallery.classList.contains('body-battle-design-layout') || gallery.classList.contains('beyond-development-grid') || gallery.classList.contains('underground-architectural-layout')) return;
         let active = Math.floor((gallery.children.length - 1) / 2);
         const arrange = () => [...gallery.children].forEach((card, index) => {
           const offset = index - active;
