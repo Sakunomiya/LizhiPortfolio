@@ -9,6 +9,28 @@ const projectBackgrounds = [...document.querySelectorAll('.project-background')]
 const contactBackgrounds = [...document.querySelectorAll('.contact-background')];
 const backgroundChoices = [...projectBackgrounds.map((_, index) => index), -1];
 const randomBackgroundIndex = backgroundChoices[Math.floor(Math.random() * backgroundChoices.length)];
+
+const hydrateBackground = (element) => {
+  if (!element?.dataset.bg || element.dataset.bgLoaded === 'true') return;
+  const image = `url("${element.dataset.bg}")`;
+  element.style.backgroundImage = element.dataset.bgOverlay ? `${element.dataset.bgOverlay}, ${image}` : image;
+  element.dataset.bgLoaded = 'true';
+};
+
+const lazyBackgroundObserver = 'IntersectionObserver' in window
+  ? new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        hydrateBackground(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '500px 0px' })
+  : null;
+
+document.querySelectorAll('[data-bg]:not(.project-background):not(.contact-background)').forEach((element) => {
+  if (lazyBackgroundObserver) lazyBackgroundObserver.observe(element);
+  else hydrateBackground(element);
+});
 let selectedWheelIndex = randomBackgroundIndex === -1 ? wheelItems.length - 1 : randomBackgroundIndex;
 let wheelPosition = selectedWheelIndex;
 let wheelTarget = selectedWheelIndex;
@@ -39,8 +61,16 @@ const selectWheelItem = (index) => {
   wheelTarget = selectedWheelIndex;
   wheelItems.forEach((item, itemIndex) => item.classList.toggle('is-selected', itemIndex === selectedWheelIndex));
   const isBlank = selectedWheelIndex === wheelItems.length - 1;
-  projectBackgrounds.forEach((background, backgroundIndex) => background.classList.toggle('is-active', !isBlank && backgroundIndex === selectedWheelIndex));
-  contactBackgrounds.forEach((background, backgroundIndex) => background.classList.toggle('is-active', !isBlank && backgroundIndex === selectedWheelIndex));
+  projectBackgrounds.forEach((background, backgroundIndex) => {
+    const active = !isBlank && backgroundIndex === selectedWheelIndex;
+    background.classList.toggle('is-active', active);
+    if (active) hydrateBackground(background);
+  });
+  contactBackgrounds.forEach((background, backgroundIndex) => {
+    const active = !isBlank && backgroundIndex === selectedWheelIndex;
+    background.classList.toggle('is-active', active);
+    if (active) hydrateBackground(background);
+  });
   cancelAnimationFrame(wheelFrame);
   animateWheel();
 };

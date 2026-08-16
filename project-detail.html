@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="style.css?v=20260816-beyond-tcg-clear-01" />
   </head>
   <body class="project-detail-page">
-    <img class="beyond-page-backdrop" id="beyond-page-backdrop" src="assets/beyond/page-background.png" alt="" aria-hidden="true" hidden />
+    <img class="beyond-page-backdrop" id="beyond-page-backdrop" data-src="assets/optimized/beyond/page-background.webp" alt="" aria-hidden="true" decoding="async" hidden />
     <canvas class="detail-particles" aria-hidden="true"></canvas>
-    <img class="beyond-page-symbol" id="beyond-page-symbol" src="assets/beyond/page-symbol.png" alt="" aria-hidden="true" hidden />
+    <img class="beyond-page-symbol" id="beyond-page-symbol" data-src="assets/optimized/beyond/page-symbol.webp" alt="" aria-hidden="true" decoding="async" hidden />
     <main class="project-detail-shell">
       <nav class="detail-nav" aria-label="项目详情导航">
         <a class="detail-brand" href="index.html">LZ / PORTFOLIO</a>
@@ -25,7 +25,7 @@
           <p class="detail-kicker" id="detail-kicker"></p>
           <div class="detail-title-row">
             <h1 id="detail-title"></h1>
-            <img class="detail-title-symbol" id="beyond-title-symbol" src="assets/beyond/title-symbol.png" alt="" hidden />
+            <img class="detail-title-symbol" id="beyond-title-symbol" data-src="assets/optimized/beyond/title-symbol.webp" alt="" decoding="async" hidden />
           </div>
           <p class="detail-type" id="detail-type"></p>
           <div class="detail-summary-panel">
@@ -378,6 +378,40 @@
           { zh: '只能爬', en: 'Only Climb', zhType: '小游戏 Demo', enType: 'Mini-game demo', image: 'assets/project-05-hello-world.png' }
         ]
       };
+      const optimizedImagePath = (path = '') => typeof path === 'string' && /^assets\/.+\.(?:png|jpe?g)$/i.test(path)
+        ? `assets/optimized/${path.slice(7).replace(/\.(?:png|jpe?g)$/i, '.webp')}`
+        : path;
+      const optimizeAssetTree = (value) => {
+        if (Array.isArray(value)) return value.map(optimizeAssetTree);
+        if (value && typeof value === 'object') {
+          Object.keys(value).forEach((key) => { value[key] = optimizeAssetTree(value[key]); });
+          return value;
+        }
+        return optimizedImagePath(value);
+      };
+      optimizeAssetTree(catalog);
+
+      const lazyImageAttributes = 'loading="lazy" decoding="async"';
+      const hydrateLazyBackground = (element) => {
+        if (!element?.dataset.lazyBg || element.dataset.lazyBgLoaded === 'true') return;
+        const image = `url("${element.dataset.lazyBg}")`;
+        element.style.backgroundImage = element.dataset.lazyOverlay ? `${element.dataset.lazyOverlay}, ${image}` : image;
+        element.dataset.lazyBgLoaded = 'true';
+      };
+      const lazyBackgroundObserver = 'IntersectionObserver' in window
+        ? new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              hydrateLazyBackground(entry.target);
+              observer.unobserve(entry.target);
+            });
+          }, { rootMargin: '500px 0px' })
+        : null;
+      const observeLazyBackgrounds = (root = document) => root.querySelectorAll('[data-lazy-bg]').forEach((element) => {
+        if (lazyBackgroundObserver) lazyBackgroundObserver.observe(element);
+        else hydrateLazyBackground(element);
+      });
+
       const categories = {
         game: { zh: '游戏项目', en: 'GAME PROJECTS', anchor: 'games' },
         research: { zh: '游戏策划案与研究', en: 'GAME DESIGN DOCS & RESEARCH', anchor: 'design-docs' },
@@ -549,7 +583,7 @@
         return 0;
       }
       function paperImageMarkup(paths, caption) {
-        const images = paths.map(path => `<img src="${escapePaperHTML(path)}" alt="${escapePaperHTML(caption || 'Research paper figure')}" loading="lazy" />`).join('');
+        const images = paths.map(path => `<img src="${escapePaperHTML(optimizedImagePath(path))}" alt="${escapePaperHTML(caption || 'Research paper figure')}" loading="lazy" decoding="async" />`).join('');
         return `<figure class="research-paper-figure">${images}${caption ? `<figcaption>${formatPaperText(caption)}</figcaption>` : ''}</figure>`;
       }
       function localizeChinesePaperTerms(value = '') {
@@ -688,7 +722,7 @@
         review.classList.add('is-infinity-value-design');
         gallery.className = 'infinity-value-layout';
         gallery.setAttribute('aria-label', language === 'en' ? 'Infinity balance tables' : '无限黄昏数值配表');
-        gallery.innerHTML = `<div class="infinity-value-cards">${design.images.map((image, index) => `<figure class="infinity-value-card"><img src="${image}" alt="${language === 'en' ? `Infinity balance table ${index + 1}` : `无限黄昏数值配表 ${index + 1}`}" /></figure>`).join('')}</div><aside class="infinity-value-copy"><h3>${design.title}</h3><span></span><p>${design.description}</p></aside>`;
+        gallery.innerHTML = `<div class="infinity-value-cards">${design.images.map((image, index) => `<figure class="infinity-value-card"><img src="${image}" alt="${language === 'en' ? `Infinity balance table ${index + 1}` : `无限黄昏数值配表 ${index + 1}`}" ${lazyImageAttributes} /></figure>`).join('')}</div><aside class="infinity-value-copy"><h3>${design.title}</h3><span></span><p>${design.description}</p></aside>`;
         return true;
       }
       function renderBodyBattleDesign() {
@@ -699,7 +733,7 @@
         gallery.setAttribute('aria-label', language === 'en' ? 'Body Battle Defense design images' : '身体保卫战项目设计图');
         const images = (project.designImages || project.exhibitionImages).slice(0, 4);
         const copy = project.designCopy[language];
-        const image = (index) => `<img src="${images[index]}" alt="${language === 'en' ? `Body Battle Defense design image ${index + 1}` : `身体保卫战项目设计图 ${index + 1}`}" />`;
+        const image = (index) => `<img src="${images[index]}" alt="${language === 'en' ? `Body Battle Defense design image ${index + 1}` : `身体保卫战项目设计图 ${index + 1}`}" ${lazyImageAttributes} />`;
         gallery.innerHTML = `<figure class="body-battle-design-card body-battle-design-card-1">${image(0)}</figure><aside class="body-battle-design-copy"><p>${copy.title}</p><span></span><h3>${copy.description}</h3></aside><figure class="body-battle-design-card body-battle-design-card-2">${image(1)}</figure><div class="body-battle-design-lower"><figure class="body-battle-design-card body-battle-design-card-3">${image(2)}</figure><figure class="body-battle-design-card body-battle-design-card-4">${image(3)}</figure></div>`;
         return true;
       }
@@ -710,7 +744,7 @@
         review.classList.add('is-beyond-development');
         gallery.className = 'beyond-development-grid';
         gallery.setAttribute('aria-label', language === 'en' ? 'Beyond the Boundary development process' : '境界之外开发过程');
-        gallery.innerHTML = project.developmentImages.map((image, index) => `<figure class="beyond-development-card"><img src="${image}" alt="${language === 'en' ? `Beyond the Boundary development process ${index + 1}` : `境界之外开发过程 ${index + 1}`}" /></figure>`).join('');
+        gallery.innerHTML = project.developmentImages.map((image, index) => `<figure class="beyond-development-card"><img src="${image}" alt="${language === 'en' ? `Beyond the Boundary development process ${index + 1}` : `境界之外开发过程 ${index + 1}`}" ${lazyImageAttributes} /></figure>`).join('');
         return true;
       }
       function renderBeyondTcgFeature() {
@@ -732,10 +766,15 @@
         document.querySelector('#beyond-tcg-developer').textContent = feature.developer;
         document.querySelector('#beyond-tcg-visual').style.backgroundImage = '';
         carousel.setAttribute('aria-label', language === 'en' ? 'Final Heroes card carousel. Swipe horizontally or use the arrow keys.' : '终焉英杰颂卡牌轮播，可左右滑动或使用方向键切换。');
-        track.innerHTML = cards.map((image, index) => `<figure class="beyond-tcg-slide"><img src="${image}" alt="${language === 'en' ? `Final Heroes card ${String(index).padStart(2, '0')}` : `终焉英杰颂卡牌 ${String(index).padStart(2, '0')}`}" /></figure>`).join('');
+        track.innerHTML = cards.map((image, index) => `<figure class="beyond-tcg-slide"><img ${index === beyondTcgCardIndex ? `src="${image}"` : `data-src="${image}"`} alt="${language === 'en' ? `Final Heroes card ${String(index).padStart(2, '0')}` : `终焉英杰颂卡牌 ${String(index).padStart(2, '0')}`}" decoding="async" /></figure>`).join('');
         carousel.querySelector('[data-beyond-tcg-direction="-1"]').setAttribute('aria-label', language === 'en' ? 'Previous card' : '上一张卡牌');
         carousel.querySelector('[data-beyond-tcg-direction="1"]').setAttribute('aria-label', language === 'en' ? 'Next card' : '下一张卡牌');
         const update = (dragOffset = 0, animate = true) => {
+          [-1, 0, 1].forEach(offset => {
+            const index = (beyondTcgCardIndex + offset + cards.length) % cards.length;
+            const image = track.children[index]?.querySelector('img[data-src]');
+            if (image) { image.src = image.dataset.src; image.removeAttribute('data-src'); }
+          });
           track.style.transition = animate ? '' : 'none';
           track.style.transform = `translate3d(calc(${-beyondTcgCardIndex * 100}% + ${dragOffset}px), 0, 0)`;
           count.textContent = `${String(beyondTcgCardIndex).padStart(2, '0')} / ${String(cards.length - 1).padStart(2, '0')}`;
@@ -822,7 +861,7 @@
             const cardNumber = String(index + 1).padStart(2, '0');
             const image = `assets/beyond/tcg/library/${slug}/${String(index).padStart(3, '0')}.png`;
             const alt = language === 'en' ? `${categoryLabel} ${cardNumber}` : `${categoryLabel} ${cardNumber}`;
-            return `<figure class="beyond-tcg-library-card"><img src="${image}" alt="${alt}" /><figcaption>${cardNumber} / ${String(count).padStart(2, '0')}</figcaption></figure>`;
+            return `<figure class="beyond-tcg-library-card"><img src="${optimizedImagePath(image)}" alt="${alt}" ${lazyImageAttributes} /><figcaption>${cardNumber} / ${String(count).padStart(2, '0')}</figcaption></figure>`;
           }).join('');
           grid.querySelectorAll('.beyond-tcg-library-card').forEach(card => {
             card.onpointermove = event => {
@@ -891,7 +930,7 @@
         review.classList.add('is-underground-architectural-design');
         gallery.className = 'underground-architectural-layout';
         gallery.setAttribute('aria-label', language === 'en' ? 'Underground architectural design' : 'Underground 建筑设计');
-        gallery.innerHTML = `<aside class="underground-architectural-copy"><p>UNDERGROUND / ${language === 'en' ? 'ARCHITECTURAL DESIGN' : '建筑设计'}</p><h3>${design.title}</h3><span></span><p>${design.description}</p></aside><figure class="underground-architectural-image"><img src="${design.image}" alt="${design.title}" /></figure>`;
+        gallery.innerHTML = `<aside class="underground-architectural-copy"><p>UNDERGROUND / ${language === 'en' ? 'ARCHITECTURAL DESIGN' : '建筑设计'}</p><h3>${design.title}</h3><span></span><p>${design.description}</p></aside><figure class="underground-architectural-image"><img src="${design.image}" alt="${design.title}" ${lazyImageAttributes} /></figure>`;
         return true;
       }
       function renderUndergroundGameDesign() {
@@ -914,7 +953,7 @@
           ? 'Resource Collection - Material Synthesis - Blueprint Unlocking - Production Growth - Underground Planning - Natural Event Response - Large-Scale Resource Gathering...'
           : '资源收集 - 材料合成 - 蓝图解锁 - 提高生产 - 地下城规划 - 应对自然事件 - 大幅收集资源...';
         gallery.setAttribute('aria-label', language === 'en' ? 'Underground in-game interface designs' : 'Underground 游戏内界面');
-        gallery.innerHTML = cardImages.map((image, index) => `<figure class="underground-game-card" style="--game-card-index:${index}"><img src="${image}" alt="${language === 'en' ? `Underground in-game interface ${index + 1}` : `Underground 游戏内界面 ${index + 1}`}" /><figcaption>${details.captions[index]}</figcaption></figure>`).join('');
+        gallery.innerHTML = cardImages.map((image, index) => `<figure class="underground-game-card" style="--game-card-index:${index}"><img src="${image}" alt="${language === 'en' ? `Underground in-game interface ${index + 1}` : `Underground 游戏内界面 ${index + 1}`}" ${lazyImageAttributes} /><figcaption>${details.captions[index]}</figcaption></figure>`).join('');
         let active = 0;
         const arrange = () => Array.from(gallery.children).forEach((card, index) => {
           let offset = index - active;
@@ -977,7 +1016,7 @@
         section.style.display = 'flex';
         document.querySelector('#verminex-concept-title').textContent = concept.title;
         document.querySelector('#verminex-concept-grid').setAttribute('aria-label', language === 'en' ? 'Verminex concept design images' : 'Verminex 概念设计图');
-        document.querySelector('#verminex-concept-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure><img src="assets/verminex/concept-design/${index}.png" alt="${language === 'en' ? `Verminex concept design ${index}` : `Verminex 概念设计 ${index}`}" /></figure>`).join('');
+        document.querySelector('#verminex-concept-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure><img src="${optimizedImagePath(`assets/verminex/concept-design/${index}.png`)}" alt="${language === 'en' ? `Verminex concept design ${index}` : `Verminex 概念设计 ${index}`}" ${lazyImageAttributes} /></figure>`).join('');
       }
       function renderGravityLevelDesign() {
         if (!isGravityProject()) return false;
@@ -987,7 +1026,7 @@
         gallery.className = 'gravity-level-design-layout';
         gallery.setAttribute('aria-label', language === 'en' ? 'GravitySpaceship level design' : '重力飞船关卡设计');
         gallery.classList.toggle('is-level-mechanics-preview-open', levelMechanicsPreviewOpen);
-        gallery.innerHTML = `<div class="gravity-level-design-links"><div class="gravity-level-design-card-wrap"><a class="gravity-level-design-card" href="#gravity-excel-viewer" data-excel-src="${level.detail.excel}" data-excel-title="${level.detail.title}" style="background-image:linear-gradient(180deg,rgba(8,9,20,.05) 25%,rgba(5,6,14,.84)),url('${level.detail.image}')"><span>01</span><b>${level.detail.title}</b><i>↗</i></a><a class="gravity-level-design-download" href="${level.detail.excel}" download>${language === 'en' ? 'DOWNLOAD' : '下载'}</a></div><div class="gravity-level-design-card-wrap"><a class="gravity-level-design-card" href="#gravity-excel-viewer" data-excel-src="${level.overview.excel}" data-excel-title="${level.overview.title}" style="background-image:linear-gradient(180deg,rgba(8,9,20,.05) 25%,rgba(5,6,14,.84)),url('${level.overview.image}')"><span>02</span><b>${level.overview.title}</b><i>↗</i></a><a class="gravity-level-design-download" href="${level.overview.excel}" download>${language === 'en' ? 'DOWNLOAD' : '下载'}</a></div><button class="gravity-level-design-card gravity-level-mechanics-trigger" type="button" data-level-mechanics-toggle style="background-image:linear-gradient(180deg,rgba(8,9,20,.18) 25%,rgba(5,6,14,.88)),url('${project.heroImage}')"><span>03</span><b>${project.mechanics[language].title}</b><i>↗</i></button></div><aside class="gravity-level-design-copy"><p>GRAVITYSPACESHIP / LEVEL DESIGN</p><div class="gravity-level-design-title-row"><h3>${project.designLabel[language]}</h3><a href="${project.playthroughUrl}" target="_blank" rel="noopener noreferrer">${language === 'en' ? 'WATCH VIDEO' : '游玩视频'}</a></div><span></span><p>${level.description}</p></aside><figure class="gravity-level-mechanics-drawer"><img src="${level.mechanicsImage}" alt="${language === 'en' ? 'Level mechanics guide' : '关卡机制说明'}" /></figure>`;
+        gallery.innerHTML = `<div class="gravity-level-design-links"><div class="gravity-level-design-card-wrap"><a class="gravity-level-design-card" href="#gravity-excel-viewer" data-excel-src="${level.detail.excel}" data-excel-title="${level.detail.title}" style="background-image:linear-gradient(180deg,rgba(8,9,20,.05) 25%,rgba(5,6,14,.84)),url('${level.detail.image}')"><span>01</span><b>${level.detail.title}</b><i>↗</i></a><a class="gravity-level-design-download" href="${level.detail.excel}" download>${language === 'en' ? 'DOWNLOAD' : '下载'}</a></div><div class="gravity-level-design-card-wrap"><a class="gravity-level-design-card" href="#gravity-excel-viewer" data-excel-src="${level.overview.excel}" data-excel-title="${level.overview.title}" style="background-image:linear-gradient(180deg,rgba(8,9,20,.05) 25%,rgba(5,6,14,.84)),url('${level.overview.image}')"><span>02</span><b>${level.overview.title}</b><i>↗</i></a><a class="gravity-level-design-download" href="${level.overview.excel}" download>${language === 'en' ? 'DOWNLOAD' : '下载'}</a></div><button class="gravity-level-design-card gravity-level-mechanics-trigger" type="button" data-level-mechanics-toggle style="background-image:linear-gradient(180deg,rgba(8,9,20,.18) 25%,rgba(5,6,14,.88)),url('${project.heroImage}')"><span>03</span><b>${project.mechanics[language].title}</b><i>↗</i></button></div><aside class="gravity-level-design-copy"><p>GRAVITYSPACESHIP / LEVEL DESIGN</p><div class="gravity-level-design-title-row"><h3>${project.designLabel[language]}</h3><a href="${project.playthroughUrl}" target="_blank" rel="noopener noreferrer">${language === 'en' ? 'WATCH VIDEO' : '游玩视频'}</a></div><span></span><p>${level.description}</p></aside><figure class="gravity-level-mechanics-drawer"><img src="${level.mechanicsImage}" alt="${language === 'en' ? 'Level mechanics guide' : '关卡机制说明'}" ${lazyImageAttributes} /></figure>`;
         return true;
       }
       function renderMaskoraCardExhibition() {
@@ -999,7 +1038,7 @@
         const labelFor = index => index === 0 ? t.common : `${t.card} ${String(index).padStart(2, '0')}`;
         grid.className = 'detail-exhibition-grid maskora-depth-exhibition';
         grid.setAttribute('aria-label', language === 'en' ? 'Maskora card carousel' : 'Maskora 卡牌轮播');
-        grid.innerHTML = `<div class="maskora-depth-carousel"><div class="maskora-depth-stage" id="maskora-depth-stage" tabindex="0">${cards.map((image, index) => `<button class="maskora-depth-card" type="button" data-card-index="${index}" aria-label="${labelFor(index)}"><img src="${image}" alt="${labelFor(index)}" /></button>`).join('')}</div><div class="maskora-depth-controls"><button type="button" data-card-direction="-1" aria-label="${t.previous}">←</button><button type="button" data-card-direction="1" aria-label="${t.next}">→</button></div></div><aside class="maskora-card-intro"><p>${t.deck}</p><h3>${t.title}</h3><strong id="maskora-card-count"></strong><h4 id="maskora-card-name"></h4><span class="maskora-card-rule"></span><p id="maskora-card-description">${t.body}</p><div class="maskora-card-progress"><i id="maskora-card-progress"></i></div></aside>`;
+        grid.innerHTML = `<div class="maskora-depth-carousel"><div class="maskora-depth-stage" id="maskora-depth-stage" tabindex="0">${cards.map((image, index) => `<button class="maskora-depth-card" type="button" data-card-index="${index}" aria-label="${labelFor(index)}"><img src="${image}" alt="${labelFor(index)}" ${lazyImageAttributes} /></button>`).join('')}</div><div class="maskora-depth-controls"><button type="button" data-card-direction="-1" aria-label="${t.previous}">←</button><button type="button" data-card-direction="1" aria-label="${t.next}">→</button></div></div><aside class="maskora-card-intro"><p>${t.deck}</p><h3>${t.title}</h3><strong id="maskora-card-count"></strong><h4 id="maskora-card-name"></h4><span class="maskora-card-rule"></span><p id="maskora-card-description">${t.body}</p><div class="maskora-card-progress"><i id="maskora-card-progress"></i></div></aside>`;
         const stage = grid.querySelector('#maskora-depth-stage');
         const cardNodes = [...grid.querySelectorAll('.maskora-depth-card')];
         const update = () => {
@@ -1053,7 +1092,7 @@
         document.querySelector('#maskora-rulebook-grid').setAttribute('aria-label', detail.rulebookTitle);
         document.querySelector('#maskora-rulebook-lightbox').setAttribute('aria-label', detail.lightbox);
         document.querySelector('#maskora-rulebook-lightbox-close').setAttribute('aria-label', detail.closeLightbox);
-        document.querySelector('#maskora-rulebook-grid').innerHTML = images.map((image, index) => `<button type="button" class="maskora-rulebook-page" data-rulebook-image="${image}" aria-label="${detail.rulebookImage(index + 1)}"><img src="${image}" alt="${detail.rulebookPage(index + 1)}" /><span>0${index + 1}</span></button>`).join('');
+        document.querySelector('#maskora-rulebook-grid').innerHTML = images.map((image, index) => `<button type="button" class="maskora-rulebook-page" data-rulebook-image="${optimizedImagePath(image)}" aria-label="${detail.rulebookImage(index + 1)}"><img src="${optimizedImagePath(image)}" alt="${detail.rulebookPage(index + 1)}" ${lazyImageAttributes} /><span>0${index + 1}</span></button>`).join('');
         document.querySelectorAll('[data-rulebook-image]').forEach(button => button.addEventListener('click', () => {
           const lightbox = document.querySelector('#maskora-rulebook-lightbox');
           const image = lightbox.querySelector('img');
@@ -1076,9 +1115,9 @@
         document.querySelector('#maskora-board-design-title').textContent = detail.boardTitle;
         document.querySelector('#maskora-board-grid').setAttribute('aria-label', detail.boardsLabel);
         document.querySelector('#maskora-currency-grid').setAttribute('aria-label', detail.currenciesLabel);
-        document.querySelector('#maskora-board-grid').innerHTML = boards.map((image, index) => `<figure class="maskora-board-tile"><img src="${image}" alt="${detail.boardImage(index + 1)}" /></figure>`).join('');
-        document.querySelector('#maskora-currency-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure class="maskora-currency-icon"><img src="assets/maskora/currency/${index}.png" alt="${detail.currencyImage(index)}" /></figure>`).join('');
-        document.querySelector('#maskora-board-iteration').src = 'assets/maskora/boards/iteration-process.jpg';
+        document.querySelector('#maskora-board-grid').innerHTML = boards.map((image, index) => `<figure class="maskora-board-tile"><img src="${optimizedImagePath(image)}" alt="${detail.boardImage(index + 1)}" ${lazyImageAttributes} /></figure>`).join('');
+        document.querySelector('#maskora-currency-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure class="maskora-currency-icon"><img src="${optimizedImagePath(`assets/maskora/currency/${index}.png`)}" alt="${detail.currencyImage(index)}" ${lazyImageAttributes} /></figure>`).join('');
+        document.querySelector('#maskora-board-iteration').src = optimizedImagePath('assets/maskora/boards/iteration-process.jpg');
         document.querySelector('#maskora-board-iteration').alt = detail.iterationImage;
         document.querySelector('.maskora-board-detail p').textContent = detail.iterationKicker;
         document.querySelector('.maskora-board-detail h3').textContent = detail.iterationTitle;
@@ -1095,7 +1134,7 @@
         ];
         gallery.className = 'detail-process-gallery maskora-development-gallery';
         gallery.setAttribute('aria-label', language === 'en' ? 'Maskora development records' : 'Maskora 开发记录');
-        gallery.innerHTML = covers.map((cover, index) => `<a class="maskora-development-card" href="${videoLinks[index]}" target="_blank" rel="noopener noreferrer" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${cover}')"><span>0${index + 1}</span><b>${t.cards[index]}</b><i aria-hidden="true">↗</i></a>`).join('');
+        gallery.innerHTML = covers.map((cover, index) => `<a class="maskora-development-card" href="${videoLinks[index]}" target="_blank" rel="noopener noreferrer" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${optimizedImagePath(cover)}')"><span>0${index + 1}</span><b>${t.cards[index]}</b><i aria-hidden="true">↗</i></a>`).join('');
       }
       function updateMechanicsPanel() {
         const mechanics = project.mechanics?.[language];
@@ -1210,6 +1249,11 @@
         titleSymbol.alt = isBeyondDetail ? (isEnglish ? 'Final Heroes emblem' : '终焉英杰颂图形标识') : '';
         pageSymbol.hidden = !isBeyondDetail;
         pageBackdrop.hidden = !isBeyondDetail;
+        if (isBeyondDetail) {
+          [titleSymbol, pageSymbol, pageBackdrop].forEach((image) => {
+            if (!image.src && image.dataset.src) image.src = image.dataset.src;
+          });
+        }
         document.querySelector('#detail-visual-label').textContent = t.visual;
         document.querySelector('#detail-visual').style.backgroundImage = `linear-gradient(140deg, rgba(4, 6, 16, .12), rgba(4, 6, 16, .78)), url("${heroImage}")`;
         if (reviewSection?.isConnected) reviewSection.classList.remove('is-gravity-level-design', 'is-infinity-value-design', 'is-body-battle-design', 'is-beyond-development', 'is-underground-architectural-design');
@@ -1231,7 +1275,7 @@
           const isTwoCardRecords = category === 'game' && [4, 6].includes(id) && Boolean(project.processCards);
           const processGallery = document.querySelector('#detail-process-gallery');
           processGallery.className = isTwoCardRecords ? 'detail-process-gallery maskora-development-gallery' : 'detail-process-gallery';
-          processGallery.innerHTML = processCards.map((card, index) => isTwoCardRecords ? `<a class="maskora-development-card" href="${card.link}" target="_blank" rel="noopener noreferrer" style="background-image:linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36)),url('${card.image || project.image}')"><span>0${index + 1}</span><b>${card.title}</b><i aria-hidden="true">↗</i></a>` : card.link ? `<a class="detail-process-card" href="${card.link}" target="_blank" rel="noopener noreferrer" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${card.image || project.image}')"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</a>` : `<article class="detail-process-card" style="--process-index:${index};background-image:linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92)),url('${card.image || project.image}')"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</article>`).join('');
+          processGallery.innerHTML = processCards.map((card, index) => isTwoCardRecords ? `<a class="maskora-development-card" href="${card.link}" target="_blank" rel="noopener noreferrer" data-lazy-bg="${card.image || project.image}" data-lazy-overlay="linear-gradient(90deg,rgba(5,5,13,.78),rgba(5,5,13,.2) 64%,rgba(5,5,13,.36))"><span>0${index + 1}</span><b>${card.title}</b><i aria-hidden="true">↗</i></a>` : card.link ? `<a class="detail-process-card" href="${card.link}" target="_blank" rel="noopener noreferrer" style="--process-index:${index}" data-lazy-bg="${card.image || project.image}" data-lazy-overlay="linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92))"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</a>` : `<article class="detail-process-card" style="--process-index:${index}" data-lazy-bg="${card.image || project.image}" data-lazy-overlay="linear-gradient(180deg,rgba(10,12,24,.12),rgba(5,6,14,.92))"><span>0${index + 1}</span><h3>${card.title}</h3>${card.text ? `<p>${card.text}</p>` : ''}</article>`).join('');
         }
         const exhibition = exhibitionCopy[language];
         const hasMaskoraExhibition = isMaskoraProject();
@@ -1247,7 +1291,7 @@
           grid.className = 'detail-exhibition-grid';
           grid.setAttribute('aria-label', language === 'en' ? 'Project exhibition images' : '项目展览图片');
           const exhibitionLabels = project.exhibitionLabels?.[language] || project.exhibitionLabels || [];
-          grid.innerHTML = exhibitionImages.map((image, index) => `<article class="detail-exhibition-card detail-exhibition-${index}" style="background-image:linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%),url('${image}')"><h3>${exhibitionLabels[index] || exhibition.captions[index] || exhibition.captions[0]}</h3></article>`).join('');
+          grid.innerHTML = exhibitionImages.map((image, index) => `<article class="detail-exhibition-card detail-exhibition-${index}" data-lazy-bg="${image}" data-lazy-overlay="linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%)"><h3>${exhibitionLabels[index] || exhibition.captions[index] || exhibition.captions[0]}</h3></article>`).join('');
         }
         renderMaskoraRulebook();
         renderMaskoraBoardDesign();
@@ -1257,6 +1301,7 @@
         renderBeyondTcgFeature();
         renderBeyondTcgLibrary();
         setupBeyondSpecularButtons();
+        observeLazyBackgrounds();
         const mediaLinks = renderMediaSlots();
         if (action) actionLink.href = project.playUrl || mediaLinks.gameUrl || mediaLinks.videoUrl || '#detail-exhibition';
       }
