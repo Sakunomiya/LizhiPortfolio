@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>项目详情 | 李植</title>
-    <link rel="stylesheet" href="style.css?v=20260816-beyond-tcg-clear-01" />
+    <link rel="stylesheet" href="style.css?v=20260820-star-rail-viewer-fit-02" />
   </head>
   <body class="project-detail-page">
     <img class="beyond-page-backdrop" id="beyond-page-backdrop" data-src="assets/optimized/beyond/page-background.webp" alt="" aria-hidden="true" decoding="async" hidden />
@@ -39,6 +39,7 @@
               <a class="detail-action-secondary" id="detail-exhibition-link" href="#detail-exhibition">项目展览</a>
               <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
               <a class="detail-action-secondary" id="verminex-concept-link" href="#verminex-concept" hidden>概念设计</a>
+              <a class="detail-action-secondary" id="kitty-webgl-link" href="#kitty-webgl" hidden>网页游戏</a>
               <a class="detail-action-secondary" id="maskora-rulebook-link" href="#maskora-rulebook" hidden>桌游规则书</a>
               <a class="detail-action-secondary" id="maskora-development-link" href="#detail-review" hidden>开发记录</a>
               <a class="detail-action-secondary" id="beyond-tcg-link" href="#beyond-tcg" hidden>终焉英杰颂</a>
@@ -48,6 +49,7 @@
         </div>
         <div class="detail-visual-stage" id="detail-visual-stage">
           <div class="detail-visual" id="detail-visual" aria-label="项目主视觉">
+            <img id="detail-visual-image" alt="" decoding="async" hidden />
             <span id="detail-visual-label">PROJECT VISUAL</span>
           </div>
           <aside class="gravity-mechanics-panel" id="gravity-mechanics-panel" aria-live="polite" hidden>
@@ -55,6 +57,21 @@
             <h2 id="gravity-mechanics-title"></h2>
             <div id="gravity-mechanics-content"></div>
           </aside>
+        </div>
+      </section>
+
+      <section class="kitty-webgl" id="kitty-webgl" aria-labelledby="kitty-webgl-title" hidden>
+        <header class="detail-section-heading kitty-webgl-heading">
+          <h2 id="kitty-webgl-title">体验游戏</h2>
+        </header>
+        <p class="kitty-webgl-note" id="kitty-webgl-note">首次启动需要加载游戏资源，请稍候。</p>
+        <div class="kitty-webgl-frame-shell">
+          <iframe id="kitty-webgl-frame" title="网页游戏" loading="lazy" allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe>
+          <div class="kitty-webgl-loading" id="kitty-webgl-loading" aria-live="polite">
+            <span aria-hidden="true"></span>
+            <button id="kitty-webgl-launch" type="button">点击开始游戏</button>
+            <p id="kitty-webgl-size">点击后将加载游戏资源</p>
+          </div>
         </div>
       </section>
 
@@ -72,6 +89,37 @@
           <h2 id="detail-exhibition-title">项目展览</h2>
         </header>
         <div class="detail-exhibition-grid" id="detail-exhibition-grid" aria-label="项目展览图片"></div>
+      </section>
+
+      <section class="star-rail-gallery" id="star-rail-gallery" aria-labelledby="star-rail-gallery-title" hidden>
+        <header class="detail-section-heading star-rail-gallery-heading">
+          <h2 id="star-rail-gallery-title">拆解案图片展示</h2>
+        </header>
+        <div class="star-rail-gallery-layout" id="star-rail-gallery-layout"></div>
+      </section>
+
+      <section class="hotpot-design-document" id="hotpot-design-document" aria-labelledby="hotpot-design-document-title" hidden>
+        <div class="hotpot-design-document-copy">
+          <p class="hotpot-design-document-kicker" id="hotpot-design-document-kicker">HOTPOT JIANGHU / DESIGN DOCUMENT</p>
+          <h2 id="hotpot-design-document-title">游戏策划案</h2>
+          <a class="hotpot-design-document-download" id="hotpot-design-document-download" href="#" download>下载策划案 PDF</a>
+          <span></span>
+          <p id="hotpot-design-document-description"></p>
+        </div>
+        <div class="hotpot-design-document-media">
+          <button class="hotpot-design-document-card hotpot-system-card" id="hotpot-system-card" type="button">
+            <span>01 / SYSTEM BREAKDOWN</span>
+            <img id="hotpot-system-image" alt="火锅江湖游戏系统拆解图" loading="lazy" decoding="async" hidden />
+            <div class="hotpot-system-placeholder" id="hotpot-system-placeholder"><b>游戏系统拆解图</b><small>待补充</small></div>
+            <i aria-hidden="true">↗</i>
+          </button>
+          <a class="hotpot-design-document-card hotpot-pdf-card" id="hotpot-pdf-card" href="#" target="_blank" rel="noopener noreferrer">
+            <img id="hotpot-pdf-cover" alt="火锅江湖游戏策划案封面" loading="lazy" decoding="async" />
+            <span>02 / GAME DESIGN PDF</span>
+            <b id="hotpot-pdf-card-label">游戏策划案</b>
+            <i aria-hidden="true">↗</i>
+          </a>
+        </div>
       </section>
 
       <section class="maskora-rulebook" id="maskora-rulebook" aria-labelledby="maskora-rulebook-title" hidden>
@@ -166,6 +214,7 @@
         </header>
         <div class="verminex-concept-grid" id="verminex-concept-grid" aria-label="Verminex 概念设计图"></div>
       </section>
+
     </main>
 
     <aside class="research-outline" id="research-outline" aria-label="论文目录" aria-hidden="true" hidden>
@@ -185,6 +234,26 @@
         <iframe id="gravity-excel-frame" title="关卡设计 Excel 表格"></iframe>
       </div>
     </div>
+    <div class="hotpot-system-lightbox" id="hotpot-system-lightbox" role="dialog" aria-modal="true" aria-label="放大查看游戏系统拆解图" hidden>
+      <button type="button" id="hotpot-system-lightbox-close" aria-label="关闭放大图片">×</button>
+      <img id="hotpot-system-lightbox-image" alt="火锅江湖游戏系统拆解图" hidden />
+      <div class="hotpot-system-lightbox-placeholder" id="hotpot-system-lightbox-placeholder">
+        <b>游戏系统拆解图</b>
+        <span>图片待补充</span>
+      </div>
+    </div>
+    <div class="star-rail-image-viewer" id="star-rail-image-viewer" role="dialog" aria-modal="true" aria-label="放大查看拆解案图片" hidden>
+      <div class="star-rail-image-viewer-toolbar">
+        <span id="star-rail-image-viewer-title"></span>
+        <output id="star-rail-image-viewer-zoom">100%</output>
+        <button type="button" id="star-rail-image-viewer-reset">重置</button>
+        <button type="button" id="star-rail-image-viewer-close" aria-label="关闭放大图片">×</button>
+      </div>
+      <div class="star-rail-image-viewer-stage" id="star-rail-image-viewer-stage">
+        <img id="star-rail-image-viewer-image" alt="" draggable="false" />
+      </div>
+      <p id="star-rail-image-viewer-hint">滚动鼠标滚轮缩放 · 拖动图片查看细节</p>
+    </div>
     <script>
       const catalog = {
         game: [
@@ -198,7 +267,9 @@
             heroImage: 'assets/detail-02-helloworld-hero.png', backgroundImage: 'assets/detail-02-helloworld-05.png',
             exhibitionImages: ['assets/detail-02-helloworld-01.png', 'assets/detail-02-helloworld-02.png', 'assets/detail-02-helloworld-03.png', 'assets/detail-02-helloworld-04.png', 'assets/detail-02-helloworld-05.png'],
             exhibitionLabels: { zh: ['01', '02', '03', '04', '05'], en: ['01', '02', '03', '04', '05'] },
-            playUrl: 'https://923343488qqcom.itch.io/hello-world',
+            playUrl: '#kitty-webgl',
+            webglUrl: 'assets/helloworld/webgl/index.html',
+            webglSize: '58.4 MB',
             downloadUrl: 'https://lizhi-portfolio-download-1469033375.cos.ap-guangzhou.myqcloud.com/downloads/helloworld/HelloWorld.zip',
             downloadSize: '75MB',
             processCards: {
@@ -251,6 +322,9 @@
             exhibitionLabels: { zh: ['01', '02', '03', '04', '05'], en: ['01', '02', '03', '04', '05'] },
             downloadUrl: 'https://lizhi-portfolio-download-1469033375.cos.ap-guangzhou.myqcloud.com/downloads/kittyburger/KittyBuger.zip',
             downloadSize: '38.7MB',
+            playUrl: '#kitty-webgl',
+            webglUrl: 'assets/kittyburger/webgl/index.html',
+            webglSize: '51.5 MB',
             processCards: {
               zh: [{ title: '开发过程', link: 'https://www.bilibili.com/video/BV1pZbk6vE7K/', image: 'assets/kittyburger/process/development-process-cover.png' }, { title: '游玩视频', link: 'https://www.bilibili.com/video/BV1Aobk6KEen/', image: 'assets/detail-04-kittyburger-02.png' }],
               en: [{ title: 'Development Process', link: 'https://www.bilibili.com/video/BV1pZbk6vE7K/', image: 'assets/kittyburger/process/development-process-cover.png' }, { title: 'Gameplay Video', link: 'https://www.bilibili.com/video/BV1Aobk6KEen/', image: 'assets/detail-04-kittyburger-02.png' }]
@@ -307,10 +381,60 @@
             designLabel: { zh: '数值配表', en: 'Balance Tables' },
             keywords: { zh: ['2D', '地牢刷宝游戏', '北欧神话', '2025 GMTK Game Jam', '游戏 Demo'], en: ['2D', 'Dungeon Looter', 'Norse Mythology', '2025 GMTK Game Jam', 'Game Demo'] },
             processItems: [0]
+          },
+          {
+            zh: '火锅江湖', en: 'Hotpot Jianghu', zhType: '火锅自走棋游戏', enType: 'Hotpot auto-battler', image: '', heroImage: '',
+            exhibitionImages: ['assets/optimized/hotpot-jianghu/exhibition/01.webp', 'assets/optimized/hotpot-jianghu/exhibition/02.webp', 'assets/optimized/hotpot-jianghu/exhibition/03.webp', 'assets/optimized/hotpot-jianghu/exhibition/04.webp', 'assets/optimized/hotpot-jianghu/exhibition/05.webp'],
+            exhibitionLabels: { zh: ['选择存档', '锅底图鉴', '单局目标', '采购食材', '烹饪阶段'], en: ['Select Save', 'Soup Base Collection', 'Round Objective', 'Purchase Ingredients', 'Cooking Phase'] },
+            playUrl: '#kitty-webgl',
+            webglUrl: 'assets/hotpot-jianghu/webgl/index.html?v=20260820-rebuild-02',
+            webglSize: '70.0 MB',
+        downloadUrl: 'https://lizhi-portfolio-download-1469033375.cos.ap-guangzhou.myqcloud.com/downloads/HotpotJianghu/HotpotJianghu.zip',
+            downloadSize: '29.1MB',
+            designDocument: {
+              pdf: 'assets/hotpot-jianghu/documents/hotpot-jianghu-game-design.pdf',
+              preview: 'assets/hotpot-jianghu/documents/game-design-cover.webp',
+              systemImage: 'assets/hotpot-jianghu/documents/system-breakdown.webp',
+              zh: { title: '游戏策划案', description: '本策划案系统梳理《火锅江湖》的核心玩法循环、经济与食材仓库管理、锅底研发、江湖声望成长以及烹饪成熟度判定等设计内容。右侧可查看完整的游戏系统拆解图与游戏策划案。' },
+              en: { title: 'Game Design Document', description: 'This design document presents the core gameplay loop of Hotpot Jianghu, including economy and ingredient inventory management, soup-base research, reputation progression, and cooking doneness evaluation. The complete system breakdown and game design PDF can be viewed on the right.' }
+            },
+            summary: {
+              zh: '《火锅江湖》是一款以中式火锅文化为主题的自走棋游戏。玩家将会扮演一名初出茅庐的火锅学徒行走江湖，用自己的火锅为食客们带来味蕾的愉悦。游戏需要玩家规划经济与食材仓库，开发火锅锅底食谱，提高江湖声望，并在烹饪时严格把关每一个食材的成熟度与品质。以成为江湖的火锅传奇为目标吧！<span class="detail-summary-divider"></span><span class="detail-summary-meta">开发团队：<br>李植：主策划、程序、UI界面、玩法设计、数值设计<br>罗张赫：游戏美术</span>',
+              en: 'Hotpot Jianghu is an auto-battler inspired by Chinese hotpot culture. Players take the role of a novice hotpot apprentice travelling across the jianghu, delighting diners with their own hotpot creations. To succeed, players must manage their economy and ingredient inventory, develop soup-base recipes, build their reputation, and carefully control the doneness and quality of every ingredient during cooking. Set out to become a legendary hotpot master of the jianghu!<span class="detail-summary-divider"></span><span class="detail-summary-meta">Development Team:<br>Li Zhi: Lead Game Designer, Programming, UI, Gameplay Design, Balance Design<br>Luo Zhanghe: Game Art</span>'
+            },
+            keywords: { zh: ['自走棋', '策略', '数值', '游戏 Demo', '火锅', '中国传统文化'], en: ['Auto-Battler', 'Strategy', 'Game Balance', 'Game Demo', 'Hotpot', 'Traditional Chinese Culture'] }
           }
         ],
         research: [
-          { zh: '《崩坏：星穹铁道》关卡拆解案', en: 'HONKAI: STAR RAIL — LEVEL ANALYSIS', zhType: '游戏关卡拆解', enType: 'Game level analysis', image: 'assets/category-research.png' },
+          {
+            zh: '《崩坏：星穹铁道》关卡拆解案', en: 'HONKAI: STAR RAIL — LEVEL ANALYSIS', zhType: '游戏关卡拆解', enType: 'Game level analysis', image: 'assets/star-rail-analysis/gallery/pacing-chart.png?v=20260820-02', heroImage: 'assets/star-rail-analysis/gallery/pacing-chart.png?v=20260820-02',
+            playUrl: '#detail-exhibition',
+            summary: {
+              zh: '本拆解案选择《崩坏：星穹铁道》中的“【葬忆彼岸】时光归墟”作为研究对象，深入分析该关卡在玩家引导、关卡节奏、关卡定位等方面的设计优缺点，并提出基于个人见解的修改意见。',
+              en: 'This level analysis examines “Time Returns to the Ruins” from Honkai: Star Rail, with a close study of its player guidance, level pacing, and gameplay positioning. It evaluates the design’s strengths and weaknesses and proposes revisions based on the author’s own design perspective.'
+            },
+            keywords: { zh: ['关卡拆解案', '关卡设计', '崩坏：星穹铁道'], en: ['Level Analysis', 'Level Design', 'Honkai: Star Rail'] },
+            analysisDocument: {
+              pdf: 'assets/star-rail-analysis/star-rail-level-analysis.pdf',
+              preview: 'assets/star-rail-analysis/star-rail-level-analysis-cover.webp',
+              zh: { title: '《崩坏：星穹铁道》关卡拆解案', description: '本拆解案选择《崩坏：星穹铁道》中的“【葬忆彼岸】时光归墟”作为研究对象，深入分析该关卡在玩家引导、关卡节奏、关卡定位等方面的设计优缺点，并提出基于个人见解的修改意见。' },
+              en: { title: 'Honkai: Star Rail Level Analysis', description: 'This level analysis examines “Time Returns to the Ruins” from Honkai: Star Rail, with a close study of its player guidance, level pacing, and gameplay positioning. It evaluates the design’s strengths and weaknesses and proposes revisions based on the author’s own design perspective.' }
+            },
+            analysisGallery: {
+              left: [
+                { src: 'assets/star-rail-analysis/gallery/node-map.png?v=20260820-02', preview: 'assets/star-rail-analysis/gallery/previews/node-map.jpg?v=20260820-01', zh: '节点图', en: 'Node Map' },
+                { src: 'assets/star-rail-analysis/gallery/pacing-chart.png?v=20260820-02', preview: 'assets/star-rail-analysis/gallery/previews/pacing-chart.jpg?v=20260820-01', zh: '节奏图', en: 'Pacing Chart' }
+              ],
+              layouts: [
+                { src: 'assets/star-rail-analysis/gallery/layout-1f.png?v=20260820-02', preview: 'assets/star-rail-analysis/gallery/previews/layout-1f.jpg?v=20260820-01', label: '1F' },
+                { src: 'assets/star-rail-analysis/gallery/layout-minus-2f.png?v=20260820-02', preview: 'assets/star-rail-analysis/gallery/previews/layout-minus-2f.jpg?v=20260820-01', label: '-2F' },
+                { src: 'assets/star-rail-analysis/gallery/layout-minus-1f.png?v=20260820-02', preview: 'assets/star-rail-analysis/gallery/previews/layout-minus-1f.jpg?v=20260820-01', label: '-1F' },
+                { src: 'assets/star-rail-analysis/gallery/layout-minus-3f.png?v=20260820-02', preview: 'assets/star-rail-analysis/gallery/previews/layout-minus-3f.jpg?v=20260820-01', label: '-3F' },
+                { src: 'assets/star-rail-analysis/gallery/layout-minus-4f.png?v=20260820-02', preview: 'assets/star-rail-analysis/gallery/previews/layout-minus-4f.jpg?v=20260820-01', label: '-4F' },
+                { src: 'assets/star-rail-analysis/gallery/layout-boss.png?v=20260820-02', preview: 'assets/star-rail-analysis/gallery/previews/layout-boss.jpg?v=20260820-01', label: 'BOSS' }
+              ]
+            }
+          },
           { zh: '认知预期如何塑造游戏关卡的隐性引导', en: 'How Cognitive Expectations Support Implicit Guidance in Game Level Design', zhType: '研究论文', enType: 'Research paper', image: 'assets/research/cognitive-expectations/image1.png' }
         ],
         interaction: [
@@ -419,7 +543,7 @@
         other: { zh: '跨界探索', en: 'CROSS-DISCIPLINARY EXPLORATIONS', anchor: 'other' }
       };
       const projectAction = {
-        game: { 2: ['体验游戏', 'PLAY GAME'] },
+        game: { 2: ['体验游戏', 'PLAY GAME'], 4: ['体验游戏', 'PLAY GAME'], 8: ['体验游戏', 'PLAY GAME'] },
         research: { 1: ['查看详情', 'VIEW DETAILS'], 2: ['查看详情', 'VIEW DETAILS'] },
         other: { 4: ['体验游戏', 'PLAY GAME'] }
       };
@@ -543,8 +667,14 @@
       function isGravityProject() {
         return category === 'game' && id === 3 && project.levelDesign;
       }
-      function isLoopingRoomProject() {
-        return category === 'game' && id === 5;
+      function isWebglProject() {
+        return category === 'game' && Boolean(project.webglUrl);
+      }
+      function isTwoPageGameProject() {
+        return category === 'game' && [5, 8].includes(id);
+      }
+      function isHotpotProject() {
+        return category === 'game' && id === 8;
       }
       function isWordRelicProject() {
         return category === 'interaction' && id === 2;
@@ -566,6 +696,101 @@
       }
       function isResearchPaperTitleOnly() {
         return category === 'research' && id === 2;
+      }
+      function isStarRailAnalysisProject() {
+        return category === 'research' && id === 1 && Boolean(project.analysisDocument);
+      }
+      function renderStarRailAnalysis() {
+        if (!isStarRailAnalysisProject()) return false;
+        const documentData = project.analysisDocument;
+        const localized = documentData[language];
+        const section = document.querySelector('#detail-exhibition');
+        const grid = document.querySelector('#detail-exhibition-grid');
+        const isEnglish = language === 'en';
+        section.classList.add('is-star-rail-analysis');
+        document.querySelector('#detail-exhibition-title').textContent = isEnglish ? 'Level Analysis' : '拆解案展示';
+        grid.className = 'star-rail-analysis-layout';
+        grid.setAttribute('aria-label', isEnglish ? 'Level analysis document preview and download' : '关卡拆解案预览与下载');
+        grid.innerHTML = `
+          <a class="star-rail-analysis-preview" href="${documentData.pdf}" target="_blank" rel="noopener noreferrer" aria-label="${isEnglish ? 'Open the complete level analysis PDF' : '在网页中查看完整关卡拆解案 PDF'}">
+            <img src="${documentData.preview}" alt="${isEnglish ? 'First-page preview of the level analysis PDF' : '关卡拆解案 PDF 首页缩略图'}" loading="eager" decoding="async" />
+            <span>${isEnglish ? 'OPEN COMPLETE PDF' : '点击查看完整 PDF'}</span>
+            <i aria-hidden="true">↗</i>
+          </a>
+          <div class="star-rail-analysis-copy">
+            <p class="star-rail-analysis-kicker">HONKAI: STAR RAIL / LEVEL ANALYSIS</p>
+            <h2>${localized.title}</h2>
+            <a class="star-rail-analysis-download" href="${documentData.pdf}" download>${isEnglish ? 'DOWNLOAD PDF' : '下载 PDF'}<span aria-hidden="true">↓</span></a>
+            <div class="star-rail-analysis-rule" aria-hidden="true"></div>
+            <p class="star-rail-analysis-description">${localized.description}</p>
+          </div>`;
+        return true;
+      }
+      function renderStarRailGallery() {
+        const section = document.querySelector('#star-rail-gallery');
+        if (!isStarRailAnalysisProject() || !project.analysisGallery) {
+          section.hidden = true;
+          return;
+        }
+        const isEnglish = language === 'en';
+        const gallery = project.analysisGallery;
+        section.hidden = false;
+        document.querySelector('#star-rail-gallery-title').textContent = isEnglish ? 'Analysis Image Gallery' : '拆解案图片展示';
+        const imageButton = (item, className, indexLabel) => {
+          const label = item[language] || item.label;
+          return `<button class="star-rail-gallery-card ${className}" type="button" data-star-rail-image="${item.src}" data-star-rail-label="${label}" aria-label="${isEnglish ? 'Enlarge' : '放大查看'} ${label}"><img src="${item.preview || item.src}" alt="${label}" loading="lazy" decoding="async" /><span>${indexLabel}</span><b>${label}</b><i aria-hidden="true">↗</i></button>`;
+        };
+        document.querySelector('#star-rail-gallery-layout').innerHTML = `
+          <div class="star-rail-gallery-key-images">${gallery.left.map((item, index) => imageButton(item, 'star-rail-gallery-key-card', `0${index + 1}`)).join('')}</div>
+          <div class="star-rail-gallery-layouts">${gallery.layouts.map((item, index) => imageButton(item, 'star-rail-gallery-layout-card', String(index + 1).padStart(2, '0'))).join('')}</div>`;
+      }
+      const starRailViewerState = { scale: 1, x: 0, y: 0, dragging: false, lastX: 0, lastY: 0 };
+      function updateStarRailViewerTransform() {
+        const image = document.querySelector('#star-rail-image-viewer-image');
+        image.style.transform = `translate3d(${starRailViewerState.x}px, ${starRailViewerState.y}px, 0) scale(${starRailViewerState.scale})`;
+        document.querySelector('#star-rail-image-viewer-zoom').value = `${Math.round(starRailViewerState.scale * 100)}%`;
+        document.querySelector('#star-rail-image-viewer-stage').classList.toggle('is-zoomed', starRailViewerState.scale > 1);
+      }
+      function resetStarRailViewer() {
+        Object.assign(starRailViewerState, { scale: 1, x: 0, y: 0, dragging: false });
+        updateStarRailViewerTransform();
+      }
+      function fitStarRailViewerImage() {
+        const viewer = document.querySelector('#star-rail-image-viewer');
+        const stage = document.querySelector('#star-rail-image-viewer-stage');
+        const image = document.querySelector('#star-rail-image-viewer-image');
+        if (viewer.hidden || !image.naturalWidth || !image.naturalHeight) return;
+        const bounds = stage.getBoundingClientRect();
+        const fitScale = Math.min(bounds.width / image.naturalWidth, bounds.height / image.naturalHeight);
+        image.style.width = `${Math.max(1, Math.floor(image.naturalWidth * fitScale))}px`;
+        image.style.height = `${Math.max(1, Math.floor(image.naturalHeight * fitScale))}px`;
+        resetStarRailViewer();
+      }
+      function openStarRailViewer(src, label) {
+        const viewer = document.querySelector('#star-rail-image-viewer');
+        const image = document.querySelector('#star-rail-image-viewer-image');
+        viewer.hidden = false;
+        image.alt = label;
+        image.onload = fitStarRailViewerImage;
+        image.src = src;
+        document.querySelector('#star-rail-image-viewer-title').textContent = label;
+        document.querySelector('#star-rail-image-viewer-reset').textContent = language === 'en' ? 'RESET' : '重置';
+        document.querySelector('#star-rail-image-viewer-hint').textContent = language === 'en' ? 'Scroll to zoom · Drag the image to inspect details' : '滚动鼠标滚轮缩放 · 拖动图片查看细节';
+        resetStarRailViewer();
+        document.body.classList.add('is-star-rail-viewer-open');
+        requestAnimationFrame(() => {
+          viewer.classList.add('is-open');
+          if (image.complete) fitStarRailViewerImage();
+        });
+        document.querySelector('#star-rail-image-viewer-close').focus();
+      }
+      function closeStarRailViewer() {
+        const viewer = document.querySelector('#star-rail-image-viewer');
+        viewer.classList.remove('is-open');
+        viewer.hidden = true;
+        document.body.classList.remove('is-star-rail-viewer-open');
+        document.querySelector('#star-rail-image-viewer-image').removeAttribute('src');
+        resetStarRailViewer();
       }
       let researchPaperData = null;
       let researchPaperLoad = null;
@@ -922,6 +1147,92 @@
           };
         });
       }
+      function renderWebglGame() {
+        const section = document.querySelector('#kitty-webgl');
+        const frame = document.querySelector('#kitty-webgl-frame');
+        const loading = document.querySelector('#kitty-webgl-loading');
+        const launch = document.querySelector('#kitty-webgl-launch');
+        if (!isWebglProject()) {
+          section.hidden = true;
+          return;
+        }
+        section.hidden = false;
+        document.querySelector('#kitty-webgl-title').textContent = language === 'en' ? 'Play in Browser' : '体验游戏';
+        document.querySelector('#kitty-webgl-note').textContent = language === 'en'
+          ? 'The game files load on first launch. Please allow a moment for the WebGL build to start.'
+          : '首次启动需要加载游戏资源，请稍候。';
+        const projectName = project[language === 'en' ? 'en' : 'zh'];
+        const downloadSize = project.webglSize || '';
+        frame.title = language === 'en' ? `${projectName} WebGL game` : `${projectName} 网页游戏`;
+        frame.dataset.src = project.webglUrl;
+        launch.textContent = language === 'en' ? 'Click to Start' : '点击开始游戏';
+        if (!loading.classList.contains('is-loading')) {
+          loading.querySelector('p').textContent = language === 'en'
+            ? `Clicking will load approximately ${downloadSize} of game files.`
+            : `点击后将加载约 ${downloadSize} 的游戏资源`;
+        }
+        const loadGame = () => {
+          if (frame.hasAttribute('src')) return;
+          loading.classList.add('is-loading');
+          loading.querySelector('p').textContent = language === 'en' ? 'Loading game…' : '游戏加载中…';
+          frame.src = project.webglUrl;
+          frame.addEventListener('load', () => loading.classList.add('is-complete'), { once: true });
+        };
+        launch.onclick = loadGame;
+      }
+      function closeHotpotSystemLightbox() {
+        const lightbox = document.querySelector('#hotpot-system-lightbox');
+        lightbox.classList.remove('is-open');
+        setTimeout(() => { lightbox.hidden = true; }, 280);
+      }
+      function openHotpotSystemLightbox() {
+        const detail = project.designDocument;
+        if (!detail) return;
+        const lightbox = document.querySelector('#hotpot-system-lightbox');
+        const image = document.querySelector('#hotpot-system-lightbox-image');
+        const placeholder = document.querySelector('#hotpot-system-lightbox-placeholder');
+        image.hidden = !detail.systemImage;
+        placeholder.hidden = Boolean(detail.systemImage);
+        if (detail.systemImage) image.src = detail.systemImage;
+        lightbox.hidden = false;
+        requestAnimationFrame(() => lightbox.classList.add('is-open'));
+        document.querySelector('#hotpot-system-lightbox-close').focus();
+      }
+      function renderHotpotDesignDocument() {
+        const section = document.querySelector('#hotpot-design-document');
+        const detail = project.designDocument;
+        if (!isHotpotProject() || !detail) {
+          section.hidden = true;
+          return;
+        }
+        const copy = detail[language];
+        const isEnglish = language === 'en';
+        section.hidden = false;
+        document.querySelector('#hotpot-design-document-kicker').textContent = 'HOTPOT JIANGHU / DESIGN DOCUMENT';
+        document.querySelector('#hotpot-design-document-title').textContent = copy.title;
+        document.querySelector('#hotpot-design-document-description').textContent = copy.description;
+        const download = document.querySelector('#hotpot-design-document-download');
+        download.href = detail.pdf;
+        download.textContent = isEnglish ? 'Download Design PDF' : '下载策划案 PDF';
+        const pdfCard = document.querySelector('#hotpot-pdf-card');
+        pdfCard.href = detail.pdf;
+        pdfCard.setAttribute('aria-label', isEnglish ? 'Open the complete game design PDF' : '在网页中查看完整游戏策划案 PDF');
+        const cover = document.querySelector('#hotpot-pdf-cover');
+        cover.src = detail.preview;
+        cover.alt = isEnglish ? 'Hotpot Jianghu game design document cover' : '火锅江湖游戏策划案封面';
+        document.querySelector('#hotpot-pdf-card-label').textContent = copy.title;
+        const systemImage = document.querySelector('#hotpot-system-image');
+        const systemPlaceholder = document.querySelector('#hotpot-system-placeholder');
+        systemImage.hidden = !detail.systemImage;
+        systemPlaceholder.hidden = Boolean(detail.systemImage);
+        if (detail.systemImage) systemImage.src = detail.systemImage;
+        systemPlaceholder.querySelector('b').textContent = isEnglish ? 'Game System Breakdown' : '游戏系统拆解图';
+        systemPlaceholder.querySelector('small').textContent = isEnglish ? 'COMING SOON' : '待补充';
+        document.querySelector('#hotpot-system-card').setAttribute('aria-label', isEnglish ? 'Enlarge the game system breakdown' : '放大查看游戏系统拆解图');
+        document.querySelector('#hotpot-system-lightbox').setAttribute('aria-label', isEnglish ? 'Enlarged game system breakdown' : '放大查看游戏系统拆解图');
+        document.querySelector('#hotpot-system-lightbox-placeholder').querySelector('b').textContent = isEnglish ? 'Game System Breakdown' : '游戏系统拆解图';
+        document.querySelector('#hotpot-system-lightbox-placeholder').querySelector('span').textContent = isEnglish ? 'IMAGE COMING SOON' : '图片待补充';
+      }
       function renderUndergroundArchitecturalDesign() {
         if (!isUndergroundProject()) return false;
         const design = project.architecturalDesign[language];
@@ -1169,17 +1480,20 @@
         const keywords = project.keywords?.[language];
         document.querySelector('#detail-type').innerHTML = keywords ? keywords.map(keyword => `<span class="detail-keyword">${keyword}</span>`).join('') : project[isEnglish ? 'enType' : 'zhType'];
         const isMaskoraDetail = isMaskoraProject();
-        const isLoopingRoomDetail = isLoopingRoomProject();
+        const isTwoPageGameDetail = isTwoPageGameProject();
+        const isHotpotDetail = isHotpotProject();
         const isWordRelicDetail = isWordRelicProject();
         const isVerminexDetail = isVerminexProject();
         const isBeyondDetail = isBeyondProject();
         const isResearchPaper = isResearchPaperTitleOnly();
+        const isStarRailAnalysis = isStarRailAnalysisProject();
         document.body.classList.toggle('research-paper-title-only', isResearchPaper);
         document.body.classList.toggle('is-beyond-detail', isBeyondDetail);
+        document.body.classList.toggle('is-hotpot-detail', isHotpotDetail);
         renderResearchPaper();
         loadResearchPaperContent();
         const reviewSection = document.querySelector('#detail-review');
-        const omitReview = isLoopingRoomDetail || isWordRelicDetail;
+        const omitReview = isTwoPageGameDetail || isWordRelicDetail || isStarRailAnalysis;
         if (omitReview && reviewSection) reviewSection.remove();
         document.querySelector('#detail-summary').innerHTML = isMaskoraDetail ? maskoraDetailCopy[language].summary : (project.summary?.[language] || t.summary);
         const action = projectAction[category]?.[id];
@@ -1203,10 +1517,19 @@
         const rulebook = document.querySelector('#maskora-rulebook-link');
         const development = document.querySelector('#maskora-development-link');
         const conceptLink = document.querySelector('#verminex-concept-link');
+        const kittyWebglLink = document.querySelector('#kitty-webgl-link');
         const beyondTcgLink = document.querySelector('#beyond-tcg-link');
         conceptLink.hidden = !isVerminexDetail;
         conceptLink.textContent = isEnglish ? 'Concept Design' : '概念设计';
         conceptLink.href = '#verminex-concept';
+        kittyWebglLink.hidden = !isWebglProject();
+        kittyWebglLink.textContent = isHotpotDetail ? (isEnglish ? 'Game Design Document' : '游戏策划案') : (isEnglish ? 'Web Game' : '网页游戏');
+        kittyWebglLink.href = isHotpotDetail ? '#hotpot-design-document' : '#kitty-webgl';
+        const scrollDown = document.querySelector('.detail-scroll-down');
+        scrollDown.href = isWebglProject() ? '#kitty-webgl' : '#detail-exhibition';
+        scrollDown.setAttribute('aria-label', isWebglProject()
+          ? (isEnglish ? 'Scroll down to play the game' : '向下体验游戏')
+          : (isEnglish ? 'Scroll down to project exhibition' : '向下查看项目展览'));
         beyondTcgLink.hidden = !isBeyondProject();
         beyondTcgLink.textContent = isEnglish ? 'Final Heroes TCG' : '终焉英杰颂';
         if (isMaskoraDetail) {
@@ -1219,10 +1542,10 @@
           rulebook.hidden = false;
           development.hidden = false;
         } else {
-          secondary.hidden = omitReview;
-          secondary.textContent = project.designLabel?.[language] || t.secondary;
-          secondary.href = '#detail-review';
-          exhibitionLink.textContent = isEnglish ? 'Project exhibition' : '项目展览';
+          secondary.hidden = omitReview && !isStarRailAnalysis;
+          secondary.textContent = isStarRailAnalysis ? (isEnglish ? 'Analysis Image Gallery' : '拆解案图片展示') : (project.designLabel?.[language] || t.secondary);
+          secondary.href = isStarRailAnalysis ? '#star-rail-gallery' : '#detail-review';
+          exhibitionLink.textContent = isStarRailAnalysis ? (isEnglish ? 'Level Analysis' : '拆解案展示') : (isEnglish ? 'Project exhibition' : '项目展览');
           exhibitionLink.href = '#detail-exhibition';
           rulebook.hidden = true;
           development.hidden = true;
@@ -1255,7 +1578,20 @@
           });
         }
         document.querySelector('#detail-visual-label').textContent = t.visual;
-        document.querySelector('#detail-visual').style.backgroundImage = `linear-gradient(140deg, rgba(4, 6, 16, .12), rgba(4, 6, 16, .78)), url("${heroImage}")`;
+        const detailVisual = document.querySelector('#detail-visual');
+        const detailVisualImage = document.querySelector('#detail-visual-image');
+        detailVisual.classList.toggle('is-hotpot-placeholder', isHotpotDetail);
+        detailVisual.classList.toggle('is-star-rail-visual', isStarRailAnalysis);
+        detailVisualImage.hidden = !isStarRailAnalysis;
+        if (isStarRailAnalysis) {
+          detailVisualImage.src = heroImage;
+          detailVisualImage.alt = isEnglish ? 'Honkai: Star Rail level pacing chart' : '《崩坏：星穹铁道》关卡节奏图';
+          detailVisual.style.backgroundImage = '';
+        } else {
+          detailVisualImage.removeAttribute('src');
+          detailVisualImage.alt = '';
+          detailVisual.style.backgroundImage = heroImage ? `linear-gradient(140deg, rgba(4, 6, 16, .12), rgba(4, 6, 16, .78)), url("${heroImage}")` : '';
+        }
         if (reviewSection?.isConnected) reviewSection.classList.remove('is-gravity-level-design', 'is-infinity-value-design', 'is-body-battle-design', 'is-beyond-development', 'is-underground-architectural-design');
         if (!omitReview && isMaskoraDetail) {
           renderMaskoraDevelopment();
@@ -1281,8 +1617,11 @@
         const hasMaskoraExhibition = isMaskoraProject();
         const exhibitionSection = document.querySelector('#detail-exhibition');
         exhibitionSection.classList.toggle('is-maskora-card-exhibition', hasMaskoraExhibition);
-        document.querySelector('#detail-exhibition-title').textContent = exhibition.title;
-        if (hasMaskoraExhibition) {
+        exhibitionSection.classList.toggle('is-star-rail-analysis', isStarRailAnalysis);
+        document.querySelector('#detail-exhibition-title').textContent = isStarRailAnalysis ? (isEnglish ? 'Level Analysis' : '拆解案展示') : exhibition.title;
+        if (renderStarRailAnalysis()) {
+          clearInterval(maskoraAutoplay);
+        } else if (hasMaskoraExhibition) {
           renderMaskoraCardExhibition();
         } else {
           clearInterval(maskoraAutoplay);
@@ -1292,6 +1631,7 @@
           grid.setAttribute('aria-label', language === 'en' ? 'Project exhibition images' : '项目展览图片');
           const exhibitionLabels = project.exhibitionLabels?.[language] || project.exhibitionLabels || [];
           grid.innerHTML = exhibitionImages.map((image, index) => `<article class="detail-exhibition-card detail-exhibition-${index}" data-lazy-bg="${image}" data-lazy-overlay="linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%)"><h3>${exhibitionLabels[index] || exhibition.captions[index] || exhibition.captions[0]}</h3></article>`).join('');
+          if (isHotpotDetail) grid.querySelectorAll('[data-lazy-bg]').forEach(hydrateLazyBackground);
         }
         renderMaskoraRulebook();
         renderMaskoraBoardDesign();
@@ -1300,6 +1640,9 @@
         renderUndergroundAwards();
         renderBeyondTcgFeature();
         renderBeyondTcgLibrary();
+        renderWebglGame();
+        renderHotpotDesignDocument();
+        renderStarRailGallery();
         setupBeyondSpecularButtons();
         observeLazyBackgrounds();
         const mediaLinks = renderMediaSlots();
@@ -1349,6 +1692,68 @@
       }
       document.querySelector('#gravity-excel-viewer-close').addEventListener('click', closeGravityExcelViewer);
       document.querySelector('#gravity-excel-viewer').addEventListener('click', event => { if (event.target === event.currentTarget) closeGravityExcelViewer(); });
+      document.querySelector('#hotpot-system-card').addEventListener('click', openHotpotSystemLightbox);
+      document.querySelector('#hotpot-system-lightbox-close').addEventListener('click', closeHotpotSystemLightbox);
+      document.querySelector('#hotpot-system-lightbox').addEventListener('click', event => { if (event.target === event.currentTarget) closeHotpotSystemLightbox(); });
+      document.addEventListener('click', event => {
+        const trigger = event.target.closest('[data-star-rail-image]');
+        if (!trigger) return;
+        openStarRailViewer(trigger.dataset.starRailImage, trigger.dataset.starRailLabel);
+      });
+      document.querySelector('#star-rail-image-viewer-close').addEventListener('click', closeStarRailViewer);
+      document.querySelector('#star-rail-image-viewer-reset').addEventListener('click', resetStarRailViewer);
+      document.querySelector('#star-rail-image-viewer').addEventListener('click', event => { if (event.target === event.currentTarget) closeStarRailViewer(); });
+      const starRailViewerStage = document.querySelector('#star-rail-image-viewer-stage');
+      starRailViewerStage.addEventListener('wheel', event => {
+        if (document.querySelector('#star-rail-image-viewer').hidden) return;
+        const imageBounds = document.querySelector('#star-rail-image-viewer-image').getBoundingClientRect();
+        const isOverImage = event.clientX >= imageBounds.left && event.clientX <= imageBounds.right && event.clientY >= imageBounds.top && event.clientY <= imageBounds.bottom;
+        if (!isOverImage) return;
+        event.preventDefault();
+        const previousScale = starRailViewerState.scale;
+        const nextScale = Math.max(1, Math.min(6, previousScale * Math.exp(-event.deltaY * .0014)));
+        const rect = starRailViewerStage.getBoundingClientRect();
+        const mouseX = event.clientX - (rect.left + rect.width / 2);
+        const mouseY = event.clientY - (rect.top + rect.height / 2);
+        const ratio = nextScale / previousScale;
+        starRailViewerState.x = mouseX - (mouseX - starRailViewerState.x) * ratio;
+        starRailViewerState.y = mouseY - (mouseY - starRailViewerState.y) * ratio;
+        starRailViewerState.scale = nextScale;
+        if (nextScale === 1) { starRailViewerState.x = 0; starRailViewerState.y = 0; }
+        updateStarRailViewerTransform();
+      }, { passive: false });
+      starRailViewerStage.addEventListener('pointerdown', event => {
+        if (starRailViewerState.scale <= 1) return;
+        const imageBounds = document.querySelector('#star-rail-image-viewer-image').getBoundingClientRect();
+        const isOverImage = event.clientX >= imageBounds.left && event.clientX <= imageBounds.right && event.clientY >= imageBounds.top && event.clientY <= imageBounds.bottom;
+        if (!isOverImage) return;
+        starRailViewerState.dragging = true;
+        starRailViewerState.lastX = event.clientX;
+        starRailViewerState.lastY = event.clientY;
+        starRailViewerStage.setPointerCapture(event.pointerId);
+        starRailViewerStage.classList.add('is-dragging');
+      });
+      starRailViewerStage.addEventListener('pointermove', event => {
+        if (!starRailViewerState.dragging) return;
+        starRailViewerState.x += event.clientX - starRailViewerState.lastX;
+        starRailViewerState.y += event.clientY - starRailViewerState.lastY;
+        starRailViewerState.lastX = event.clientX;
+        starRailViewerState.lastY = event.clientY;
+        updateStarRailViewerTransform();
+      });
+      const stopStarRailViewerDrag = event => {
+        if (!starRailViewerState.dragging) return;
+        starRailViewerState.dragging = false;
+        starRailViewerStage.classList.remove('is-dragging');
+        if (starRailViewerStage.hasPointerCapture(event.pointerId)) starRailViewerStage.releasePointerCapture(event.pointerId);
+      };
+      starRailViewerStage.addEventListener('pointerup', stopStarRailViewerDrag);
+      starRailViewerStage.addEventListener('pointercancel', stopStarRailViewerDrag);
+      starRailViewerStage.addEventListener('dblclick', resetStarRailViewer);
+      window.addEventListener('resize', () => {
+        if (!document.querySelector('#star-rail-image-viewer').hidden) fitStarRailViewerImage();
+      });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape' && !document.querySelector('#star-rail-image-viewer').hidden) closeStarRailViewer(); });
       document.addEventListener('click', event => {
         const trigger = event.target.closest('[data-excel-src]');
         if (!trigger) return;
@@ -1359,7 +1764,7 @@
         frame.src = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(sourceUrl)}`;
         document.querySelector('#gravity-excel-viewer').hidden = false;
       });
-      document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeMaskoraRulebookLightbox(); closeGravityExcelViewer(); } });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeMaskoraRulebookLightbox(); closeGravityExcelViewer(); closeHotpotSystemLightbox(); } });
       document.addEventListener('pointermove', event => {
         const button = event.target.closest('.detail-play-link');
         if (!button) return;
@@ -1378,6 +1783,7 @@
       }
       function setupProcessGallery() {
         const gallery = document.querySelector('#detail-process-gallery');
+        if (!gallery) return;
         if (gallery.classList.contains('maskora-development-gallery') || gallery.classList.contains('gravity-level-design-layout') || gallery.classList.contains('infinity-value-layout') || gallery.classList.contains('body-battle-design-layout') || gallery.classList.contains('beyond-development-grid') || gallery.classList.contains('underground-architectural-layout')) return;
         let active = Math.floor((gallery.children.length - 1) / 2);
         const arrange = () => [...gallery.children].forEach((card, index) => {
