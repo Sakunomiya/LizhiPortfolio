@@ -383,6 +383,7 @@ html.is-returning-to-section { scroll-behavior: auto !important; }
 }
 
 /* Honkai: Star Rail analysis image gallery */
+.star-rail-gallery[hidden], .star-rail-image-viewer[hidden] { display: none; }
 .star-rail-gallery { display: flex; min-height: 100vh; flex-direction: column; justify-content: center; padding: clamp(76px, 9vh, 112px) 0; border-bottom: 1px solid rgba(255,255,255,.62); }
 .star-rail-gallery-heading { margin-bottom: clamp(30px, 4vh, 48px); }
 .star-rail-gallery-layout { display: grid; width: 100%; height: clamp(610px, 71vh, 760px); grid-template-columns: minmax(300px, .88fr) minmax(0, 1.12fr); gap: 16px; }
