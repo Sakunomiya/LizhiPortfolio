@@ -39,6 +39,7 @@
               <a class="detail-action-secondary" id="detail-exhibition-link" href="#detail-exhibition">项目展览</a>
               <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
               <a class="detail-action-secondary" id="verminex-concept-link" href="#verminex-concept" hidden>概念设计</a>
+              <a class="detail-action-secondary" id="verminex-level-design-link" href="#verminex-level-document" hidden>关卡设计文档</a>
               <a class="detail-action-secondary" id="kitty-webgl-link" href="#kitty-webgl" hidden>网页游戏</a>
               <a class="detail-action-secondary" id="maskora-rulebook-link" href="#maskora-rulebook" hidden>桌游规则书</a>
               <a class="detail-action-secondary" id="maskora-development-link" href="#detail-review" hidden>开发记录</a>
@@ -151,6 +152,31 @@
         </div>
       </section>
 
+      <section class="verminex-concept" id="verminex-concept" aria-labelledby="verminex-concept-title" hidden>
+        <header class="detail-section-heading">
+          <h2 id="verminex-concept-title">概念设计</h2>
+        </header>
+        <div class="verminex-concept-grid" id="verminex-concept-grid" aria-label="Verminex 概念设计图"></div>
+      </section>
+
+      <section class="verminex-level-document" id="verminex-level-document" aria-labelledby="verminex-level-document-title" hidden>
+        <div class="verminex-level-document-media">
+          <div class="verminex-level-document-thumbnails" id="verminex-level-document-thumbnails"></div>
+          <a class="verminex-level-document-pdf" id="verminex-level-document-pdf" href="#" target="_blank" rel="noopener noreferrer">
+            <img id="verminex-level-document-cover" alt="Verminex 关卡设计文档 PDF 缩略图" loading="lazy" decoding="async" />
+            <span>PDF / LEVEL DESIGN DOCUMENT</span>
+            <b id="verminex-level-document-pdf-label">点击查看完整 PDF</b>
+            <i aria-hidden="true">↗</i>
+          </a>
+        </div>
+        <div class="verminex-level-document-copy">
+          <p>VERMINEX / LEVEL DESIGN DOCUMENT</p>
+          <h2 id="verminex-level-document-title">关卡设计文档</h2>
+          <span aria-hidden="true"></span>
+          <p id="verminex-level-document-description"></p>
+        </div>
+      </section>
+
       <section class="detail-review" id="detail-review" aria-labelledby="detail-review-title">
         <header class="detail-section-heading">
           <h2 id="detail-review-title">项目设计</h2>
@@ -206,13 +232,6 @@
           <h2 id="underground-awards-title">项目获奖</h2>
         </header>
         <div class="underground-awards-grid" id="underground-awards-grid" aria-label="Underground 项目获奖图片"></div>
-      </section>
-
-      <section class="verminex-concept" id="verminex-concept" aria-labelledby="verminex-concept-title" hidden>
-        <header class="detail-section-heading">
-          <h2 id="verminex-concept-title">概念设计</h2>
-        </header>
-        <div class="verminex-concept-grid" id="verminex-concept-grid" aria-label="Verminex 概念设计图"></div>
       </section>
 
     </main>
@@ -357,6 +376,18 @@
             exhibitionLabels: { zh: ['枪械配件购买', '游戏场景', '怪物战斗', '关卡地编', '游戏封面'], en: ['Gun Attachment Shop', 'Game Environment', 'Monster Combat', 'Level Layout', 'Game Cover'] },
             downloadUrl: 'https://lizhi-portfolio-download-1469033375.cos.ap-guangzhou.myqcloud.com/downloads/verminex/VerminEx%201.0.0.zip', downloadSize: '211.4MB',
             conceptDesign: { zh: { title: '概念设计' }, en: { title: 'Concept Design' } },
+            levelDesignDocument: {
+              pdf: 'assets/verminex/level-design/Verminex-level-design-document.pdf',
+              preview: 'assets/verminex/level-design/document-cover.png',
+              images: [
+                { src: 'assets/verminex/level-design/level-bubble.png', zh: '关卡气泡图', en: 'Level Bubble Diagram' },
+                { src: 'assets/verminex/level-design/level-layout.png', zh: '关卡 Layout', en: 'Level Layout' },
+                { src: 'assets/verminex/level-design/level-rhythm.png', zh: '关卡节奏图', en: 'Level Pacing Diagram' },
+                { src: 'assets/verminex/level-design/level-flow.png', zh: '关卡流程图', en: 'Level Flowchart' }
+              ],
+              zh: { title: '关卡设计文档', description: '本关卡设计文档系统梳理 Verminex 的关卡定位、玩家引导、空间布局与战斗节奏，并通过关卡气泡图、关卡 Layout、关卡节奏图和关卡流程图，呈现从结构规划到实际落地的完整设计过程。' },
+              en: { title: 'Level Design Document', description: 'This document presents Verminex\'s level positioning, player guidance, spatial layout, and combat pacing. The bubble diagram, level layout, pacing diagram, and flowchart show the complete process from structural planning to implementation.' }
+            },
             processCards: {
               zh: [{ title: '开发过程与游玩视频', link: 'https://www.bilibili.com/video/BV1aibk6SEQW/', image: 'assets/verminex/process/development-gameplay-cover.jpg' }, { title: '开发团队分工', link: 'https://www.bilibili.com/video/BV1Yibk6SEHB/', image: 'assets/verminex/process/team-roles-cover.jpg' }],
               en: [{ title: 'Development Process & Gameplay', link: 'https://www.bilibili.com/video/BV1aibk6SEQW/', image: 'assets/verminex/process/development-gameplay-cover.jpg' }, { title: 'Development Team Roles', link: 'https://www.bilibili.com/video/BV1Yibk6SEHB/', image: 'assets/verminex/process/team-roles-cover.jpg' }]
@@ -1332,6 +1363,29 @@
         document.querySelector('#verminex-concept-grid').setAttribute('aria-label', language === 'en' ? 'Verminex concept design images' : 'Verminex 概念设计图');
         document.querySelector('#verminex-concept-grid').innerHTML = [1, 2, 3, 4].map(index => `<figure><img src="${optimizedImagePath(`assets/verminex/concept-design/${index}.png`)}" alt="${language === 'en' ? `Verminex concept design ${index}` : `Verminex 概念设计 ${index}`}" ${lazyImageAttributes} /></figure>`).join('');
       }
+      function renderVerminexLevelDocument() {
+        const section = document.querySelector('#verminex-level-document');
+        if (!isVerminexProject() || !project.levelDesignDocument) {
+          section.hidden = true;
+          return;
+        }
+        const detail = project.levelDesignDocument;
+        const localized = detail[language];
+        const isEnglish = language === 'en';
+        section.hidden = false;
+        document.querySelector('#verminex-level-document-title').textContent = localized.title;
+        document.querySelector('#verminex-level-document-description').textContent = localized.description;
+        document.querySelector('#verminex-level-document-thumbnails').innerHTML = detail.images.map((item, index) => {
+          const label = item[language];
+          return `<button class="verminex-level-document-thumbnail" type="button" data-star-rail-image="${item.src}" data-star-rail-label="${label}" aria-label="${isEnglish ? 'Enlarge' : '放大查看'} ${label}"><img src="${item.src}" alt="${label}" loading="lazy" decoding="async" /><span>0${index + 1}</span><b>${label}</b><i aria-hidden="true">↗</i></button>`;
+        }).join('');
+        const pdfLink = document.querySelector('#verminex-level-document-pdf');
+        pdfLink.href = detail.pdf;
+        pdfLink.setAttribute('aria-label', isEnglish ? 'Open the complete Verminex level design PDF' : '在网页中查看完整 Verminex 关卡设计文档 PDF');
+        document.querySelector('#verminex-level-document-cover').src = detail.preview;
+        document.querySelector('#verminex-level-document-cover').alt = isEnglish ? 'Verminex level design PDF preview' : 'Verminex 关卡设计文档 PDF 缩略图';
+        document.querySelector('#verminex-level-document-pdf-label').textContent = isEnglish ? 'OPEN COMPLETE PDF' : '点击查看完整 PDF';
+      }
       function renderGravityLevelDesign() {
         if (!isGravityProject()) return false;
         const level = project.levelDesign[language];
@@ -1520,11 +1574,16 @@
         const rulebook = document.querySelector('#maskora-rulebook-link');
         const development = document.querySelector('#maskora-development-link');
         const conceptLink = document.querySelector('#verminex-concept-link');
+        const verminexLevelDesignLink = document.querySelector('#verminex-level-design-link');
         const kittyWebglLink = document.querySelector('#kitty-webgl-link');
         const beyondTcgLink = document.querySelector('#beyond-tcg-link');
         conceptLink.hidden = !isVerminexDetail;
         conceptLink.textContent = isEnglish ? 'Concept Design' : '概念设计';
         conceptLink.href = '#verminex-concept';
+        verminexLevelDesignLink.hidden = !isVerminexDetail;
+        verminexLevelDesignLink.textContent = isEnglish ? 'Level Design Document' : '关卡设计文档';
+        verminexLevelDesignLink.href = '#verminex-level-document';
+        if (isVerminexDetail) secondary.before(conceptLink, verminexLevelDesignLink);
         kittyWebglLink.hidden = !isWebglProject();
         kittyWebglLink.textContent = isHotpotDetail ? (isEnglish ? 'Game Design Document' : '游戏策划案') : (isEnglish ? 'Web Game' : '网页游戏');
         kittyWebglLink.href = isHotpotDetail ? '#hotpot-design-document' : '#kitty-webgl';
@@ -1639,6 +1698,7 @@
         renderMaskoraRulebook();
         renderMaskoraBoardDesign();
         renderVerminexConceptDesign();
+        renderVerminexLevelDocument();
         renderUndergroundGameDesign();
         renderUndergroundAwards();
         renderBeyondTcgFeature();
