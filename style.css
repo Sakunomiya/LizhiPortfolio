@@ -197,11 +197,13 @@ h1 .name { display: inline-block; font-size: calc(1em - 4px); }
 /* Alignment and compact closing strip */
 .guide-header, .design-docs-header, .interaction-header, .other-header { grid-template-columns: 1fr; justify-items: center; text-align: center; }
 .guide-header h2, .design-docs-header h2, .interaction-header h2, .other-header h2 { text-align: center; }
-.contact-footer { min-height: 0; height: 185px; padding: 24px clamp(30px, 5vw, 88px) 40px; }
+.contact-footer { min-height: 0; height: 205px; padding: 24px clamp(30px, 5vw, 88px) 58px; }
 .contact-main { flex: 1; align-content: center; }
 .contact-footer h2 { max-width: 920px; font-size: clamp(20px, 1.85vw, 29px); }
-.footer-contacts { bottom: 14px; }
-@media (max-width: 720px) { .contact-footer { height: auto; min-height: 190px; padding-bottom: 80px; }.footer-contacts { bottom: 12px; } }
+.footer-contacts { bottom: 32px; }
+.icp-record { position: absolute; z-index: 2; bottom: 11px; color: rgba(190,201,255,.52); font-family: Inter, "Noto Sans SC", sans-serif; font-size: 10px; letter-spacing: .06em; text-decoration: none; transition: color .2s ease; }
+.icp-record:hover { color: rgba(239,242,252,.9); }
+@media (max-width: 720px) { .contact-footer { height: auto; min-height: 220px; padding-bottom: 112px; }.footer-contacts { bottom: 34px; }.icp-record { bottom: 11px; } }
 
 /* Project-detail template */
 .project-detail-page { margin: 0; background: #07080d; color: #f4f5fa; font-family: Inter, "Noto Sans SC", Arial, sans-serif; }
