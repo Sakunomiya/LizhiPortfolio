@@ -476,7 +476,27 @@
               ]
             }
           },
-          { zh: '认知预期如何塑造游戏关卡的隐性引导', en: 'How Cognitive Expectations Support Implicit Guidance in Game Level Design', zhType: '研究论文', enType: 'Research paper', image: 'assets/research/cognitive-expectations/image1.png' }
+          { zh: '认知预期如何塑造游戏关卡的隐性引导', en: 'How Cognitive Expectations Support Implicit Guidance in Game Level Design', zhType: '研究论文', enType: 'Research paper', image: 'assets/research/cognitive-expectations/image1.png' },
+          {
+            zh: '幽邃车站', en: 'Haunting Station', zhType: '箱庭关卡白盒', enType: 'Sandbox level blockout',
+            image: 'assets/haunting-station/01.png', heroImage: 'assets/haunting-station/01.png', backgroundImage: 'assets/haunting-station/01.png',
+            exhibitionImages: ['assets/haunting-station/02.png', 'assets/haunting-station/03.png', 'assets/haunting-station/04.png', 'assets/haunting-station/05.png', 'assets/haunting-station/06.png'],
+            exhibitionLabels: { zh: ['关卡设计01', '关卡设计02', '关卡设计03', '关卡设计04', '初始篝火'], en: ['Level Design 01', 'Level Design 02', 'Level Design 03', 'Level Design 04', 'Starting Bonfire'] },
+            playUrl: 'https://www.bilibili.com/video/BV1icbj6mEcL/?spm_id_from=333.1387.upload.video_card.click&vd_source=69db3067e1e931c735ad8821c58144eb',
+            downloadUrl: 'https://lizhi-portfolio-download-1469033375.cos.ap-guangzhou.myqcloud.com/downloads/HauntingStation/HauntingStationBlockoutDemo.zip',
+            downloadSize: '845.6MB',
+            summary: {
+              zh: '基于“钥匙 - 中继器 - 开关 - 门”机制构建的箱庭线性关卡<br><br>玩家需要吸引关卡中的雾灵，并驱使他们去到雾灵座上，以驱散笼罩在车站的异界迷障，并打败关卡中的敌人，最终取得列车的核心电源以启动列车，离开这个诡谲的车站<br><br>在引导设计上，主要采用朝向引导，对比引导（光暗对比），逻辑引导（没路找路），奖励引导，地标建筑，机制引导，以及视角控制等手法<br><br>同时，通过关卡结构，例如调控道路的宽窄，来设计出体感不同的战斗体验，并利用“道路 - 节点 - 道路”和“战斗 - 解谜 - 奖励 - Boss战 - 关卡目标”的逻辑来差异化关卡节奏<br><br>另外，也尝试使用光源，结构，标志性场景道具等，来对不同关卡房间（例如配电间，地城和月台等）进行设计差异优化，让玩家能够感受到自己正在身处于一座“车站”',
+              en: 'Haunting Station is a sandbox level-blockout exercise built around layered spatial routes, vertical structure, and exploration pacing. This page includes a level demonstration video and a downloadable blockout demo.'
+            },
+            keywords: { zh: ['箱庭关卡', '关卡白盒', '关卡设计', '游戏 Demo'], en: ['Sandbox Level', 'Level Blockout', 'Level Design', 'Game Demo'] },
+            designLabel: { zh: '关卡设计文档', en: 'Level Design Document' },
+            processItems: [0],
+            processCards: {
+              zh: [{ title: '关卡演示视频', text: '点击前往 Bilibili 查看《幽邃车站》箱庭关卡白盒演示。', link: 'https://www.bilibili.com/video/BV1icbj6mEcL/?spm_id_from=333.1387.upload.video_card.click&vd_source=69db3067e1e931c735ad8821c58144eb', image: 'assets/haunting-station/01.png' }],
+              en: [{ title: 'Level Demonstration Video', text: 'Watch the Haunting Station sandbox level blockout demonstration on Bilibili.', link: 'https://www.bilibili.com/video/BV1icbj6mEcL/?spm_id_from=333.1387.upload.video_card.click&vd_source=69db3067e1e931c735ad8821c58144eb', image: 'assets/haunting-station/01.png' }]
+            }
+          }
         ],
         interaction: [
           {
@@ -579,13 +599,13 @@
 
       const categories = {
         game: { zh: '游戏项目', en: 'GAME PROJECTS', anchor: 'games' },
-        research: { zh: '游戏策划案与研究', en: 'GAME DESIGN DOCS & RESEARCH', anchor: 'design-docs' },
+        research: { zh: '游戏策划案，研究与练习', en: 'GAME DESIGN DOCS, RESEARCH & PRACTICE', anchor: 'design-docs' },
         interaction: { zh: '交互设计', en: 'INTERACTION DESIGN', anchor: 'interaction' },
         other: { zh: '跨界探索', en: 'CROSS-DISCIPLINARY EXPLORATIONS', anchor: 'other' }
       };
       const projectAction = {
         game: { 2: ['体验游戏', 'PLAY GAME'], 4: ['体验游戏', 'PLAY GAME'], 8: ['体验游戏', 'PLAY GAME'] },
-        research: { 1: ['查看详情', 'VIEW DETAILS'], 2: ['查看详情', 'VIEW DETAILS'] },
+        research: { 1: ['查看详情', 'VIEW DETAILS'], 2: ['查看详情', 'VIEW DETAILS'], 3: ['观看视频', 'WATCH VIDEO'] },
         other: { 4: ['体验游戏', 'PLAY GAME'] }
       };
       const params = new URLSearchParams(location.search);
@@ -1674,6 +1694,22 @@
           // Beyond the Boundary uses a fixed, uncropped six-image development layout.
         } else if (!omitReview && renderUndergroundArchitecturalDesign()) {
           // Underground uses a static architectural-design composition.
+        } else if (!omitReview && category === 'research' && id === 3) {
+          const pdf = 'assets/haunting-station/level-design.pdf';
+          const title = isEnglish ? 'Haunting Station — Level Design Document' : '“幽邃车站”关卡设计文档';
+          const gallery = document.querySelector('#detail-process-gallery');
+          gallery.className = 'star-rail-analysis-layout';
+          gallery.innerHTML = `
+            <a class="star-rail-analysis-preview" href="${pdf}" target="_blank" rel="noopener noreferrer" aria-label="${isEnglish ? 'View complete PDF' : '在网页中查看完整 PDF'}">
+              <img src="assets/optimized/haunting-station/level-design-cover.webp" alt="${title}" loading="lazy" decoding="async" />
+              <span>${isEnglish ? 'OPEN COMPLETE PDF' : '点击查看完整 PDF'}</span><i aria-hidden="true">↗</i>
+            </a>
+            <div class="star-rail-analysis-copy">
+              <h2>${title}</h2>
+              <a class="star-rail-analysis-download" href="${pdf}" download="幽邃车站关卡设计文档.pdf">${isEnglish ? 'DOWNLOAD PDF' : '下载 PDF'}<span aria-hidden="true">↓</span></a>
+              <div class="star-rail-analysis-rule" aria-hidden="true"></div>
+              <p class="star-rail-analysis-description">${isEnglish ? 'Built around the key–relay–switch–door mechanic, Haunting Station explores a linear journey through interconnected spaces. The document presents the design of spirit-guiding puzzles, player guidance, combat spaces and pacing, linking the station setting to the goal of restoring the train’s power and escaping.' : '《幽邃车站》围绕“钥匙 - 中继器 - 开关 - 门”的核心机制，探索箱庭空间中的线性关卡体验。本设计文档梳理雾灵解谜、玩家引导、战斗空间与关卡节奏的设计思路，将车站的空间特色与“恢复列车电源、驶离异界车站”的最终目标相结合，呈现机制、路径与场景氛围之间的设计联系。'}</p>
+            </div>`;
         } else if (!omitReview) {
           const processItems = project.processItems || t.processTitles.map((_, index) => index);
           const processCards = project.processCards?.[language] || processItems.map(contentIndex => ({ title: t.processTitles[contentIndex], text: t.processText[contentIndex] }));
@@ -1853,7 +1889,7 @@
       }
       function setupProcessGallery() {
         const gallery = document.querySelector('#detail-process-gallery');
-        if (!gallery) return;
+        if (!gallery || gallery.classList.contains('star-rail-analysis-layout')) return;
         if (gallery.classList.contains('maskora-development-gallery') || gallery.classList.contains('gravity-level-design-layout') || gallery.classList.contains('infinity-value-layout') || gallery.classList.contains('body-battle-design-layout') || gallery.classList.contains('beyond-development-grid') || gallery.classList.contains('underground-architectural-layout')) return;
         let active = Math.floor((gallery.children.length - 1) / 2);
         const arrange = () => [...gallery.children].forEach((card, index) => {
