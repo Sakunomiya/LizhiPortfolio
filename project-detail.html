@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>项目详情 | 李植</title>
-    <link rel="stylesheet" href="style.css?v=20260820-gallery-scope-01" />
+    <link rel="stylesheet" href="style.css?v=20260907-haunting-details-01" />
   </head>
   <body class="project-detail-page">
     <img class="beyond-page-backdrop" id="beyond-page-backdrop" data-src="assets/optimized/beyond/page-background.webp" alt="" aria-hidden="true" decoding="async" hidden />
@@ -38,6 +38,9 @@
             <div class="detail-hero-actions">
               <a class="detail-action-secondary" id="detail-exhibition-link" href="#detail-exhibition">项目展览</a>
               <a class="detail-action-secondary" id="detail-secondary" href="#detail-review">项目设计</a>
+              <a class="detail-action-secondary" id="haunting-plan-detail-link" href="#haunting-plan-detail" hidden>关卡设计详情 - 平面图</a>
+              <a class="detail-action-secondary" id="haunting-bubble-detail-link" href="#haunting-bubble-detail" hidden>关卡设计详情-气泡图</a>
+              <a class="detail-action-secondary" id="haunting-flow-detail-link" href="#haunting-flow-detail" hidden>关卡设计详情-关卡节奏与关卡流程</a>
               <a class="detail-action-secondary" id="verminex-concept-link" href="#verminex-concept" hidden>概念设计</a>
               <a class="detail-action-secondary" id="verminex-level-design-link" href="#verminex-level-document" hidden>关卡设计文档</a>
               <a class="detail-action-secondary" id="kitty-webgl-link" href="#kitty-webgl" hidden>网页游戏</a>
@@ -184,6 +187,50 @@
         <div class="detail-process-gallery" id="detail-process-gallery" aria-label="项目设计过程素材"></div>
       </section>
 
+      <section class="haunting-plan-detail" id="haunting-plan-detail" aria-labelledby="haunting-plan-detail-title" hidden>
+        <header class="detail-section-heading">
+          <h2 id="haunting-plan-detail-title">关卡设计详情 - 平面图</h2>
+        </header>
+        <div class="haunting-depth-stage" id="haunting-depth-stage" aria-label="平面图立体轮播"></div>
+        <p class="haunting-depth-caption" id="haunting-depth-caption" aria-live="polite"></p>
+        <div class="haunting-depth-controls"><button type="button" id="haunting-depth-prev" aria-label="上一张">←</button><button type="button" id="haunting-depth-next" aria-label="下一张">→</button><button type="button" id="haunting-depth-play">暂停轮播</button></div>
+      </section>
+
+      <section class="haunting-bubble-detail" id="haunting-bubble-detail" aria-labelledby="haunting-bubble-title" hidden>
+        <div class="haunting-bubble-layout">
+          <div class="haunting-detail-copy">
+            <p>HAUNTING STATION / LEVEL DESIGN</p>
+            <h2 id="haunting-bubble-title">关卡设计详情-气泡图</h2>
+            <span aria-hidden="true"></span>
+            <p id="haunting-bubble-description"></p>
+          </div>
+          <button class="haunting-detail-image haunting-bubble-image" type="button" data-star-rail-image="assets/haunting-station/details/bubble-map.png" data-star-rail-label="幽邃车站关卡气泡图" aria-label="放大查看幽邃车站关卡气泡图">
+            <img src="assets/optimized/haunting-station/details/bubble-map.webp" alt="幽邃车站关卡气泡图" loading="lazy" decoding="async" />
+          </button>
+        </div>
+      </section>
+
+      <section class="haunting-flow-detail" id="haunting-flow-detail" aria-labelledby="haunting-flow-title" hidden>
+        <div class="haunting-flow-layout">
+          <div class="haunting-flow-left">
+            <div class="haunting-detail-copy">
+              <p>HAUNTING STATION / PACING &amp; FLOW</p>
+              <h2 id="haunting-flow-title">关卡设计详情-关卡节奏与关卡流程</h2>
+              <span aria-hidden="true"></span>
+              <p id="haunting-flow-description"></p>
+            </div>
+            <button class="haunting-detail-image haunting-pacing-image" type="button" data-star-rail-image="assets/haunting-station/details/pacing-chart.png" data-star-rail-label="幽邃车站关卡节奏图" aria-label="放大查看幽邃车站关卡节奏图">
+              <img src="assets/optimized/haunting-station/details/pacing-chart.webp" alt="幽邃车站关卡节奏图" loading="lazy" decoding="async" />
+            </button>
+          </div>
+          <div class="haunting-flow-scroll" tabindex="0" aria-label="幽邃车站关卡流程图，可滚动查看完整内容">
+            <button class="haunting-flow-image" type="button" data-star-rail-image="assets/haunting-station/details/level-flow.png" data-star-rail-label="幽邃车站关卡流程图" aria-label="放大查看幽邃车站关卡流程图">
+              <img src="assets/optimized/haunting-station/details/level-flow.webp" alt="幽邃车站关卡流程图" loading="lazy" decoding="async" />
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section class="beyond-tcg" id="beyond-tcg" aria-labelledby="beyond-tcg-title" hidden>
         <div class="beyond-tcg-visual" id="beyond-tcg-visual">
           <span>04</span>
@@ -235,7 +282,6 @@
       </section>
 
     </main>
-
     <footer class="detail-site-footer">
       <div class="site-records">
         <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">闽ICP备2026032948号</a>
@@ -599,7 +645,7 @@
 
       const categories = {
         game: { zh: '游戏项目', en: 'GAME PROJECTS', anchor: 'games' },
-        research: { zh: '游戏策划案，研究与练习', en: 'GAME DESIGN DOCS, RESEARCH & PRACTICE', anchor: 'design-docs' },
+        research: { zh: '游戏策划案与研究', en: 'GAME DESIGN DOCS & RESEARCH', anchor: 'design-docs' },
         interaction: { zh: '交互设计', en: 'INTERACTION DESIGN', anchor: 'interaction' },
         other: { zh: '跨界探索', en: 'CROSS-DISCIPLINARY EXPLORATIONS', anchor: 'other' }
       };
@@ -844,6 +890,56 @@
           if (image.complete) fitStarRailViewerImage();
         });
         document.querySelector('#star-rail-image-viewer-close').focus();
+      }
+      function setupHauntingDepthCarousel() {
+        if (category !== 'research' || id !== 3) return;
+        const labels = ['幽邃车站关卡Layout', '-3F', '-2F', '-4F', '-1F', '1F（西侧月台-西侧候车厅）', '2F（西侧候车厅二层）', '1F（锅炉室）', '2F（中央廊桥-主控室二层）', '1F（东侧月台）'];
+        const stage = document.querySelector('#haunting-depth-stage');
+        const section = document.querySelector('#haunting-plan-detail');
+        let active = 0, hovered = false, focused = false, visible = false;
+        let playing = false;
+        stage.innerHTML = labels.map((label, i) => `<button type="button" class="haunting-depth-card" data-index="${i}" data-star-rail-image="assets/haunting-station/plans/${String(i + 1).padStart(2, '0')}.png" data-star-rail-label="${label}" aria-label="放大查看 ${label}"><img src="assets/optimized/haunting-station/plans/${String(i + 1).padStart(2, '0')}.webp" alt="${label}" loading="lazy" decoding="async" draggable="false" /></button>`).join('');
+        const cards = [...stage.children];
+        const arrange = () => {
+          cards.forEach((card, i) => {
+            const offset = ((i - active + labels.length + 5) % labels.length) - 5;
+            const distance = Math.abs(offset);
+            const shown = distance <= 2;
+            card.style.visibility = shown ? 'visible' : 'hidden';
+            card.style.pointerEvents = shown ? 'auto' : 'none';
+            card.tabIndex = shown ? 0 : -1;
+            card.setAttribute('aria-hidden', String(!shown));
+            card.style.zIndex = String(labels.length - distance);
+            card.style.opacity = shown ? String([1, .75, .22][distance]) : '0';
+            card.style.filter = `blur(${distance}px)`;
+            card.style.transform = `translate(-50%, -50%) translateX(${offset * Math.min(260, stage.clientWidth * .23)}px) scale(${1 - distance * .15}) rotate(${offset * 5}deg)`;
+          });
+          document.querySelector('#haunting-depth-caption').textContent = labels[active];
+        };
+        const move = step => { active = (active + step + labels.length) % labels.length; arrange(); };
+        let wheelTime = 0;
+        stage.addEventListener('wheel', event => {
+          if (event.ctrlKey || Math.abs(event.deltaY) < 2) return;
+          event.preventDefault();
+          const now = performance.now();
+          if (now - wheelTime < 350) return;
+          wheelTime = now;
+          move(event.deltaY > 0 ? 1 : -1);
+        }, { passive: false });
+        const play = document.querySelector('#haunting-depth-play');
+        const updatePlay = () => { play.textContent = playing ? '暂停轮播' : '播放轮播'; play.setAttribute('aria-pressed', String(playing)); };
+        play.onclick = () => { playing = !playing; updatePlay(); };
+        document.querySelector('#haunting-depth-prev').onclick = () => move(-1);
+        document.querySelector('#haunting-depth-next').onclick = () => move(1);
+        section.addEventListener('pointerenter', () => { hovered = true; });
+        section.addEventListener('pointerleave', () => { hovered = false; });
+        section.addEventListener('focusin', () => { focused = true; });
+        section.addEventListener('focusout', event => { focused = section.contains(event.relatedTarget); });
+        section.addEventListener('keydown', event => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); move(event.key === 'ArrowLeft' ? -1 : 1); } });
+        new IntersectionObserver(entries => { visible = entries[0].isIntersecting; }, { threshold: .2 }).observe(section);
+        window.addEventListener('resize', arrange);
+        setInterval(() => { if (playing && visible && !hovered && !focused && !document.hidden && document.querySelector('#star-rail-image-viewer').hidden) move(1); }, 3500);
+        arrange(); updatePlay();
       }
       function closeStarRailViewer() {
         const viewer = document.querySelector('#star-rail-image-viewer');
@@ -1556,7 +1652,10 @@
         const t = copy[language];
         document.documentElement.lang = isEnglish ? 'en' : 'zh-CN';
         document.title = `${project[isEnglish ? 'en' : 'zh']} | Lizhi`;
-        document.querySelector('#detail-kicker').textContent = `${String(id).padStart(2, '0')} / ${categories[category][isEnglish ? 'en' : 'zh']}`;
+        const isLevelBlockout = (category === 'game' && id === 3) || (category === 'research' && id === 3);
+        const displayCategory = isLevelBlockout ? { zh: '关卡设计白盒', en: 'LEVEL DESIGN BLOCKOUTS', anchor: 'level-blockouts' } : categories[category];
+        const displayId = isLevelBlockout ? (category === 'game' ? 1 : 2) : id;
+        document.querySelector('#detail-kicker').textContent = `${String(displayId).padStart(2, '0')} / ${displayCategory[isEnglish ? 'en' : 'zh']}`;
         const detailTitle = document.querySelector('#detail-title');
         detailTitle.classList.toggle('detail-title-gravity-en', isEnglish && isGravityProject());
         detailTitle.classList.toggle('detail-title-research-en', isEnglish && isResearchPaperTitleOnly());
@@ -1604,6 +1703,12 @@
         const verminexLevelDesignLink = document.querySelector('#verminex-level-design-link');
         const kittyWebglLink = document.querySelector('#kitty-webgl-link');
         const beyondTcgLink = document.querySelector('#beyond-tcg-link');
+        const hauntingPlanDetailLink = document.querySelector('#haunting-plan-detail-link');
+        const hauntingPlanDetail = document.querySelector('#haunting-plan-detail');
+        const hauntingBubbleDetailLink = document.querySelector('#haunting-bubble-detail-link');
+        const hauntingFlowDetailLink = document.querySelector('#haunting-flow-detail-link');
+        const hauntingBubbleDetail = document.querySelector('#haunting-bubble-detail');
+        const hauntingFlowDetail = document.querySelector('#haunting-flow-detail');
         conceptLink.hidden = !isVerminexDetail;
         conceptLink.textContent = isEnglish ? 'Concept Design' : '概念设计';
         conceptLink.href = '#verminex-concept';
@@ -1614,6 +1719,21 @@
         kittyWebglLink.hidden = !isWebglProject();
         kittyWebglLink.textContent = isHotpotDetail ? (isEnglish ? 'Game Design Document' : '游戏策划案') : (isEnglish ? 'Web Game' : '网页游戏');
         kittyWebglLink.href = isHotpotDetail ? '#hotpot-design-document' : '#kitty-webgl';
+        const isHauntingStation = category === 'research' && id === 3;
+        hauntingPlanDetailLink.hidden = !isHauntingStation;
+        hauntingPlanDetailLink.textContent = isEnglish ? 'Level Design Details - Floor Plans' : '关卡设计详情 - 平面图';
+        hauntingPlanDetail.hidden = !isHauntingStation;
+        document.querySelector('#haunting-plan-detail-title').textContent = isEnglish ? 'Level Design Details - Floor Plans' : '关卡设计详情 - 平面图';
+        hauntingBubbleDetailLink.hidden = !isHauntingStation;
+        hauntingBubbleDetailLink.textContent = isEnglish ? 'Level Design Details - Bubble Map' : '关卡设计详情-气泡图';
+        hauntingFlowDetailLink.hidden = !isHauntingStation;
+        hauntingFlowDetailLink.textContent = isEnglish ? 'Level Design Details - Pacing & Flow' : '关卡设计详情-关卡节奏与关卡流程';
+        hauntingBubbleDetail.hidden = !isHauntingStation;
+        hauntingFlowDetail.hidden = !isHauntingStation;
+        document.querySelector('#haunting-bubble-title').textContent = isEnglish ? 'Level Design Details - Bubble Map' : '关卡设计详情-气泡图';
+        document.querySelector('#haunting-bubble-description').textContent = isEnglish ? 'The bubble map abstracts the station into connected functional spaces, showing the relationship between exploration routes, puzzle nodes, combat encounters, and pacing before the layout is developed in detail.' : '气泡图将车站空间抽象为彼此连接的功能区域，用于梳理探索路线、解谜节点、战斗遭遇与节奏变化之间的关系，为后续平面布局提供结构依据。';
+        document.querySelector('#haunting-flow-title').textContent = isEnglish ? 'Level Design Details - Pacing & Flow' : '关卡设计详情-关卡节奏与关卡流程';
+        document.querySelector('#haunting-flow-description').textContent = isEnglish ? 'The pacing chart tracks shifts between exploration, puzzles, combat, rewards, and the final objective. The flow chart on the right translates this rhythm into a complete sequence of player actions and level states.' : '关卡节奏图呈现探索、解谜、战斗、奖励与最终目标之间的体验起伏；右侧流程图将这些节奏节点进一步拆解为完整的玩家行动与关卡状态流程。';
         const scrollDown = document.querySelector('.detail-scroll-down');
         scrollDown.href = isWebglProject() ? '#kitty-webgl' : '#detail-exhibition';
         scrollDown.setAttribute('aria-label', isWebglProject()
@@ -1644,7 +1764,7 @@
         }
         const backLink = document.querySelector('#detail-back');
         backLink.textContent = isResearchPaper ? (isEnglish ? 'Back' : '返回') : t.back;
-        backLink.href = isResearchPaper ? 'index.html#design-docs' : `index.html?return=${categories[category].anchor}#${categories[category].anchor}`;
+        backLink.href = isResearchPaper ? 'index.html#design-docs' : `index.html?return=${displayCategory.anchor}#${displayCategory.anchor}`;
         backLink.dataset.restorePreviousPage = isResearchPaper ? 'true' : 'false';
         document.querySelector('#detail-language').textContent = t.toggle;
         const heroImage = project.heroImage || project.image;
@@ -1695,13 +1815,13 @@
         } else if (!omitReview && renderUndergroundArchitecturalDesign()) {
           // Underground uses a static architectural-design composition.
         } else if (!omitReview && category === 'research' && id === 3) {
-          const pdf = 'assets/haunting-station/level-design.pdf';
+          const pdf = 'assets/haunting-station/level-design.pdf?v=20260907-172304';
           const title = isEnglish ? 'Haunting Station — Level Design Document' : '“幽邃车站”关卡设计文档';
           const gallery = document.querySelector('#detail-process-gallery');
           gallery.className = 'star-rail-analysis-layout';
           gallery.innerHTML = `
             <a class="star-rail-analysis-preview" href="${pdf}" target="_blank" rel="noopener noreferrer" aria-label="${isEnglish ? 'View complete PDF' : '在网页中查看完整 PDF'}">
-              <img src="assets/optimized/haunting-station/level-design-cover.webp" alt="${title}" loading="lazy" decoding="async" />
+              <img src="assets/optimized/haunting-station/level-design-cover.webp?v=20260907-172304" alt="${title}" loading="lazy" decoding="async" />
               <span>${isEnglish ? 'OPEN COMPLETE PDF' : '点击查看完整 PDF'}</span><i aria-hidden="true">↗</i>
             </a>
             <div class="star-rail-analysis-copy">
@@ -1918,6 +2038,7 @@
       startParticles();
       render();
       setupProcessGallery();
+      setupHauntingDepthCarousel();
     </script>
   </body>
 </html>
