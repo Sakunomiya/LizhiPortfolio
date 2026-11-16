@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>项目详情 | 李植</title>
-    <link rel="stylesheet" href="style.css?v=20260907-haunting-details-01" />
+    <link rel="stylesheet" href="style.css?v=20261116-synsivina-concept-thumbnails" />
   </head>
   <body class="project-detail-page">
     <img class="beyond-page-backdrop" id="beyond-page-backdrop" data-src="assets/optimized/beyond/page-background.webp" alt="" aria-hidden="true" decoding="async" hidden />
@@ -31,6 +31,7 @@
           <div class="detail-summary-panel">
             <p class="detail-summary" id="detail-summary"></p>
             <div class="detail-play-actions" id="detail-play-actions" hidden>
+              <a class="detail-play-link" id="detail-related-project-link" hidden></a>
               <a class="detail-play-link" id="detail-play-link" href="#detail-exhibition" hidden></a>
               <button class="detail-play-link" id="detail-mechanics-toggle" type="button" hidden></button>
               <a class="detail-play-link" id="detail-download-link" href="#" download hidden></a>
@@ -187,6 +188,10 @@
         <div class="detail-process-gallery" id="detail-process-gallery" aria-label="项目设计过程素材"></div>
       </section>
 
+      <section class="scene-concepts" id="scene-concepts" aria-labelledby="scene-concepts-title" hidden>
+        <h2 id="scene-concepts-title"></h2>
+        <div class="scene-concepts-gallery" id="scene-concepts-gallery"></div>
+      </section>
       <section class="haunting-plan-detail" id="haunting-plan-detail" aria-labelledby="haunting-plan-detail-title" hidden>
         <header class="detail-section-heading">
           <h2 id="haunting-plan-detail-title">关卡设计详情 - 平面图</h2>
@@ -314,7 +319,7 @@
         <span>图片待补充</span>
       </div>
     </div>
-    <div class="star-rail-image-viewer" id="star-rail-image-viewer" role="dialog" aria-modal="true" aria-label="放大查看拆解案图片" hidden>
+    <div class="star-rail-image-viewer" id="star-rail-image-viewer" role="dialog" aria-modal="true" aria-labelledby="star-rail-image-viewer-title" hidden>
       <div class="star-rail-image-viewer-toolbar">
         <span id="star-rail-image-viewer-title"></span>
         <output id="star-rail-image-viewer-zoom">100%</output>
@@ -336,6 +341,7 @@
           },
           {
             zh: 'HelloWorld', en: 'HelloWorld', zhType: '步行模拟器', enType: 'Walking simulator', image: 'assets/game-02-helloworld.png',
+            displayNumber: 8,
             heroImage: 'assets/detail-02-helloworld-hero.png', backgroundImage: 'assets/detail-02-helloworld-05.png',
             exhibitionImages: ['assets/detail-02-helloworld-01.png', 'assets/detail-02-helloworld-02.png', 'assets/detail-02-helloworld-03.png', 'assets/detail-02-helloworld-04.png', 'assets/detail-02-helloworld-05.png'],
             exhibitionLabels: { zh: ['01', '02', '03', '04', '05'], en: ['01', '02', '03', '04', '05'] },
@@ -490,6 +496,84 @@
               en: 'Hotpot Jianghu is an auto-battler inspired by Chinese hotpot culture. Players take the role of a novice hotpot apprentice travelling across the jianghu, delighting diners with their own hotpot creations. To succeed, players must manage their economy and ingredient inventory, develop soup-base recipes, build their reputation, and carefully control the doneness and quality of every ingredient during cooking. Set out to become a legendary hotpot master of the jianghu!<span class="detail-summary-divider"></span><span class="detail-summary-meta">Development Team:<br>Li Zhi: Lead Game Designer, Programming, UI, Gameplay Design, Balance Design<br>Luo Zhanghe: Game Art</span>'
             },
             keywords: { zh: ['自走棋', '策略', '数值', '游戏 Demo', '火锅', '中国传统文化'], en: ['Auto-Battler', 'Strategy', 'Game Balance', 'Game Demo', 'Hotpot', 'Traditional Chinese Culture'] }
+          },
+          {
+            zh: '游魂的辛西维那', en: 'The Wandering Souls of Synsivina',
+            displayNumber: 2,
+            animateEnglishTitleByWord: true,
+            zhType: '独立 2D 平台跳跃游戏', enType: 'Indie 2D Platformer',
+            keywords: {
+              zh: ['独立游戏', '2D平台跳跃', '解谜', '境界之外系列', '碎片化叙事', '2D类魂式箱庭关卡探索'],
+              en: ['Indie Game', '2D Platforming', 'Puzzle', 'Beyond the Boundary Series', 'Fragmented Storytelling', '2D Soulslike Sandbox Level Exploration']
+            },
+            image: 'assets/optimized/synsivina/hero-v2.webp',
+            heroImageFocus: 'right',
+            exhibitionLayout: 'screenshot-gallery',
+            exhibitionImages: [
+              'assets/optimized/synsivina/01.webp',
+              'assets/optimized/synsivina/02.webp',
+              'assets/optimized/synsivina/03.webp',
+              'assets/optimized/synsivina/04.webp',
+              'assets/optimized/synsivina/05.webp',
+              'assets/optimized/synsivina/06.webp',
+              'assets/optimized/synsivina/07.webp'
+            ],
+            exhibitionLabels: {
+              zh: ['开始界面', '收藏品界面', '游戏地图', '深邃地窟', '古根祭台', '废弃古道', '尼福尔之根'],
+              en: ['Start Screen', 'Collectibles Screen', 'Game Map', 'Deep Caverns', 'Ancient Root Altar', 'Abandoned Path', 'Root of Nifl']
+            },
+            downloadUrl: 'https://lizhi-portfolio-download-1469033375.cos.ap-guangzhou.myqcloud.com/downloads/Synsivina/%E6%B8%B8%E9%AD%82%E7%9A%84%E8%BE%9B%E8%A5%BF%E7%BB%B4%E9%82%A3.zip',
+            downloadSize: '494.9 MB',
+            summary: {
+              zh: '《游魂的辛西维那》是一款 2D 平台跳跃解谜游戏。玩家将扮演迷雾之国——辛西维那的一名迷雾信使，自某个深邃的地窟中苏醒，逐渐在探索中回想起自己的身份和使命，从危机四伏的野外生还。<br><br>《游魂的辛西维那》根植于「境界之外」系列世界观的第七界陆。辛西维那是第七界陆西北方的国家，由司掌［神秘］神格的神裔——希格尔德·卢恩·尼伯龙根统御。这个终年被大雾笼罩的神秘国度鲜为外界所知。若没有迷雾信使的接引，寻常外地人必定困死于雾中。本作正是基于这一世界观设定。<br><br><strong>开发团队：</strong><br>策划/程序/美术/音效：李植',
+              en: 'The Wandering Souls of Synsivina is a 2D puzzle platformer. You play as a Mist Courier from Synsivina, the land of fog. You awaken in a deep cavern and, as you explore, gradually remember who you are and what you were sent to do. To carry out your mission, you must survive the dangers of the wilderness.<br><br>The game is set on the Seventh Continent of the Beyond the Boundary universe. Synsivina lies in the northwest and is ruled by Sigurd Rune Nibelung, a divine descendant who presides over the domain of Mystery. Shrouded in dense fog year-round, the country is scarcely known to outsiders. Without a Mist Courier to guide them, ordinary travelers who enter Synsivina are doomed to become lost in the mist and perish. This lore is the foundation of the game.<br><br><strong>Development Team:</strong><br>Game Design / Programming / Art / Sound Effects: Li Zhi'
+            },
+            relatedProject: {
+              url: 'project-detail.html?category=other&id=2',
+              zh: '了解境界之外系列',
+              en: 'Explore Beyond the Boundary'
+            },
+            designLabel: { zh: '项目开发记录', en: 'Project Development Log' },
+            developmentImages: [
+              { image: 'whitebox-01.webp', zh: '游戏白盒测试场景1', en: 'Game Whitebox Test Scene 1' },
+              { image: 'whitebox-02.webp', zh: '游戏白盒测试场景2', en: 'Game Whitebox Test Scene 2' },
+              { image: 'detail.webp', workbook: true, zh: '点击查看完整关卡设计Excel文档', en: 'View the full level design workbook' },
+              { image: 'overview.webp', zh: '关卡设计总览', en: 'Level Design Overview' }
+            ],
+            sceneConcepts: {
+              zh: '项目设计场景概念图（含未实装部分）',
+              en: 'Environment Concept Art (Including Unimplemented Areas)',
+              images: [
+                { file: '01.webp', zh: '深邃地窟', en: 'Deep Caverns' },
+                { file: '02.webp', zh: '古根祭台', en: 'Ancient Root Altar' },
+                { file: '03.webp', zh: '古根祭台', en: 'Ancient Root Altar' },
+                { file: '04.webp', zh: '废弃古道', en: 'Abandoned Path' },
+                { file: '05.webp', zh: '尼福尔之根', en: 'Root of Nifl' },
+                { file: '06.webp', zh: '秘仪之都——倒悬的米斯特维克', en: 'Mistvik, the Inverted Capital of Rites' },
+                { file: 'mistvik.webp', zh: '秘仪之都——米斯特维克', en: 'Mistvik, the Capital of Rites' },
+                { file: '07.webp', zh: '永雾荒原', en: 'Evermist Wasteland' }
+              ]
+            },
+            levelDesignNotes: {
+              zh: [
+                '《游魂的辛西维那》在关卡设计上主要探索 2D 箱庭式类魂关卡。我通过单向门、回环结构和背景中的地标建筑，尝试在 2D 空间里复现类魂游戏的关卡探索体验。',
+                '在开始设计关卡前，我先为核心玩法制作原型，敲定了投掷「秘仪钉」后再传送的基础操作。这个机制的灵感来自《英雄联盟》中的诡术妖姬乐芙兰、影流之主劫、冰霜女巫丽桑卓和灰烬驱魔人洛克。其中，洛克的伏魔钉主要为我提供了美术设计上的灵感。',
+                '机制确定后，我开始思考哪些关卡组件能和秘仪钉产生有趣的交互。《Bionic Bay》给了我一个启发：秘仪钉命中物体后，玩家可以与它换位。由此，我又构思了压力板与压感门、可切断的锁链与荆棘，以及空间传送门等组件。',
+                '接下来是开发这些关卡组件的 Prefab。白盒调试用了将近一周半，我修复了不少交互 Bug，有些直到美术开发阶段才被测出来。我也反复调试角色的操作手感，包括长按跳跃、土狼时间，以及用短暂的空中时停让连续跳跃更顺畅。这些工作为后续的关卡设计和开发打下了基础。',
+                '进入关卡设计阶段后，我主要用 Excel 绘制关卡。左侧的关卡设计文档里记录了我对每一关的设计考量。最难的是新手教学：我希望玩家能体会到「哇，居然还能这样」的解谜乐趣，因此必须取舍哪些操作要明确教给玩家，哪些可以留给他们自己发现。多轮线下试玩带来了很多有价值的反馈。感谢所有参与测试并提出意见的朋友。',
+                '最后是美术开发。受工期和独立开发条件所限，当前版本的美术素材全部使用 AI 生成。我仍希望未来能做出更鲜明的风格化表达，现阶段的美术已经达到了我的预期。',
+                '项目仍在开发中。这次实践让我积累了不少关于 2D 箱庭式类魂关卡设计的心得，我也会继续推进这个项目，敬请期待。'
+              ],
+              en: [
+                'With The Wandering Souls of Synsivina, I wanted to explore how interconnected Soulslike levels could work in 2D. I used one-way doors, looping routes, and architectural landmarks in the background to recreate the experience of finding your way through a Soulslike level.',
+                'Before designing the levels, I prototyped the central mechanic: throwing a Ritual Spike and then teleporting. I drew inspiration from four League of Legends champions: LeBlanc, Zed, Lissandra, and Locke. Locke’s exorcism spikes were primarily a visual reference.',
+                'Once the mechanic was in place, I brainstormed level elements that could interact with the spike in interesting ways. Bionic Bay inspired the idea of swapping places with an object after hitting it with the spike. That led me to experiment with pressure plates and the doors they control, chains and brambles that can be cut, and portals.',
+                'I then built prefabs for those level elements and spent nearly a week and a half testing them in greybox levels. I fixed many interaction bugs, although some only surfaced during the art pass. I also tuned the controls through repeated testing, refining variable jump height, coyote time, and a brief midair pause to make consecutive jumps feel smoother. This work laid the groundwork for building the levels.',
+                'I drew most of the levels in Excel. The documents on the left record the design decisions behind each level. The tutorial was the hardest part. I wanted players to have that “Wait, I can do that?” moment, so I had to decide which mechanics to teach explicitly and which to leave for players to discover. Several rounds of in-person playtesting gave me valuable feedback. Thank you to all the friends who tested the game and shared their thoughts.',
+                'The art pass came last. Given the schedule and the realities of solo development, all art assets in the current version were generated with AI. I’d like to develop a more distinctive visual style in future, and the current art meets my expectations for this stage.',
+                'The project is still in development. Building it taught me a great deal about designing interconnected Soulslike levels in 2D, and I’ll continue developing the game.'
+              ]
+            }
           }
         ],
         research: [
@@ -672,7 +756,7 @@
           keywords: { zh: ['交互设计', '盲人儿童', '学习认知', '桌游教具'], en: ['Interaction Design', 'Visually Impaired Children', 'Learning & Cognition', 'Educational Tabletop Game'] }
         };
       }
-      let language = 'zh';
+      let language = params.get('lang') === 'en' ? 'en' : 'zh';
       let mechanicsOpen = false;
       let levelMechanicsPreviewOpen = false;
       const copy = {
@@ -873,7 +957,9 @@
         image.style.height = `${Math.max(1, Math.floor(image.naturalHeight * fitScale))}px`;
         resetStarRailViewer();
       }
-      function openStarRailViewer(src, label) {
+      let imageViewerTrigger;
+      function openStarRailViewer(src, label, trigger) {
+        imageViewerTrigger = trigger;
         const viewer = document.querySelector('#star-rail-image-viewer');
         const image = document.querySelector('#star-rail-image-viewer-image');
         viewer.hidden = false;
@@ -948,6 +1034,8 @@
         document.body.classList.remove('is-star-rail-viewer-open');
         document.querySelector('#star-rail-image-viewer-image').removeAttribute('src');
         resetStarRailViewer();
+        imageViewerTrigger?.focus({ preventScroll: true });
+        imageViewerTrigger = null;
       }
       let researchPaperData = null;
       let researchPaperLoad = null;
@@ -1509,6 +1597,42 @@
         document.querySelector('#verminex-level-document-cover').alt = isEnglish ? 'Verminex level design PDF preview' : 'Verminex 关卡设计文档 PDF 缩略图';
         document.querySelector('#verminex-level-document-pdf-label').textContent = isEnglish ? 'OPEN COMPLETE PDF' : '点击查看完整 PDF';
       }
+      function renderSceneConcepts() {
+        const section = document.querySelector('#scene-concepts');
+        const concepts = project.sceneConcepts;
+        section.hidden = !concepts;
+        if (!concepts) return;
+        document.querySelector('#scene-concepts-title').textContent = concepts[language];
+        const root = 'assets/optimized/synsivina/scene-concepts';
+        document.querySelector('#scene-concepts-gallery').innerHTML = concepts.images.map(({ file, [language]: label }) =>
+          `<button type="button" data-star-rail-image="${root}/${file}" data-star-rail-label="${label}">
+            <img src="${root}/thumbnails/${file}" alt="" ${lazyImageAttributes} />
+            <span class="scene-concepts-caption"><span>${label}</span><i aria-hidden="true">↗</i></span>
+          </button>`).join('');
+      }
+      function renderDevelopmentRecord() {
+        if (!project.developmentImages || !project.levelDesignNotes) return false;
+        const root = 'assets/synsivina/level-design';
+        document.querySelector('#detail-review').classList.add('has-level-design-workbooks');
+        const gallery = document.querySelector('#detail-process-gallery');
+        gallery.className = 'level-design-workbooks';
+        const cards = project.developmentImages.map(({ image, workbook, [language]: label }) => {
+          const thumbnail = `<img src="${root}/${image}" alt="" ${lazyImageAttributes} />`;
+          if (workbook) {
+            return `<button class="verminex-level-document-thumbnail" type="button" data-workbook-preview="${root}/workbook.html?lang=${language}" data-excel-title="${label}">
+              ${thumbnail}<b>${label}</b><i aria-hidden="true">↗</i>
+            </button>`;
+          }
+          return `<figure>${thumbnail}<figcaption>${label}</figcaption></figure>`;
+        }).join('');
+        const notes = project.levelDesignNotes?.[language] || [];
+        gallery.innerHTML = `<div class="level-design-workbook-cards">${cards}</div>
+          <div class="verminex-level-document-copy level-design-workbook-copy">
+            <h3 id="development-record-heading">${project.designLabel[language]}</h3><span aria-hidden="true"></span>
+            <div class="level-design-notes" role="region" aria-labelledby="development-record-heading" tabindex="0">${notes.map(paragraph => '<p>' + paragraph + '</p>').join('')}</div>
+          </div>`;
+        return true;
+      }
       function renderGravityLevelDesign() {
         if (!isGravityProject()) return false;
         const level = project.levelDesign[language];
@@ -1654,12 +1778,15 @@
         document.title = `${project[isEnglish ? 'en' : 'zh']} | Lizhi`;
         const isLevelBlockout = (category === 'game' && id === 3) || (category === 'research' && id === 3);
         const displayCategory = isLevelBlockout ? { zh: '关卡设计白盒', en: 'LEVEL DESIGN BLOCKOUTS', anchor: 'level-blockouts' } : categories[category];
-        const displayId = isLevelBlockout ? (category === 'game' ? 1 : 2) : id;
+        const displayId = isLevelBlockout ? (category === 'game' ? 1 : 2) : (project.displayNumber ?? id);
         document.querySelector('#detail-kicker').textContent = `${String(displayId).padStart(2, '0')} / ${displayCategory[isEnglish ? 'en' : 'zh']}`;
         const detailTitle = document.querySelector('#detail-title');
         detailTitle.classList.toggle('detail-title-gravity-en', isEnglish && isGravityProject());
         detailTitle.classList.toggle('detail-title-research-en', isEnglish && isResearchPaperTitleOnly());
-        detailTitle.innerHTML = [...project[isEnglish ? 'en' : 'zh']].map((char, index) => `<span style="--char-index:${index}">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+        const title = project[language];
+        const animateByWord = isEnglish && project.animateEnglishTitleByWord;
+        const titleParts = animateByWord ? title.split(' ') : [...title];
+        detailTitle.innerHTML = titleParts.map((part, index) => `<span style="--char-index:${index}">${part === ' ' ? '&nbsp;' : part}</span>`).join(animateByWord ? ' ' : '');
         const keywords = project.keywords?.[language];
         document.querySelector('#detail-type').innerHTML = keywords ? keywords.map(keyword => `<span class="detail-keyword">${keyword}</span>`).join('') : project[isEnglish ? 'enType' : 'zhType'];
         const isMaskoraDetail = isMaskoraProject();
@@ -1682,6 +1809,15 @@
         const action = projectAction[category]?.[id];
         const actionGroup = document.querySelector('#detail-play-actions');
         const actionLink = document.querySelector('#detail-play-link');
+        const relatedLink = document.querySelector('#detail-related-project-link');
+        const relatedProject = project.relatedProject;
+        relatedLink.hidden = !relatedProject;
+        if (relatedProject) {
+          const destination = new URL(relatedProject.url, location.href);
+          if (isEnglish) destination.searchParams.set('lang', 'en');
+          relatedLink.href = destination.href;
+          relatedLink.textContent = relatedProject[language];
+        }
         const downloadLink = document.querySelector('#detail-download-link');
         actionLink.hidden = !action;
         if (action) actionLink.textContent = action[isEnglish ? 1 : 0];
@@ -1694,7 +1830,7 @@
           downloadLink.removeAttribute('download');
         }
         updateMechanicsPanel();
-        actionGroup.hidden = !action && !project.downloadUrl && !project.mechanics;
+        actionGroup.hidden = !action && !project.downloadUrl && !project.mechanics && !relatedProject;
         const secondary = document.querySelector('#detail-secondary');
         const exhibitionLink = document.querySelector('#detail-exhibition-link');
         const rulebook = document.querySelector('#maskora-rulebook-link');
@@ -1791,11 +1927,16 @@
         const detailVisualImage = document.querySelector('#detail-visual-image');
         detailVisual.classList.toggle('is-hotpot-placeholder', isHotpotDetail);
         detailVisual.classList.toggle('is-star-rail-visual', isStarRailAnalysis);
-        detailVisualImage.hidden = !isStarRailAnalysis;
-        if (isStarRailAnalysis) {
+        const hasRightFocalPoint = project.heroImageFocus === 'right';
+        detailVisual.classList.toggle('has-right-focal-point', hasRightFocalPoint);
+        const showHeroImage = isStarRailAnalysis || hasRightFocalPoint;
+        detailVisualImage.hidden = !showHeroImage;
+        if (showHeroImage) {
           detailVisualImage.src = heroImage;
-          detailVisualImage.alt = isEnglish ? 'Honkai: Star Rail level pacing chart' : '《崩坏：星穹铁道》关卡节奏图';
-          detailVisual.style.backgroundImage = '';
+          detailVisualImage.alt = isStarRailAnalysis
+            ? (isEnglish ? 'Honkai: Star Rail level pacing chart' : '《崩坏：星穹铁道》关卡节奏图')
+            : `${project[language]} · ${t.visual}`;
+          detailVisual.style.backgroundImage = hasRightFocalPoint ? `url("${heroImage}")` : '';
         } else {
           detailVisualImage.removeAttribute('src');
           detailVisualImage.alt = '';
@@ -1804,6 +1945,8 @@
         if (reviewSection?.isConnected) reviewSection.classList.remove('is-gravity-level-design', 'is-infinity-value-design', 'is-body-battle-design', 'is-beyond-development', 'is-underground-architectural-design');
         if (!omitReview && isMaskoraDetail) {
           renderMaskoraDevelopment();
+        } else if (!omitReview && renderDevelopmentRecord()) {
+          // The development log has its own static layout.
         } else if (!omitReview && renderGravityLevelDesign()) {
           // GravitySpaceship uses its own level-design layout instead of the shared process gallery.
         } else if (!omitReview && renderInfinityValueTableDesign()) {
@@ -1850,16 +1993,24 @@
           renderMaskoraCardExhibition();
         } else {
           clearInterval(maskoraAutoplay);
-          const exhibitionImages = (project.exhibitionImages || Array.from({ length: 5 }, () => project.image)).slice(0, 5);
+          const exhibitionImages = project.exhibitionImages || Array.from({ length: 5 }, () => project.image);
+          const isScreenshotGallery = project.exhibitionLayout === 'screenshot-gallery';
           const grid = document.querySelector('#detail-exhibition-grid');
-          grid.className = 'detail-exhibition-grid';
+          grid.className = isScreenshotGallery ? 'detail-exhibition-grid screenshot-gallery' : 'detail-exhibition-grid';
           grid.setAttribute('aria-label', language === 'en' ? 'Project exhibition images' : '项目展览图片');
           const exhibitionLabels = project.exhibitionLabels?.[language] || project.exhibitionLabels || [];
-          grid.innerHTML = exhibitionImages.map((image, index) => `<article class="detail-exhibition-card detail-exhibition-${index}" data-lazy-bg="${image}" data-lazy-overlay="linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%)"><h3>${exhibitionLabels[index] || exhibition.captions[index] || exhibition.captions[0]}</h3></article>`).join('');
+          grid.innerHTML = (isScreenshotGallery ? exhibitionImages : exhibitionImages.slice(0, 5)).map((image, index) => {
+            const label = exhibitionLabels[index] || exhibition.captions[index] || exhibition.captions[0];
+            if (isScreenshotGallery) {
+              return `<figure class="detail-exhibition-card"><img src="${image}" alt="" width="1920" height="1200" ${lazyImageAttributes} /><figcaption>${label}</figcaption></figure>`;
+            }
+            return `<article class="detail-exhibition-card detail-exhibition-${index}" data-lazy-bg="${image}" data-lazy-overlay="linear-gradient(180deg,rgba(6,8,18,.04) 24%,rgba(5,6,14,.88) 100%)"><h3>${label}</h3></article>`;
+          }).join('');
           if (isHotpotDetail) grid.querySelectorAll('[data-lazy-bg]').forEach(hydrateLazyBackground);
         }
         renderMaskoraRulebook();
         renderMaskoraBoardDesign();
+        renderSceneConcepts();
         renderVerminexConceptDesign();
         renderVerminexLevelDocument();
         renderUndergroundGameDesign();
@@ -1911,10 +2062,13 @@
       });
       document.querySelector('#maskora-rulebook-lightbox-close').addEventListener('click', closeMaskoraRulebookLightbox);
       document.querySelector('#maskora-rulebook-lightbox').addEventListener('click', event => { if (event.target === event.currentTarget) closeMaskoraRulebookLightbox(); });
+      let excelViewerTrigger;
       function closeGravityExcelViewer() {
         const viewer = document.querySelector('#gravity-excel-viewer');
+        if (viewer.hidden) return;
         viewer.hidden = true;
         document.querySelector('#gravity-excel-frame').src = 'about:blank';
+        excelViewerTrigger?.focus();
       }
       document.querySelector('#gravity-excel-viewer-close').addEventListener('click', closeGravityExcelViewer);
       document.querySelector('#gravity-excel-viewer').addEventListener('click', event => { if (event.target === event.currentTarget) closeGravityExcelViewer(); });
@@ -1924,7 +2078,7 @@
       document.addEventListener('click', event => {
         const trigger = event.target.closest('[data-star-rail-image]');
         if (!trigger) return;
-        openStarRailViewer(trigger.dataset.starRailImage, trigger.dataset.starRailLabel);
+        openStarRailViewer(trigger.dataset.starRailImage, trigger.dataset.starRailLabel, trigger);
       });
       document.querySelector('#star-rail-image-viewer-close').addEventListener('click', closeStarRailViewer);
       document.querySelector('#star-rail-image-viewer-reset').addEventListener('click', resetStarRailViewer);
@@ -1981,14 +2135,17 @@
       });
       document.addEventListener('keydown', event => { if (event.key === 'Escape' && !document.querySelector('#star-rail-image-viewer').hidden) closeStarRailViewer(); });
       document.addEventListener('click', event => {
-        const trigger = event.target.closest('[data-excel-src]');
+        const trigger = event.target.closest('[data-excel-src], [data-workbook-preview]');
         if (!trigger) return;
         event.preventDefault();
-        const sourceUrl = new URL(trigger.dataset.excelSrc, location.href).href;
+        const preview = trigger.dataset.workbookPreview;
+        const sourceUrl = new URL(preview || trigger.dataset.excelSrc, location.href).href;
         const frame = document.querySelector('#gravity-excel-frame');
         frame.title = trigger.dataset.excelTitle || 'Excel spreadsheet';
-        frame.src = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(sourceUrl)}`;
+        frame.src = preview ? sourceUrl : `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(sourceUrl)}`;
+        excelViewerTrigger = trigger;
         document.querySelector('#gravity-excel-viewer').hidden = false;
+        document.querySelector('#gravity-excel-viewer-close').focus();
       });
       document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeMaskoraRulebookLightbox(); closeGravityExcelViewer(); closeHotpotSystemLightbox(); } });
       document.addEventListener('pointermove', event => {
@@ -2009,7 +2166,7 @@
       }
       function setupProcessGallery() {
         const gallery = document.querySelector('#detail-process-gallery');
-        if (!gallery || gallery.classList.contains('star-rail-analysis-layout')) return;
+        if (!gallery || gallery.classList.contains('star-rail-analysis-layout') || gallery.classList.contains('level-design-workbooks')) return;
         if (gallery.classList.contains('maskora-development-gallery') || gallery.classList.contains('gravity-level-design-layout') || gallery.classList.contains('infinity-value-layout') || gallery.classList.contains('body-battle-design-layout') || gallery.classList.contains('beyond-development-grid') || gallery.classList.contains('underground-architectural-layout')) return;
         let active = Math.floor((gallery.children.length - 1) / 2);
         const arrange = () => [...gallery.children].forEach((card, index) => {

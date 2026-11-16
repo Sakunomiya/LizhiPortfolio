@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>关卡设计工作表</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { display: grid; grid-template-rows: auto minmax(0, 1fr); height: 100dvh; margin: 0; font: 14px system-ui, sans-serif; }
+    header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; min-height: 48px; padding: 9px 54px 9px 12px; background: #f1f4fa; color: #182235; }
+    label { display: flex; align-items: center; gap: 6px; }
+    select, button { min-height: 30px; font: inherit; }
+    iframe { width: 100%; height: 100%; border: 0; }
+    #status:empty { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <label><span id="sheet-label">工作表</span><select id="sheets"></select></label>
+    <label><span id="zoom-label">缩放</span>
+      <select id="zoom">
+        <option value=".15">15%</option><option value=".3">30%</option><option value=".5">50%</option>
+        <option value=".75">75%</option><option value="1" selected>100%</option><option value="1.25">125%</option>
+      </select>
+    </label>
+    <span id="status" role="status"></span>
+  </header>
+  <iframe id="sheet" title="工作表内容"></iframe>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const isEnglish = params.get('lang') === 'en';
+    const tabs = document.querySelector('#sheets');
+    const zoom = document.querySelector('#zoom');
+    const sheet = document.querySelector('#sheet');
+    if (isEnglish) {
+      document.documentElement.lang = 'en';
+      document.title = 'Level design workbook';
+      document.querySelector('#sheet-label').textContent = 'Worksheet';
+      document.querySelector('#zoom-label').textContent = 'Zoom';
+    }
+    function applyZoom() {
+      if (sheet.contentDocument?.body) sheet.contentDocument.body.style.zoom = zoom.value;
+    }
+    function showSheet() {
+      sheet.title = tabs.selectedOptions[0].textContent;
+      sheet.src = `detail/${tabs.value}`;
+    }
+    tabs.addEventListener('change', showSheet);
+    zoom.addEventListener('change', applyZoom);
+    sheet.addEventListener('load', applyZoom);
+    fetch('detail/sheets.json').then(response => {
+      if (!response.ok) throw new Error('Worksheet list unavailable');
+      return response.json();
+    }).then(sheets => {
+      for (const { file, name } of sheets) tabs.add(new Option(name, file));
+      showSheet();
+    }).catch(() => {
+      document.querySelector('#status').textContent = isEnglish ? 'Unable to load the workbook.' : '暂时无法加载工作簿。';
+    });
+  </script>
+</body>
+</html>

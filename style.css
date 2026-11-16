@@ -379,6 +379,68 @@ html.is-returning-to-section { scroll-behavior: auto !important; }
 .detail-exhibition-card { position: relative; overflow: hidden; border: 1px solid rgba(182,195,246,.26); border-radius: 14px; background-color: #0b0f1c; background-position: center; background-size: cover; box-shadow: 0 14px 38px rgba(0,0,0,.22); transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; }
 .detail-exhibition-card:hover { border-color: rgba(82,111,255,.9); box-shadow: 0 18px 46px rgba(2,13,69,.34); transform: translateY(-4px); }
 .detail-exhibition-card h3 { position: absolute; z-index: 1; bottom: 19px; left: 22px; margin: 0; color: #f5f7ff; font: 500 12px/1.2 Inter, "Noto Sans SC", sans-serif; letter-spacing: .04em; }
+.project-synsivina strong,
+.project-synsivina .game-title b { white-space: normal; overflow-wrap: anywhere; }
+.gallery-card.project-synsivina {
+  background-position: left center;
+}
+.gallery-card.project-synsivina::before {
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(2,3,6,.92), rgba(2,3,6,.32) 32%, transparent 56%, transparent 77%, rgba(2,3,6,.7));
+}
+.detail-visual.has-right-focal-point > img {
+  position: absolute;
+  right: 0;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, transparent, black 24%, black 89%, transparent);
+}
+.detail-visual.has-right-focal-point {
+  container-type: size;
+  height: clamp(390px, 53vw, 650px);
+  background-position: left center;
+  background-size: cover;
+}
+@media (max-width: 860px) {
+  .detail-visual.has-right-focal-point { height: 430px; }
+}
+@media (max-width: 560px) {
+  .detail-visual.has-right-focal-point { height: 340px; }
+}
+.detail-visual.has-right-focal-point::before { background: rgba(4,6,16,.2); }
+.detail-visual.has-right-focal-point > img {
+  top: 50%;
+  width: min(177%, 214.72cqh);
+  transform: translateY(-50%);
+}
+.detail-exhibition-grid.screenshot-gallery {
+  height: auto;
+  min-height: 0;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: none;
+}
+.screenshot-gallery figure {
+  grid-column: span 3;
+  margin: 0;
+}
+.screenshot-gallery figure:nth-child(-n+3) { grid-column: span 2; }
+.screenshot-gallery img { display: block; width: 100%; height: auto; }
+.screenshot-gallery figcaption {
+  padding: 12px 16px;
+  color: #f5f7ff;
+  font: 500 12px/1.4 Inter, "Noto Sans SC", sans-serif;
+  letter-spacing: .04em;
+}
+@media (max-width: 700px) {
+  .detail-exhibition-grid.screenshot-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .screenshot-gallery figure,
+  .screenshot-gallery figure:nth-child(-n+3) { grid-column: auto; }
+  .screenshot-gallery figure:nth-child(3) { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .detail-exhibition-grid.screenshot-gallery { grid-template-columns: minmax(0, 1fr); }
+}
 .detail-exhibition-0 { grid-column: 1 / 3; grid-row: 1; }
 .detail-exhibition-1 { grid-column: 3; grid-row: 1; background-position: 70% center; }
 .detail-exhibition-2 { grid-column: 1; grid-row: 2; background-position: 30% center; }
@@ -556,6 +618,111 @@ body.is-star-rail-viewer-open { overflow: hidden; }
 .verminex-level-document-copy h2 { max-width: 560px; margin: 0; color: #fff; font-family: "Noto Serif SC", "Songti SC", Georgia, serif; font-size: clamp(44px, 5vw, 76px); font-weight: 400; letter-spacing: -.065em; line-height: 1; }
 .verminex-level-document-copy > span { display: block; width: 48px; height: 1px; margin: 30px 0 22px; background: #91a5ff; }
 .verminex-level-document-copy > p:last-child { max-width: 530px; margin: 0; color: rgba(225,230,247,.72); font-size: 14px; line-height: 1.95; }
+.has-level-design-workbooks .detail-section-heading { display: none; }
+.level-design-workbooks {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
+  align-items: start;
+  gap: clamp(36px, 7vw, 112px);
+}
+.level-design-workbook-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.level-design-workbook-cards > * { width: 100%; min-width: 0; aspect-ratio: 16 / 10; }
+.level-design-workbook-cards figure {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(188,201,255,.3);
+  border-radius: 13px;
+  background: #0a0d17;
+}
+.level-design-workbook-cards figure img { width: 100%; min-height: 0; flex: 1; object-fit: contain; }
+.level-design-workbook-cards figcaption { padding: 7px 10px; color: #e7ecff; font-size: 12px; }
+.level-design-workbook-cards button b { left: 10px; right: 39px; bottom: 10px; line-height: 1.35; }
+.level-design-workbook-cards button i { right: 8px; bottom: 8px; width: 25px; height: 25px; font-size: 13px; }
+.level-design-workbook-copy {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  min-height: 0;
+  padding-bottom: 0;
+  contain: size;
+}
+.level-design-notes {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-color: #7181a7 transparent;
+  padding: 12px 14px;
+  border: 1px solid rgba(188,201,255,.24);
+  border-radius: 10px;
+  background: rgba(10,13,23,.56);
+  color: rgba(225,230,247,.78);
+  font-size: 14px;
+  line-height: 1.9;
+}
+.level-design-notes:focus-visible { outline: 2px solid #91a5ff; outline-offset: 3px; }
+.level-design-notes p { margin: 0; }
+.level-design-notes p + p { margin-top: 1em; }
+.scene-concepts { padding: clamp(64px, 8vw, 120px) 0; }
+.scene-concepts h2 {
+  margin: 0 0 clamp(24px, 4vw, 48px);
+  color: #fff;
+  font: 400 clamp(28px, 4vw, 58px)/1.2 "Noto Serif SC", "Songti SC", Georgia, serif;
+  text-align: center;
+}
+.scene-concepts-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 20px);
+}
+.scene-concepts-gallery button {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgba(188,201,255,.24);
+  border-radius: 13px;
+  background: #0b0e18;
+  color: #e7ecff;
+  cursor: zoom-in;
+  text-align: left;
+}
+.scene-concepts-gallery button:hover,
+.scene-concepts-gallery button:focus-visible { border-color: #8298ff; }
+.scene-concepts-gallery img { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: contain; }
+.scene-concepts-gallery button:nth-child(n+4) img { object-fit: cover; }
+.scene-concepts-gallery button:nth-child(4) img { object-position: center 35%; }
+.scene-concepts-caption {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+.scene-concepts-caption i { flex-shrink: 0; color: #a8b7ff; font-style: normal; }
+@media (max-width: 850px) {
+  .scene-concepts-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.level-design-workbook-copy h3 {
+  margin: 0;
+  color: #fff;
+  font-family: "Noto Serif SC", "Songti SC", Georgia, serif;
+  font-size: clamp(44px, 5vw, 76px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+@media (max-width: 850px) {
+  .level-design-workbooks { grid-template-columns: minmax(0, 1fr); }
+  .level-design-workbook-copy { grid-row: 1; contain: none; }
+  .level-design-notes { max-height: min(55vh, 440px); }
+}
 @media (max-width: 850px) { .verminex-level-document { min-height: auto; grid-template-columns: 1fr; gap: 44px; padding: 88px 0; }.verminex-level-document-media { height: 760px; }.verminex-level-document-copy { min-height: 360px; } }
 @media (max-width: 560px) { .verminex-level-document-media { height: auto; grid-template-rows: auto 300px; }.verminex-level-document-thumbnails { grid-template-columns: 1fr; grid-template-rows: repeat(4, 210px); }.verminex-level-document-copy { min-height: 330px; }.verminex-level-document-copy h2 { font-size: 48px; } }
 
