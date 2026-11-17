@@ -1029,10 +1029,8 @@ body.is-star-rail-viewer-open { overflow: hidden; }
   width: min(38%, 270px);
 }
 .detail-hero.is-beyond-hero .detail-hero-actions {
-  position: absolute;
-  right: clamp(22px, 3vw, 34px);
-  bottom: clamp(22px, 3vw, 34px);
   margin: 0;
+  padding: 0 clamp(22px, 3vw, 34px) clamp(22px, 3vw, 34px);
   justify-content: flex-end;
 }
 .detail-hero.is-beyond-hero .detail-visual-stage { display: none; }
