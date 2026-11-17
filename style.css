@@ -165,6 +165,11 @@ h1 .name { display: inline-block; font-size: calc(1em - 4px); }
 .contact-background { position: absolute; inset: 0; opacity: 0; background-position: center; background-size: cover; transition: opacity .32s ease-in-out; }
 .contact-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,6,10,.9), rgba(5,6,10,.57) 58%, rgba(5,6,10,.72)); }
 .contact-background.is-active { opacity: 1; }
+.project-background.project-bg-synsivina,
+.contact-background.contact-bg-synsivina { background-position: right center; }
+.project-background.project-bg-synsivina-2,
+.contact-background.contact-bg-synsivina-2 { background-position: 24% center; }
+.wheel-item.wheel-item-synsivina { max-width: min(280px, 72vw); white-space: normal; line-height: 1.15; text-align: right; }
 .contact-bg-1 { }
 .contact-bg-2 { }
 .contact-bg-3 { }
