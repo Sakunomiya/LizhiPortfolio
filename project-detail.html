@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>项目详情 | 李植</title>
-    <link rel="stylesheet" href="style.css?v=20261117-beyond-series-intro" />
+    <link rel="stylesheet" href="style.css?v=20261121-synsivina-cover3" />
   </head>
   <body class="project-detail-page">
     <img class="beyond-page-backdrop" id="beyond-page-backdrop" data-src="assets/optimized/beyond/page-background.webp" alt="" aria-hidden="true" decoding="async" hidden />
@@ -508,7 +508,8 @@
               en: ['Indie Game', '2D Platforming', 'Puzzle', 'Beyond the Boundary Series', 'Fragmented Storytelling', '2D Soulslike Sandbox Level Exploration']
             },
             image: 'assets/optimized/synsivina/hero-v2.webp',
-            heroImageFocus: 'right',
+            heroImage: 'assets/optimized/synsivina/detail-cover-v3.webp',
+            heroImageFocus: 'full',
             exhibitionLayout: 'screenshot-gallery',
             exhibitionImages: [
               'assets/optimized/synsivina/01.webp',
@@ -1972,7 +1973,9 @@
         detailVisual.classList.toggle('is-star-rail-visual', isStarRailAnalysis);
         const hasRightFocalPoint = project.heroImageFocus === 'right';
         detailVisual.classList.toggle('has-right-focal-point', hasRightFocalPoint);
-        const showHeroImage = isStarRailAnalysis || hasRightFocalPoint;
+        const hasFullCover = project.heroImageFocus === 'full';
+        detailVisual.classList.toggle('has-full-cover', hasFullCover);
+        const showHeroImage = isStarRailAnalysis || hasRightFocalPoint || hasFullCover;
         detailVisualImage.hidden = !showHeroImage;
         if (showHeroImage) {
           detailVisualImage.src = heroImage;

@@ -387,7 +387,7 @@ html.is-returning-to-section { scroll-behavior: auto !important; }
 .project-synsivina strong,
 .project-synsivina .game-title b { white-space: normal; overflow-wrap: anywhere; }
 .gallery-card.project-synsivina {
-  background-position: left center;
+  background-position: center;
 }
 .gallery-card.project-synsivina::before {
   z-index: 1;
@@ -413,6 +413,9 @@ html.is-returning-to-section { scroll-behavior: auto !important; }
 @media (max-width: 560px) {
   .detail-visual.has-right-focal-point { height: 340px; }
 }
+.detail-visual.has-full-cover { min-height: 0; aspect-ratio: 1; }
+.detail-visual.has-full-cover::before { display: none; }
+.detail-visual.has-full-cover > img { display: block; width: 100%; height: auto; }
 .detail-visual.has-right-focal-point::before { background: rgba(4,6,16,.2); }
 .detail-visual.has-right-focal-point > img {
   top: 50%;
